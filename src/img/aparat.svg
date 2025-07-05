@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+  <path d="M4.94664 18.6956C0.954452 16.3907 0.279532 13.8719 2.58443 9.8797M9.73728 21.4615C13.7295 23.7664 16.2483 23.0915 18.5532 19.0993M21.3191 14.3086C23.624 10.3165 22.949 7.79762 18.9568 5.49272M14.1662 2.72685C10.174 0.421958 7.65519 1.09688 5.3503 5.08907" stroke="#888888" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+  <circle cx="11.9423" cy="11.9426" r="0.818147" transform="rotate(15 11.9423 11.9426)" stroke="#888888" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"></circle>
+  <circle cx="10.3937" cy="8.07805" r="1.72118" transform="rotate(22.5 10.3937 8.07805)" stroke="#888888" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"></circle>
+  <circle cx="15.847" cy="10.3372" r="1.72118" transform="rotate(22.5 15.847 10.3372)" stroke="#888888" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"></circle>
+  <circle cx="13.5877" cy="15.7899" r="1.72118" transform="rotate(22.5 13.5877 15.7899)" stroke="#888888" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"></circle>
+  <circle cx="8.13462" cy="13.5314" r="1.72118" transform="rotate(22.5 8.13462 13.5314)" stroke="#888888" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"></circle>
+  <circle cx="12" cy="11.9999" r="8" stroke="#888888" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"></circle>
+</svg>
