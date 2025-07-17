@@ -1,69 +1,6 @@
 <?php
 get_header();
 ?>
-<div id="side-bar-mag" class="bg-[#ededed] w-full h-full absolute z-50 mt-[20px] pt-[20px] pr-[32px] hidden flex-col gap-[40px]">
-        <a href="#" class="flex justify-between w-[85%]">
-            <div class="flex items-center gap-4">
-                <img src="<?php echo THEME_DIR; ?>/src/img/tarfand.svg" alt="">
-                <p class="text-[16px] font-normal text-[#6b6b6b]">آموزش و ترفند</p>
-            </div>
-            <div>
-                <img src="<?php echo THEME_DIR; ?>/src/img/chevronLeft.svg" alt="">
-            </div>
-        </a>
-        <a href="#" class="flex justify-between w-[85%]">
-            <div class="flex items-center gap-4">
-                <img src="<?php echo THEME_DIR; ?>/src/img/book.svg" alt="">
-                <p class="text-[16px] font-normal text-[#6b6b6b]">راهنمای خرید</p>
-            </div>
-            <div>
-                <img src="<?php echo THEME_DIR; ?>/src/img/chevronLeft.svg" alt="">
-            </div>
-        </a>
-        <a href="#" class="flex justify-between w-[85%]">
-            <div class="flex items-center gap-4">
-                <img src="<?php echo THEME_DIR; ?>/src/img/Gamepad.svg" alt="">
-                <p class="text-[16px] font-normal text-[#6b6b6b]">سرگرمی</p>
-            </div>
-            <div>
-                <img src="<?php echo THEME_DIR; ?>/src/img/chevronLeft.svg" alt="">
-            </div>
-        </a>
-        <a href="#" class="flex justify-between w-[85%]">
-            <div class="flex items-center gap-4">
-                <img src="<?php echo THEME_DIR; ?>/src/img/Chart.svg" alt="">
-                <p class="text-[16px] font-normal text-[#6b6b6b]">نقد و بررسی</p>
-            </div>
-            <div>
-                <img src="<?php echo THEME_DIR; ?>/src/img/chevronLeft.svg" alt="">
-            </div>
-        </a>
-        <div class="flex justify-between items-center w-[85%]">
-            <div class="flex items-center gap-4">
-                <img src="<?php echo THEME_DIR; ?>/src/img/compare.svg" alt="">
-                <p class="text-[16px] font-normal text-[#6b6b6b]">مقایسه محصولات</p>
-            </div>
-            <div>
-                <img src="<?php echo THEME_DIR; ?>/src/img/chevronLeft.svg" alt="">
-            </div>
-        </div>
-        <a href="#" class="flex justify-between w-[85%]">
-            <div class="flex items-center gap-4">
-                <img src="<?php echo THEME_DIR; ?>/src/img/cart.svg" alt="">
-                <p class="text-[16px] font-normal text-[#e10a0a]">فروشگاه دی‌جی لند</p>
-            </div>
-            <div>
-                <img src="<?php echo THEME_DIR; ?>/src/img/chevronLeft.svg" alt="">
-            </div>
-        </a>
-    </div>
-    <div class="max-w-[1250px] mx-auto mt-[20px] flex items-center gap-3 px-[15px] flex-wrap">
-        <a class="text-[14px] font-normal text-[#777777]" href="#">مجله دی‌جی لند</a>
-        <p class="text-[#7b7b7b]">/</p>
-        <a class="text-[14px] font-normal text-[#777777]" href="#">تکنولوژی</a>
-        <p class="text-[#7b7b7b]">/</p>
-        <a class="text-[14px] font-normal text-[#777777]" href="#">هر آنچه درباره گلکسی اس ۲۵ می دانیم | مشخصات…</a>
-    </div>
     <section class="max-w-[1250px] mx-auto mt-[124px] lg:mt-[200px] flex flex-col lg:flex-row gap-20">
         <div class="w-full lg:max-w-[66.666667%] flex flex-col gap-7 px-[15px]">
             <p class="w-full lg:w-[800px] text-[24px] font-semibold">هر آنچه درباره گلکسی اس ۲۵ می دانیم | مشخصات + قیمت احتمالی و تاریخ عرضه </p>

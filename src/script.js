@@ -26,20 +26,18 @@ let searchMobile = doc.querySelector('#search-mobile')
 if(searchMobile) {
   searchMobile.addEventListener('click' , function() {
     popUp.classList.toggle('h-0')
-    popUp.classList.toggle('h-full')
+
     doc.body.classList.toggle('no-scroll')
   })
 }
 if(ExitPopUp) {
   ExitPopUp.addEventListener('click' , function() {
-    popUp.classList.toggle('h-full')
     popUp.classList.toggle('h-0')
     doc.body.classList.remove('no-scroll')
   })
 }
 if(ExitPopUp1) {
   ExitPopUp1.addEventListener('click' , function() {
-    popUp.classList.toggle('h-full')
     popUp.classList.toggle('h-0')
     doc.body.classList.remove('no-scroll')
   })
@@ -196,7 +194,7 @@ const categoryKala = doc.getElementById('category-kala')
 const subMenu = doc.getElementById('sub-menu')
 const header = doc.getElementById('header')
 const shadow = doc.getElementById('shadow')
-const categoryModel = doc.querySelectorAll('#category-model')
+const categoryModel = doc.querySelectorAll('.category-model')
 
 if(categoryKala){
   categoryKala.addEventListener('mouseenter' , function() {
@@ -950,8 +948,13 @@ function closeMenu() {
   }
 }
 
-    
-    
+let mobileMenuBtn = doc.querySelector("#mobile-menu-btn");
+let mobileMenu = doc.querySelector("#mobile-menu");
+mobileMenuBtn.addEventListener('click', function () {
+  let insideBtn = mobileMenuBtn.querySelector('.inside-btn');
+  insideBtn.classList.toggle('text-[#e10a0a]');
+  mobileMenu.classList.toggle('hidden');
+})
 
     let onlineSignOn = doc.querySelector("#online-sign-on");
     let oflineSignOn = doc.querySelector("#ofline-sign-on");
@@ -1265,8 +1268,12 @@ if (showAll2 && airpod2 && imgAirpod) {
       model.classList.toggle('text-[#e10a0a]')
       mobileModel1.forEach(model1 => {
         if (model1.dataset.model === datatargetmodel) {
-          model1.classList.toggle('h-0')
-          model1.classList.toggle('h-[1000px]')
+          if (model1.style.maxHeight) {
+            model1.style.maxHeight = null;
+          }else {
+            // open the clicked accordion model1
+            model1.style.maxHeight = model1.scrollHeight + 'px';
+          }
         }
       })
 
@@ -1285,8 +1292,12 @@ if (showAll2 && airpod2 && imgAirpod) {
       use.classList.toggle('text-[#e10a0a]')
       mobileuse1.forEach(use1 => {
         if (use1.dataset.model === datatargetuse) {
-          use1.classList.toggle('h-0')
-          use1.classList.toggle('h-[300px]')
+          if (use1.style.maxHeight) {
+            use1.style.maxHeight = null;
+          }else {
+            // open the clicked accordion use1
+            use1.style.maxHeight = use1.scrollHeight + 'px';
+          }
         }
       })
 
@@ -1305,8 +1316,13 @@ if (showAll2 && airpod2 && imgAirpod) {
       price.classList.toggle('text-[#e10a0a]')
       mobileprice1.forEach(price1 => {
         if (price1.dataset.model === datatargetprice) {
-          price1.classList.toggle('h-0')
-          price1.classList.toggle('h-[450px]')
+          if (price1.style.maxHeight) {
+            price1.style.maxHeight = null;
+          }else {
+            // open the clicked accordion price1
+            price1.style.maxHeight = price1.scrollHeight + 'px';
+          }
+          
         }
       })
 

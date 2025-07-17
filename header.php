@@ -9,6 +9,374 @@
     <link rel="stylesheet" href="<?php echo THEME_DIR; ?>/src/swiper-bundle.min.css">
 </head>
 <body>
+<svg class="hidden">
+        <symbol id="arrow-icon" viewBox="0 0 16 16">
+            <path d="M4 10L8 6L12 10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+        </symbol>
+        <symbol id="left-arrow" viewBox="0 0 16 16">
+            <path d="M6.80781 8L10.7797 11.9688C11.0734 12.2625 11.0734 12.7375 10.7797 13.0281C10.4859 13.3188 10.0109 13.3188 9.71719 13.0281L5.21719 8.53125C4.93281 8.24688 4.92656 7.79063 5.19531 7.49688L9.71406 2.96875C9.86094 2.82187 10.0547 2.75 10.2453 2.75C10.4359 2.75 10.6297 2.82187 10.7766 2.96875C11.0703 3.2625 11.0703 3.7375 10.7766 4.02812L6.80781 8Z" fill="#0085FF"></path>
+        </symbol>
+        <symbol id="search" viewBox="0 0 24 24">
+            <path d="M21 21L16.6588 16.6549C15.209 18.1187 13.223 19 11 19C6.58172 19 3 15.4183 3 11C3 6.58172 6.58172 3 11 3C15.4183 3 19 6.58172 19 11C19 12.073 18.7888 13.0967 18.4056 14.0317" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+        </symbol>
+        <symbol id="right-arrow" viewBox="0 0 24 24">
+            <path d="M13.7863 12L7.82852 6.04688C7.38789 5.60625 7.38789 4.89375 7.82852 4.45781C8.26914 4.02188 8.98164 4.02188 9.42227 4.45781L16.1723 11.2031C16.5988 11.6297 16.6082 12.3141 16.2051 12.7547L9.42695 19.5469C9.20664 19.7672 8.91602 19.875 8.63008 19.875C8.34414 19.875 8.05352 19.7672 7.8332 19.5469C7.39258 19.1062 7.39258 18.3938 7.8332 17.9578L13.7863 12Z" fill="currentColor"></path>
+        </symbol>
+        <symbol id="close" viewBox="0 0 26 26">
+            <line x1="6.16218" y1="6.56535" x2="18.8901" y2="19.2933" stroke="currentColor" stroke-width="2"></line><line x1="18.8902" y1="6.1617" x2="6.16229" y2="18.8896" stroke="currentColor" stroke-width="2"></line>
+        </symbol>
+    </svg>
+    <div id="mobile-menu" class="z-[9999] fixed w-full h-full hidden" >
+        <section class="h-[72px] desktop:h-[206px] z-[55] flex items-center flex-col">
+            <div class="flex w-full bg-[#fff] z-[50] relative">
+                <div class="w-full desktop:container px-2 desktop:px-0 mx-auto h-[72px] flex items-center justify-between" >
+                    <div class="flex w-full justify-center desktop:justify-start items-center gap-0 desktop:gap-[24px]" >
+                        <div class="search-bar relative flex items-center gap-[6px] bg-[#f6f5f5] w-full desktop:w-[616px] h-[48px] rounded-[22px]">
+                            <div class="right-1 w-[36px] h-[36px] flex justify-center items-center bg-transparent rounded-full mr-1 text-[#e10a0a]">
+                                <svg width="24" height="24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <use xlink:href="#search"></use>
+                                </svg>
+                            </div>
+                            <div id="search-mobile" class="w-full h-[36px] bg-[#f6f5f5] rounded-[22px] flex items-center relative">
+                                <input id="input-search" class="w-full h-full relative hidden desktop:flex items-center outline-none bg-transparent rounded-[22px] text-[16px] font-normal pr-1 placeholder-[#a0a6b2]" type="text" placeholder="جستجو..." >
+                                <div class="flex desktop:hidden items-center gap-2 absolute">
+                                    <span id="search-input2" class="text-nowrap text-[14px] font-normal text-[#a7a7a7]" >جستجو در</span>
+                                    <span>
+                                        <p>دیجی لند</p>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <div id="pop-up" class="fixed top-0 w-[100%] h-0 bg-[#fff] z-50 flex flex-col duration-500 overflow-hidden">
+            <div class="h-[80px] mx-5 py-4 flex items-center">
+                <div class="w-full h-[48px] bg-[#f9f9f9] rounded-[24px] flex justify-between items-center">
+                    <span id="exit-pop-up" class="w-[42px] lg:w-[36px] h-[36px] bg-[#fff] rounded-full mr-[4px] flex justify-center items-center" >
+                        <svg width="24" height="24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <use xlink:href="#right-arrow"></use>
+                        </svg>
+                    </span>
+                    <input class="w-full mx-4 outline-none" type="text" >
+                    <span id="exit-pop-up1" class="w-[42px] lg:w-[36px] h-[36px] bg-[#fff] rounded-full ml-[4px] flex justify-center items-center">
+                        <svg width="16" height="16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <use xlink:href="#close"></use>
+                        </svg>
+                    </span>
+                </div>
+            </div>
+            <div class="h-[1px] w-full bg-surface-40"></div>
+        </div>
+        <div class="flex w-full overflow-hidden bg-white">
+            <div id="sub-menu-mobile" class="min-w-[102px] overflow-y-scroll overflow-x-hidden bg-[#F6F6F6]" style="height: calc(-142px + 100vh)">
+                <div data-state="sub-1" class="sub-child flex h-[70px] w-[102px] cursor-pointer flex-col items-center justify-center text-[11px] Active border border-surface-40 text-text-30 !text-blue-600">
+                    <span class="mt-1 max-w-[90%] text-center">موبایل</span>
+                </div>
+                <div data-state="sub-2" class="sub-child flex h-[70px] w-[102px] cursor-pointer flex-col items-center justify-center text-[11px] unActive border border-surface-40 text-text-30" >
+                    <span class="mt-1 max-w-[90%] text-center">لوازم جانبی موبایل</span>
+                </div>
+                <div data-state="sub-3" class="sub-child flex h-[70px] w-[102px] cursor-pointer flex-col items-center justify-center text-[11px] unActive border border-surface-40 text-text-30" >
+                    <span class="mt-1 max-w-[90%] text-center">هدفون و هندزفری</span>
+                </div>
+                <div data-state="sub-4" class="sub-child flex h-[70px] w-[102px] cursor-pointer flex-col items-center justify-center text-[11px] unActive border border-surface-40 text-text-30" >
+                    <span class="mt-1 max-w-[90%] text-center">لپ تاپ و تبلت</span>
+                </div>
+                <div data-state="sub-5" class="sub-child flex h-[70px] w-[102px] cursor-pointer flex-col items-center justify-center text-[11px] unActive border border-surface-40 text-text-30" >
+                    <span class="mt-1 max-w-[90%] text-center">کامپیوتر</span>
+                </div>
+                <div data-state="sub-6" class="sub-child flex h-[70px] w-[102px] cursor-pointer flex-col items-center justify-center text-[11px] unActive border border-surface-40 text-text-30" >
+                    <span class="mt-1 max-w-[90%] text-center">ساعت هوشمند</span>
+                </div>
+                <div data-state="sub-7" class="sub-child flex h-[70px] w-[102px] cursor-pointer flex-col items-center justify-center text-[11px] unActive border border-surface-40 text-text-30">
+                    <span class="mt-1 max-w-[90%] text-center">گیمینگ</span>
+                </div>
+                <div data-state="sub-8" class="sub-child flex h-[70px] w-[102px] cursor-pointer flex-col items-center justify-center text-[11px] unActive border border-surface-40 text-text-30" >
+                    <span class="mt-1 max-w-[90%] text-center">صوتی و تصویری</span>
+                </div>
+                <div data-state="sub-9" class="sub-child flex h-[70px] w-[102px] cursor-pointer flex-col items-center justify-center text-[11px] unActive border border-surface-40 text-text-30" >
+                    <span class="mt-1 max-w-[90%] text-center">تجهیزات <br /> ذخیره سازی</span>
+                </div>
+            </div>
+            <div data-target="sub-1" class="menu-category w-full overflow-hidden overflow-y-auto px-4 Active" >
+                <div class="w-full overflow-hidden overflow-y-scroll">
+                    <h2 class="flex w-full cursor-pointer items-center py-[10px] pb-[12px] pl-1 text-[12px] font-bold text-[#0085ff]">
+                        <span class="relative top-[1px] text-[12px] font-bold">همه محصولات موبایل</span>
+                        <span class="mr-1">
+                            <svg width="16" height="16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <use xlink:href="#left-arrow"></use>
+                            </svg>
+                        </span>
+                    </h2>
+                    <div class="w-full" style="height: calc(-210px + 100vh)">
+                        <div class="w-full items-center">
+                            <div data-model="model1" class="mobile-model flex w-full items-center justify-between py-3 cursor-pointer">
+                                <span class="text-root text-body1-fa text-[14px] font-semibold">موبایل بر اساس برند</span>
+                                <div class="arrow-1 flex h-8 w-8 items-center justify-center rounded-md duration-300 rotate-180" >
+                                    <div class="duration-300">
+                                        <svg width="16" height="16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <use xlink:href="#arrow-icon"></use>
+                                        </svg>
+                                    </div>
+                                </div>
+                            </div>
+                            <div data-model="model1" class="grid mobile-model-1 gap-2 duration-700 overflow-hidden max-h-0">
+                                <a href="#" class="text-[#565656] before:content-[' '] relative left-[5px] mb-4 flex cursor-pointer items-center overflow-hidden text-ellipsis text-nowrap pr-[2px] text-right text-[14px] font-bold text-text-normal before:ml-[3px] before:block before:h-[14px] before:w-[2px] before:min-w-[2px] before:bg-red-600 hover:text-primary-normal">لینک یک</a>
+                            </div>
+                        </div>
+                        <div class="w-full items-center">
+                            <div data-model="model11" class="mobile-model flex w-full items-center justify-between py-3 cursor-pointer">
+                                <span class="text-root text-body1-fa text-[14px] font-semibold">موبایل بر اساس برند</span>
+                                <div class="arrow-1 flex h-8 w-8 items-center justify-center rounded-md duration-300 rotate-180">
+                                    <div class="duration-300">
+                                        <svg width="16" height="16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <use xlink:href="#arrow-icon"></use>
+                                        </svg>
+                                    </div>
+                                </div>
+                            </div>
+                            <div data-model="model11" class="grid mobile-model-1 gap-2 duration-700 overflow-hidden max-h-0">
+                                <a href="#" class="text-[#565656] before:content-[' '] relative left-[5px] mb-4 flex cursor-pointer items-center overflow-hidden text-ellipsis text-nowrap pr-[2px] text-right text-[14px] font-bold text-text-normal before:ml-[3px] before:block before:h-[14px] before:w-[2px] before:min-w-[2px] before:bg-red-600 hover:text-primary-normal">لینک یک</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div data-target="sub-2" class="menu-category hidden w-full overflow-hidden overflow-y-auto px-4 Active">
+                <div class="w-full overflow-hidden overflow-y-scroll">
+                    <h2 class="flex w-full cursor-pointer items-center py-[10px] pb-[12px] pl-1 text-[12px] font-bold text-[#0085ff]">
+                        <span class="relative top-[1px] text-[12px] font-bold">همه محصولات موبایل</span>
+                        <span class="mr-1">
+                            <svg width="16" height="16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <use xlink:href="#left-arrow"></use>
+                            </svg>
+                        </span>
+                    </h2>
+                    <div class="w-full" style="height: calc(-250px + 100vh)">
+                        <div class="w-full items-center">
+                            <div data-model="model2" class="mobile-model flex w-full items-center justify-between py-3 cursor-pointer">
+                                <span class="text-root text-body1-fa text-[14px] font-semibold">موبایل بر اساس برند</span>
+                                <div class="arrow-1 flex h-8 w-8 items-center justify-center rounded-md duration-300 rotate-180">
+                                    <div class="duration-300">
+                                        <svg width="16" height="16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <use xlink:href="#arrow-icon"></use>
+                                        </svg>
+                                    </div>
+                                </div>
+                            </div>
+                            <div data-model="model2" class="grid mobile-model-1 gap-2 duration-700 overflow-hidden max-h-0">
+                                <a href="#" class="text-[#565656] before:content-[' '] relative left-[5px] mb-4 flex cursor-pointer items-center overflow-hidden text-ellipsis text-nowrap pr-[2px] text-right text-[14px] font-bold text-text-normal before:ml-[3px] before:block before:h-[14px] before:w-[2px] before:min-w-[2px] before:bg-red-600 hover:text-primary-normal">لینک یک</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div data-target="sub-3" class="menu-category hidden w-full overflow-hidden overflow-y-auto px-4 Active">
+                <div class="w-full overflow-hidden overflow-y-scroll">
+                    <h2 class="flex w-full cursor-pointer items-center py-[10px] pb-[12px] pl-1 text-[12px] font-bold text-[#0085ff]">
+                        <span class="relative top-[1px] text-[12px] font-bold">همه محصولات موبایل</span>
+                        <span class="mr-1">
+                            <svg width="16" height="16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <use xlink:href="#left-arrow"></use>
+                            </svg>
+                        </span>
+                    </h2>
+                    <div class="w-full" style="height: calc(-250px + 100vh)">
+                        <div class="w-full items-center">
+                            <div data-model="model3" class="mobile-model flex w-full items-center justify-between py-3 cursor-pointer">
+                                <span class="text-root text-body1-fa text-[14px] font-semibold">موبایل بر اساس برند</span>
+                                <div class="arrow-1 flex h-8 w-8 items-center justify-center rounded-md duration-300 rotate-180">
+                                    <div class="duration-300">
+                                        <svg width="16" height="16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <use xlink:href="#arrow-icon"></use>
+                                        </svg>
+                                    </div>
+                                </div>
+                            </div>
+                            <div data-model="model3" class="grid mobile-model-1 gap-2 duration-700 overflow-hidden max-h-0">
+                                <a href="#" class="text-[#565656] before:content-[' '] relative left-[5px] mb-4 flex cursor-pointer items-center overflow-hidden text-ellipsis text-nowrap pr-[2px] text-right text-[14px] font-bold text-text-normal before:ml-[3px] before:block before:h-[14px] before:w-[2px] before:min-w-[2px] before:bg-red-600 hover:text-primary-normal">لینک یک</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div data-target="sub-4" class="menu-category hidden w-full overflow-hidden overflow-y-auto px-4 Active">
+                <div class="w-full overflow-hidden overflow-y-scroll">
+                    <h2 class="flex w-full cursor-pointer items-center py-[10px] pb-[12px] pl-1 text-[12px] font-bold text-[#0085ff]">
+                        <span class="relative top-[1px] text-[12px] font-bold">همه محصولات موبایل</span>
+                        <span class="mr-1">
+                            <svg width="16" height="16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <use xlink:href="#left-arrow"></use>
+                            </svg>
+                        </span>
+                    </h2>
+                    <div class="w-full" style="height: calc(-250px + 100vh)">
+                        <div class="w-full items-center">
+                            <div data-model="model4" class="mobile-model flex w-full items-center justify-between py-3 cursor-pointer">
+                                <span class="text-root text-body1-fa text-[14px] font-semibold">موبایل بر اساس برند</span>
+                                <div class="arrow-1 flex h-8 w-8 items-center justify-center rounded-md duration-300 rotate-180">
+                                    <div class="duration-300">
+                                        <svg width="16" height="16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <use xlink:href="#arrow-icon"></use>
+                                        </svg>
+                                    </div>
+                                </div>
+                            </div>
+                            <div data-model="model4" class="grid mobile-model-1 gap-2 duration-700 overflow-hidden max-h-0">
+                                <a href="#" class="text-[#565656] before:content-[' '] relative left-[5px] mb-4 flex cursor-pointer items-center overflow-hidden text-ellipsis text-nowrap pr-[2px] text-right text-[14px] font-bold text-text-normal before:ml-[3px] before:block before:h-[14px] before:w-[2px] before:min-w-[2px] before:bg-red-600 hover:text-primary-normal">لینک یک</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div data-target="sub-5" class="menu-category hidden w-full overflow-hidden overflow-y-auto px-4 Active">
+                <div class="w-full overflow-hidden overflow-y-scroll">
+                    <h2 class="flex w-full cursor-pointer items-center py-[10px] pb-[12px] pl-1 text-[12px] font-bold text-[#0085ff]">
+                        <span class="relative top-[1px] text-[12px] font-bold">همه محصولات موبایل</span>
+                        <span class="mr-1">
+                            <svg width="16" height="16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <use xlink:href="#left-arrow"></use>
+                            </svg>
+                        </span>
+                    </h2>
+                    <div class="w-full" style="height: calc(-250px + 100vh)">
+                        <div class="w-full items-center">
+                            <div data-model="model5" class="mobile-model flex w-full items-center justify-between py-3 cursor-pointer">
+                                <span class="text-root text-body1-fa text-[14px] font-semibold">موبایل بر اساس برند</span>
+                                <div class="arrow-1 flex h-8 w-8 items-center justify-center rounded-md duration-300 rotate-180">
+                                    <div class="duration-300">
+                                        <svg width="16" height="16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <use xlink:href="#arrow-icon"></use>
+                                        </svg>
+                                    </div>
+                                </div>
+                            </div>
+                            <div data-model="model5" class="grid mobile-model-1 gap-2 duration-700 overflow-hidden max-h-0">
+                                <a href="#" class="text-[#565656] before:content-[' '] relative left-[5px] mb-4 flex cursor-pointer items-center overflow-hidden text-ellipsis text-nowrap pr-[2px] text-right text-[14px] font-bold text-text-normal before:ml-[3px] before:block before:h-[14px] before:w-[2px] before:min-w-[2px] before:bg-red-600 hover:text-primary-normal" >لینک یک</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div data-target="sub-6" class="menu-category hidden w-full overflow-hidden overflow-y-auto px-4 Active">
+                <div class="w-full overflow-hidden overflow-y-scroll">
+                    <h2 class="flex w-full cursor-pointer items-center py-[10px] pb-[12px] pl-1 text-[12px] font-bold text-[#0085ff]">
+                        <span class="relative top-[1px] text-[12px] font-bold">همه محصولات موبایل</span>
+                        <span class="mr-1">
+                            <svg width="16" height="16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <use xlink:href="#left-arrow"></use>
+                            </svg>
+                        </span>
+                    </h2>
+                    <div class="w-full" style="height: calc(-250px + 100vh)">
+                        <div class="w-full items-center">
+                            <div data-model="model6" class="mobile-model flex w-full items-center justify-between py-3 cursor-pointer">
+                                <span class="text-root text-body1-fa text-[14px] font-semibold">موبایل بر اساس برند</span>
+                                <div class="arrow-1 flex h-8 w-8 items-center justify-center rounded-md duration-300 rotate-180">
+                                    <div class="duration-300">
+                                        <svg width="16" height="16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <use xlink:href="#arrow-icon"></use>
+                                        </svg>
+                                    </div>
+                                </div>
+                            </div>
+                            <div data-model="model6" class="grid mobile-model-1 gap-2 duration-700 overflow-hidden max-h-0">
+                                <a href="#" class="text-[#565656] before:content-[' '] relative left-[5px] mb-4 flex cursor-pointer items-center overflow-hidden text-ellipsis text-nowrap pr-[2px] text-right text-[14px] font-bold text-text-normal before:ml-[3px] before:block before:h-[14px] before:w-[2px] before:min-w-[2px] before:bg-red-600 hover:text-primary-normal">لینک یک</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div data-target="sub-7" class="menu-category hidden w-full overflow-hidden overflow-y-auto px-4 Active">
+                <div class="w-full overflow-hidden overflow-y-scroll">
+                    <h2 class="flex w-full cursor-pointer items-center py-[10px] pb-[12px] pl-1 text-[12px] font-bold text-[#0085ff]">
+                        <span class="relative top-[1px] text-[12px] font-bold">همه محصولات موبایل</span>
+                        <span class="mr-1">
+                            <svg width="16" height="16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <use xlink:href="#left-arrow"></use>
+                            </svg>
+                        </span>
+                    </h2>
+                    <div class="w-full" style="height: calc(-250px + 100vh)">
+                        <div class="w-full items-center">
+                            <div data-model="model7" class="mobile-model flex w-full items-center justify-between py-3 cursor-pointer">
+                                <span class="text-root text-body1-fa text-[14px] font-semibold">موبایل بر اساس برند</span>
+                                <div class="arrow-1 flex h-8 w-8 items-center justify-center rounded-md duration-300 rotate-180">
+                                    <div class="duration-300">
+                                        <svg width="16" height="16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <use xlink:href="#arrow-icon"></use>
+                                        </svg>
+                                    </div>
+                                </div>
+                            </div>
+                            <div data-model="model7" class="grid mobile-model-1 gap-2 duration-700 overflow-hidden max-h-0">
+                                <a href="#" class="text-[#565656] before:content-[' '] relative left-[5px] mb-4 flex cursor-pointer items-center overflow-hidden text-ellipsis text-nowrap pr-[2px] text-right text-[14px] font-bold text-text-normal before:ml-[3px] before:block before:h-[14px] before:w-[2px] before:min-w-[2px] before:bg-red-600 hover:text-primary-normal">لینک یک</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div data-target="sub-8" class="menu-category hidden w-full overflow-hidden overflow-y-auto px-4 Active">
+                <div class="w-full overflow-hidden overflow-y-scroll">
+                    <h2 class="flex w-full cursor-pointer items-center py-[10px] pb-[12px] pl-1 text-[12px] font-bold text-[#0085ff]">
+                        <span class="relative top-[1px] text-[12px] font-bold">همه محصولات موبایل</span>
+                        <span class="mr-1">
+                            <svg width="16" height="16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <use xlink:href="#left-arrow"></use>
+                            </svg>
+                        </span>
+                    </h2>
+                    <div class="w-full" style="height: calc(-250px + 100vh)">
+                        <div class="w-full items-center">
+                            <div data-model="model8" class="mobile-model flex w-full items-center justify-between py-3 cursor-pointer">
+                                <span class="text-root text-body1-fa text-[14px] font-semibold">موبایل بر اساس برند</span>
+                                <div class="arrow-1 flex h-8 w-8 items-center justify-center rounded-md duration-300 rotate-180">
+                                    <div class="duration-300">
+                                        <svg width="16" height="16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <use xlink:href="#arrow-icon"></use>
+                                        </svg>
+                                    </div>
+                                </div>
+                            </div>
+                            <div data-model="model8" class="grid mobile-model-1 gap-2 duration-700 overflow-hidden max-h-0">
+                                <a href="#" class="text-[#565656] before:content-[' '] relative left-[5px] mb-4 flex cursor-pointer items-center overflow-hidden text-ellipsis text-nowrap pr-[2px] text-right text-[14px] font-bold text-text-normal before:ml-[3px] before:block before:h-[14px] before:w-[2px] before:min-w-[2px] before:bg-red-600 hover:text-primary-normal">لینک یک</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div data-target="sub-9" class="menu-category hidden w-full overflow-hidden overflow-y-auto px-4 Active">
+                <div class="w-full overflow-hidden overflow-y-scroll">
+                    <h2 class="flex w-full cursor-pointer items-center py-[10px] pb-[12px] pl-1 text-[12px] font-bold text-[#0085ff]">
+                        <span class="relative top-[1px] text-[12px] font-bold">همه محصولات موبایل</span>
+                        <span class="mr-1">
+                            <svg width="16" height="16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <use xlink:href="#left-arrow"></use>
+                            </svg>
+                        </span>
+                    </h2>
+                    <div class="w-full" style="height: calc(-210px + 100vh)">
+                        <div class="w-full items-center">
+                            <div data-model="model9" class="mobile-model flex w-full items-center justify-between py-3 cursor-pointer">
+                                <span class="text-root text-body1-fa text-[14px] font-semibold">موبایل بر اساس برند</span>
+                                <div class="arrow-1 flex h-8 w-8 items-center justify-center rounded-md duration-300 rotate-180">
+                                    <div class="duration-300">
+                                        <svg width="16" height="16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <use xlink:href="#arrow-icon"></use>
+                                        </svg>
+                                    </div>
+                                </div>
+                            </div>
+                            <div data-model="model9" class="grid mobile-model-1 gap-2 duration-700 overflow-hidden max-h-0">
+                                <a href="#" class="text-[#565656] before:content-[' '] relative left-[5px] mb-4 flex cursor-pointer items-center overflow-hidden text-ellipsis text-nowrap pr-[2px] text-right text-[14px] font-bold text-text-normal before:ml-[3px] before:block before:h-[14px] before:w-[2px] before:min-w-[2px] before:bg-red-600 hover:text-primary-normal">لینک یک</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     <section id="header" class="fixed top-0 z-[99] bg-[#fff] w-full">
         <div id="banner" class="h-[45px] lg:h-[60px] w-full duration-500">
             <a href="#"><img class="hidden lg:block w-full h-full" src="<?php echo THEME_DIR; ?>/src/img/DESKTOPSECTIONBANNER-head.gif" alt=""></a>
@@ -232,7 +600,7 @@
                                             </div>
                                         </a>
                                     </div>
-                                    <div><img alt="logo basket empty" loading="lazy" width="100" height="100" decoding="async" data-nimg="1" style="color: transparent;" src="<?php echo THEME_DIR; ?>/src/img/basket-empty.gif"></div>
+                                    <div><img alt="logo basket empty" loading="lazy" width="100" height="100" decoding="async" data-nimg="1" style="color: transparent;" src="./src/img/basket-empty.gif"></div>
                                     <div>سبد خرید شما خالی است</div>
                                 </div>
                             </div>
@@ -247,40 +615,31 @@
                     <div id="sub-menu" class="max-h-[560px] h-[480px] hidden overflow-hidden absolute z-50 top-[39px]">
                         <div class="max-h-[560px] h-[480px] w-[1143px] bg-[#fff] flex justify-start">
                             <div class="w-[232px] max-h-[542px] flex flex-col items-start">
-                            <div id="category-model" data-content="mobile" class="flex w-full text-red-500 bg-[#FFFAFA] cursor-pointer items-center py-3 pr-6 text-[14px] font-bold  text-text-normal">
-                                <div class="w-[24px] h-[24px]"><img src="<?php echo THEME_DIR; ?>/src/img/category-mobile.png" alt=""></div>              
+                            <div data-content="mobile" class="category-model flex w-full text-red-500 bg-[#FFFAFA] cursor-pointer items-center py-3 pr-6 text-[14px] font-bold  text-text-normal">         
                                 <span>موبایل</span>
                             </div>
-                            <div id="category-model" data-content="mobile1" class="flex w-full text-[#505050] cursor-pointer items-center py-3 pr-6 text-[14px] font-bold  text-text-normal">
-                                <div class="w-[24px] h-[24px]"><img src="<?php echo THEME_DIR; ?>/src/img/category-mobile1.png" alt=""></div>
+                            <div data-content="mobile1" class="category-model flex w-full text-[#505050] cursor-pointer items-center py-3 pr-6 text-[14px] font-bold  text-text-normal">
                                 <span>لوازم جانبی موبایل</span>
                             </div>
-                            <div id="category-model" data-content="headphone" class="flex w-full text-[#505050] cursor-pointer items-center py-3 pr-6 text-[14px] font-bold  text-text-normal">
-                                <div class="w-[24px] h-[24px]"><img src="<?php echo THEME_DIR; ?>/src/img/headphone-category.png" alt=""></div>
+                            <div data-content="headphone" class="category-model flex w-full text-[#505050] cursor-pointer items-center py-3 pr-6 text-[14px] font-bold  text-text-normal">
                                 <span>هدفون هندزفری</span>
                             </div>
-                            <div id="category-model" data-content="laptop" class="flex w-full text-[#505050] cursor-pointer items-center py-3 pr-6 text-[14px] font-bold  text-text-normal">
-                                <div class="w-[24px] h-[24px]"><img src="<?php echo THEME_DIR; ?>/src/img/category-laptop.png" alt=""></div>
+                            <div data-content="laptop" class="category-model flex w-full text-[#505050] cursor-pointer items-center py-3 pr-6 text-[14px] font-bold  text-text-normal">
                                 <span>لپ تاپ و تبلت</span>
                             </div>
-                            <div id="category-model" data-content="computer" class="flex w-full text-[#505050] cursor-pointer items-center py-3 pr-6 text-[14px] font-bold  text-text-normal">
-                                <div class="w-[24px] h-[24px]"><img src="<?php echo THEME_DIR; ?>/src/img/category-computer.png" alt=""></div>
+                            <div data-content="computer" class="category-model flex w-full text-[#505050] cursor-pointer items-center py-3 pr-6 text-[14px] font-bold  text-text-normal">
                                 <span>کامپیوتر</span>
                             </div>
-                            <div id="category-model" data-content="clock" class="flex w-full text-[#505050] cursor-pointer items-center py-3 pr-6 text-[14px] font-bold  text-text-normal">
-                                <div class="w-[24px] h-[24px]"><img src="<?php echo THEME_DIR; ?>/src/img/category-clock.png" alt=""></div>
+                            <div data-content="clock" class="category-model flex w-full text-[#505050] cursor-pointer items-center py-3 pr-6 text-[14px] font-bold  text-text-normal">
                                 <span>ساعت هوشمند</span>
                             </div>
-                            <div id="category-model" data-content="gaming" class="flex w-full text-[#505050] cursor-pointer items-center py-3 pr-6 text-[14px] font-bold  text-text-normal">
-                                <div class="w-[24px] h-[24px]"><img src="<?php echo THEME_DIR; ?>/src/img/category-gaming.png" alt=""></div>
+                            <div data-content="gaming" class="category-model flex w-full text-[#505050] cursor-pointer items-center py-3 pr-6 text-[14px] font-bold  text-text-normal">
                                 <span>گیمینگ</span>
                             </div>
-                            <div id="category-model" data-content="audio" class="flex w-full text-[#505050] cursor-pointer items-center py-3 pr-6 text-[14px] font-bold  text-text-normal">
-                                <div class="w-[24px] h-[24px]"><img src="<?php echo THEME_DIR; ?>/src/img/category-audio.png" alt=""></div>
+                            <div data-content="audio" class="category-model flex w-full text-[#505050] cursor-pointer items-center py-3 pr-6 text-[14px] font-bold  text-text-normal">
                                 <span>صوتی و تصویری</span>
                             </div>
-                            <div id="category-model" data-content="save" class="flex w-full text-[#505050] cursor-pointer items-center py-3 pr-6 text-[14px] font-bold  text-text-normal">
-                                <div class="w-[24px] h-[24px]"><img src="<?php echo THEME_DIR; ?>/src/img/category-save.png" alt=""></div>
+                            <div data-content="save" class="category-model flex w-full text-[#505050] cursor-pointer items-center py-3 pr-6 text-[14px] font-bold  text-text-normal">
                                 <span>تجهیزات ذخیره سازی</span>
                             </div>
                             </div>
@@ -367,28 +726,77 @@
                     </div>
                 </div>
                 <a href="./installment.html" class="flex items-center group gap-1">
-                    <svg class="text-[#757575] lg:group-hover:text-[#e11010]" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g clip-path="url(#clip0_10152_59209)"><path d="M20.9941 5.46872C20.973 4.04259 19.8813 3.00147 18.4576 3.00098C14.1532 3.00049 9.84826 3.00098 5.54335 3C5.35281 3 5.16423 3.01277 4.97859 3.055C3.82698 3.31675 3.00244 4.34903 3.00146 5.53895C2.999 8.45358 2.99998 11.3682 3.00195 14.2828C3.00244 14.4351 3.01766 14.5883 3.03878 14.7396C3.20084 15.9211 4.21887 16.8842 5.39111 16.9013C7.04413 16.9259 8.69764 16.9107 10.3511 16.9063C10.7116 16.9053 11.0539 16.6273 11.1521 16.2836C11.243 15.9678 11.0878 15.6088 10.771 15.4035C10.6227 15.3073 10.4611 15.2704 10.2839 15.2709C8.69813 15.2734 7.1119 15.2709 5.52616 15.2734C5.14507 15.2739 4.89462 15.0833 4.72617 14.7602C4.64121 14.5971 4.63679 14.4199 4.63679 14.2416C4.63728 12.4658 4.63925 10.69 4.63336 8.91471C4.63286 8.76297 4.66675 8.72466 4.82095 8.72515C7.20913 8.73055 9.59732 8.72908 11.9855 8.72908C14.3737 8.72908 16.7741 8.73105 19.1682 8.72466C19.3357 8.72417 19.3666 8.77033 19.3632 8.92552C19.3524 9.39058 19.3563 9.85614 19.3602 10.3212C19.3637 10.7681 19.7531 11.1782 20.1725 11.1845C20.5875 11.1914 20.998 10.7823 20.999 10.3364C21.0034 8.71386 21.0177 7.09129 20.9941 5.46872ZM19.1883 7.09571C16.7874 7.09178 14.3864 7.09276 11.9855 7.09276C9.58455 7.09276 7.22043 7.09129 4.83814 7.0962C4.68345 7.09669 4.62746 7.07017 4.63286 6.89976C4.64711 6.46564 4.64956 6.03004 4.63434 5.59542C4.61813 5.12201 4.99284 4.63092 5.60179 4.63337C9.86447 4.65007 14.1272 4.64221 18.3903 4.64221C19.0022 4.64221 19.3568 4.99482 19.3588 5.60672C19.3602 6.04772 19.3519 6.48872 19.3632 6.92972C19.3671 7.07557 19.3185 7.09571 19.1883 7.09571ZM21.6993 16.9102C21.44 18.2784 20.7422 19.3656 19.5851 20.1357C18.6383 20.7657 17.5884 21.0378 16.4451 20.9219C15.3524 20.8114 14.3928 20.395 13.6022 19.6402C12.426 18.5175 11.902 17.1341 12.0886 15.5091C12.2369 14.2205 12.8341 13.1587 13.833 12.3406C14.9198 11.4507 16.1775 11.0917 17.5727 11.2813C18.822 11.4512 19.8459 12.0459 20.6557 13.0085C21.246 13.7112 21.5844 14.5274 21.7273 15.4295C21.7376 15.4934 21.7111 15.5837 21.8162 15.6019C21.7455 15.5027 21.7646 15.3824 21.7474 15.2729C21.3285 12.5856 18.5981 10.7082 15.9334 11.2788C13.3114 11.8401 11.6412 14.2868 12.0749 16.9318C12.4427 19.1736 14.439 20.9214 16.7191 20.9971C19.0017 21.0727 21.0245 19.5896 21.6355 17.387C21.7076 17.1263 21.7563 16.8586 21.8162 16.5939C21.6718 16.6592 21.7194 16.8026 21.6993 16.9102Z" fill="currentColor"></path><path d="M19.357 16.0382C19.3732 16.5411 19.0992 16.8716 18.6145 16.9021C18.3159 16.9212 18.0148 16.906 17.7148 16.906V16.9094C17.4579 16.9094 17.2011 16.9119 16.9438 16.9089C16.3972 16.9026 16.0903 16.5976 16.0873 16.0544C16.0849 15.528 16.0834 15.0015 16.0878 14.4756C16.0932 13.8494 16.6196 13.4831 17.2119 13.6879C17.5341 13.7993 17.7172 14.0665 17.7271 14.454C17.733 14.6868 17.733 14.9195 17.7266 15.1518C17.7236 15.2466 17.7492 15.278 17.8474 15.2756C18.0861 15.2682 18.3252 15.2697 18.5634 15.2741C19.0255 15.2824 19.3428 15.5904 19.357 16.0382Z" fill="currentColor"></path><path d="M21.7477 15.2733C21.3288 12.5861 18.5984 10.7086 15.9337 11.2793C13.3118 11.8406 11.6416 14.2872 12.0752 16.9322C12.443 19.1741 14.4393 20.9219 16.7194 20.9975C19.002 21.0731 21.0249 19.59 21.6358 17.3875C21.708 17.1267 21.7566 16.8591 21.8165 16.5944V15.6024C21.7458 15.5032 21.7649 15.3828 21.7477 15.2733ZM16.9046 19.3592C15.1052 19.3573 13.6349 17.8884 13.6344 16.092C13.6344 14.2921 15.1229 12.8076 16.9198 12.8164C18.7172 12.8252 20.1831 14.302 20.1777 16.0984C20.1718 17.9012 18.7069 19.3612 16.9046 19.3592Z" fill="currentColor"></path><path d="M20.9941 5.46872C20.973 4.04259 19.8813 3.00147 18.4576 3.00098C14.1532 3.00049 9.84826 3.00098 5.54335 3C5.35281 3 5.16423 3.01277 4.97859 3.055C3.82698 3.31675 3.00244 4.34903 3.00146 5.53895C2.999 8.45358 2.99998 11.3682 3.00195 14.2828C3.00244 14.4351 3.01766 14.5883 3.03878 14.7396C3.20084 15.9211 4.21887 16.8842 5.39111 16.9013C7.04413 16.9259 8.69764 16.9107 10.3511 16.9063C10.7116 16.9053 11.0539 16.6273 11.1521 16.2836C11.243 15.9678 11.0878 15.6088 10.771 15.4035C10.6227 15.3073 10.4611 15.2704 10.2839 15.2709C8.69813 15.2734 7.1119 15.2709 5.52616 15.2734C5.14507 15.2739 4.89462 15.0833 4.72617 14.7602C4.64121 14.5971 4.63679 14.4199 4.63679 14.2416C4.63728 12.4658 4.63925 10.69 4.63336 8.91471C4.63286 8.76297 4.66675 8.72466 4.82095 8.72515C7.20913 8.73055 9.59732 8.72908 11.9855 8.72908C14.3737 8.72908 16.7741 8.73105 19.1682 8.72466C19.3357 8.72417 19.3666 8.77033 19.3632 8.92552C19.3524 9.39058 19.3563 9.85614 19.3602 10.3212C19.3637 10.7681 19.7531 11.1782 20.1725 11.1845C20.5875 11.1914 20.998 10.7823 20.999 10.3364C21.0034 8.71386 21.0177 7.09129 20.9941 5.46872ZM19.1883 7.09571C16.7874 7.09178 14.3864 7.09276 11.9855 7.09276C9.58455 7.09276 7.22043 7.09129 4.83814 7.0962C4.68345 7.09669 4.62746 7.07017 4.63286 6.89976C4.64711 6.46564 4.64956 6.03004 4.63434 5.59542C4.61813 5.12201 4.99284 4.63092 5.60179 4.63337C9.86447 4.65007 14.1272 4.64221 18.3903 4.64221C19.0022 4.64221 19.3568 4.99482 19.3588 5.60672C19.3602 6.04772 19.3519 6.48872 19.3632 6.92972C19.3671 7.07557 19.3185 7.09571 19.1883 7.09571Z" fill="currentColor"></path><path d="M19.357 16.0382C19.3732 16.5411 19.0992 16.8716 18.6145 16.9021C18.3159 16.9212 18.0148 16.906 17.7148 16.906V16.9094C17.4579 16.9094 17.2011 16.9119 16.9438 16.9089C16.3972 16.9026 16.0903 16.5976 16.0873 16.0544C16.0849 15.528 16.0834 15.0015 16.0878 14.4756C16.0932 13.8494 16.6196 13.4831 17.2119 13.6879C17.5341 13.7993 17.7172 14.0665 17.7271 14.454C17.733 14.6868 17.733 14.9195 17.7266 15.1518C17.7236 15.2466 17.7492 15.278 17.8474 15.2756C18.0861 15.2682 18.3252 15.2697 18.5634 15.2741C19.0255 15.2824 19.3428 15.5904 19.357 16.0382Z" fill="currentColor"></path><path d="M19.357 16.0382C19.3732 16.5411 19.0992 16.8716 18.6145 16.9021C18.3159 16.9212 18.0148 16.906 17.7148 16.906V16.9094C17.4579 16.9094 17.2011 16.9119 16.9438 16.9089C16.3972 16.9026 16.0903 16.5976 16.0873 16.0544C16.0849 15.528 16.0834 15.0015 16.0878 14.4756C16.0932 13.8494 16.6196 13.4831 17.2119 13.6879C17.5341 13.7993 17.7172 14.0665 17.7271 14.454C17.733 14.6868 17.733 14.9195 17.7266 15.1518C17.7236 15.2466 17.7492 15.278 17.8474 15.2756C18.0861 15.2682 18.3252 15.2697 18.5634 15.2741C19.0255 15.2824 19.3428 15.5904 19.357 16.0382Z" fill="currentColor"></path></g><defs><clipPath id="clip0_10152_59209"><rect width="18.8162" height="18" fill="currentColor" transform="translate(3 3)"></rect></clipPath></defs></svg>
                     <p class="text-[#757575] lg:group-hover:text-[#e11010]">خرید اقساطی</p>
                 </a>
                 <a href="./mag.html" class="flex items-center group gap-1">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="text-[#757575]" width="24" height="24" viewBox="0 0 24 24" fill="none"><g clip-path="url(#clip0_12643_82371)"><path d="M15.8594 12.05V9.78998L17.5694 10.92L15.8594 12.05Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path><path d="M5.85938 8.71997H8.99937" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path><path d="M5.85938 12.66H7.71937" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path><path d="M12 6.89C12 6.12352 12.3045 5.38844 12.8465 4.84646C13.3884 4.30448 14.1235 4 14.89 4H21.42" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path><path d="M12.0001 6.89C12.0001 6.12352 11.6956 5.38844 11.1536 4.84646C10.6116 4.30448 9.87655 4 9.11008 4H2.58008" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path><path d="M12.0001 6.89C12.0001 6.12352 11.6956 5.38844 11.1536 4.84646C10.6116 4.30448 9.87655 4 9.11008 4H2.58008V17.28H9.11008C9.87655 17.28 10.6116 17.5845 11.1536 18.1265C11.6956 18.6684 12.0001 19.4035 12.0001 20.17C12.0001 19.4035 12.3046 18.6684 12.8465 18.1265C13.3885 17.5845 14.1236 17.28 14.8901 17.28H21.4201V4H14.8901C14.1236 4 13.3885 4.30448 12.8465 4.84646C12.3046 5.38844 12.0001 6.12352 12.0001 6.89Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></g><defs><clipPath id="clip0_12643_82371"><rect width="24" height="24" fill="white"></rect></clipPath></defs></svg>
                     <p class="text-[#757575] lg:group-hover:text-[#e11010]">مجله وی جی لند</p>
                 </a>
                 <a href="./goldenoffer.html" class="flex items-center group gap-1">
-                    <svg class="text-[#757575] lg:group-hover:text-[#e11010]" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M10.7543 3.45879C11.4721 2.84707 12.5279 2.84707 13.2457 3.45879L14.4667 4.49929C14.7743 4.76143 15.1567 4.91985 15.5596 4.952L17.1587 5.07961C18.0988 5.15463 18.8454 5.90117 18.9204 6.8413L19.048 8.4404C19.0802 8.84327 19.2386 9.22573 19.5007 9.53333L20.5412 10.7543C21.1529 11.4721 21.1529 12.5279 20.5412 13.2457L19.5007 14.4667C19.2386 14.7743 19.0802 15.1567 19.048 15.5596L18.9204 17.1587C18.8454 18.0988 18.0988 18.8454 17.1587 18.9204L15.5596 19.048C15.1567 19.0802 14.7743 19.2386 14.4667 19.5007L13.2457 20.5412C12.5279 21.1529 11.4721 21.1529 10.7543 20.5412L9.53333 19.5007C9.22573 19.2386 8.84327 19.0802 8.4404 19.048L6.8413 18.9204C5.90117 18.8454 5.15463 18.0988 5.07961 17.1587L4.952 15.5596C4.91985 15.1567 4.76143 14.7743 4.49929 14.4667L3.45879 13.2457C2.84707 12.5279 2.84707 11.4721 3.45879 10.7543L4.49929 9.53333C4.76143 9.22573 4.91985 8.84327 4.952 8.4404L5.07961 6.8413C5.15463 5.90117 5.90117 5.15463 6.8413 5.07961L8.4404 4.952C8.84327 4.91985 9.22573 4.76143 9.53333 4.49929L10.7543 3.45879Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path><path d="M14 10L10 14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path><path d="M10 10H10.1V10.1H10V10Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path><path d="M14 14H14.1V14.1H14V14Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
                     <p class="text-[#757575] lg:group-hover:text-[#e11010]">پیشنهاد طلایی</p>
                 </a>
                 <a href="#" class="flex items-center group gap-1">
-                    <svg class="text-[#757575] lg:group-hover:text-[#e11010]" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"><path fill-rule="evenodd" clip-rule="evenodd" d="M13.1072 17.4495C12.5591 18.1831 11.4499 18.1836 10.9008 17.4505C9.5983 15.7106 7.90407 13.4101 7.01424 12.1773C6.32476 11.2223 6 9.96081 6 8.93611C6 5.65788 8.68648 3 12 3C15.3135 3 18 5.65788 18 8.93611C18 9.96081 17.6747 11.2223 16.9858 12.1773C16.0964 13.4096 14.4077 15.7096 13.1072 17.4495Z" stroke="currentColor" stroke-width="2" stroke-miterlimit="10"></path><path d="M12 10.5C12.8284 10.5 13.5 9.82843 13.5 9C13.5 8.17157 12.8284 7.5 12 7.5C11.1716 7.5 10.5 8.17157 10.5 9C10.5 9.82843 11.1716 10.5 12 10.5Z" stroke="currentColor" stroke-width="2" stroke-miterlimit="10"></path><path d="M9 21H14.7283" stroke="currentColor" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"></path></svg>
                     <p class="text-[#757575] lg:group-hover:text-[#e11010]">شعب وی جی لند</p>
                 </a>
                 <a href="./insurance.html" class="flex items-center group gap-1 relative">
-                    <svg class="text-[#757575] lg:group-hover:text-[#e11010]" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g clip-path="url(#clip0_28725_13753)"><path d="M12 1V2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M8 19.4916V20.6611V20.6728C8 21.958 8.895 23 10 23C11.105 23 12 21.958 12 20.6728V12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path fill-rule="evenodd" clip-rule="evenodd" d="M8.33333 13C10.3586 11.0392 13.6414 11.0392 15.6667 13C17.6919 11.0392 20.9748 11.0392 23 13C22.9841 6.92279 18.0659 2 12 2C5.93411 2 1.01589 6.92279 1 13C3.02522 11.0392 6.30811 11.0392 8.33333 13Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></g><defs><clipPath id="clip0_28725_13753"><rect width="24" height="24" fill="white"></rect></clipPath></defs></svg>
                     <p class="text-[#757575] lg:group-hover:text-[#e11010]">خرید بیمه موبایل</p>
-                    <div class="w-[54px] h-[28px] bg-[#e10a0a] absolute left-[-34%] top-[-90%] rounded-2xl flex justify-center items-center">
-                        <p class="text-white text-[14px] font-normal">کارکرده</p>
-                    </div>
                 </a>
             </div>
         </div>
     </section>
+    <div id="side-bar" class="fixed top-0 z-[99] flex h-full w-full select-none items-start justify-start overflow-auto duration-300 translate-x-full">
+        <div id="side-bar2" class="fixed left-0 top-0 z-[97] h-screen w-0 bg-transparent opacity-10"></div>
+        <div class=" z-[97] flex min-h-screen w-[300px] overflow-scroll bg-white px-[16px] pb-[80px] pt-[30px]">
+            <div class=" relative flex h-full w-full flex-col items-start ">
+                <div class="w-full">
+                    <a href="#">
+                        <img alt="vgna main logo" loading="lazy" width="148" height="35" decoding="async" data-nimg="1" style="color:transparent" src="<?php echo THEME_DIR; ?>/src/img/dgland_main_logo.png">
+                    </a>
+                </div>
+                <a href="./goldenoffer.html">
+                    <div class="flex mt-5 h-[40px] w-full flex-row items-center gap-[10px] border-light_grey text-[16px] font-bold text-dark_grey">
+                        <span> پیشنهاد ویژه</span>
+                    </div>
+                </a>
+                <a class="w-full" href="./mag.html">
+                    <div class="flex h-[52px] flex-row items-center gap-[10px] border-t w-full border-light_grey text-[16px] font-bold text-dark_grey">
+                            <span>مجله وی‌جی‌نا</span>
+                        </div>
+                </a>
+                <a class="w-full" href="#">
+                    <div class="flex h-[52px] flex-row items-center gap-[10px] border-t w-full border-light_grey text-[16px] font-bold text-dark_grey">
+                        <span>شعب وی‌جی‌نا</span>
+                    </div>
+                </a>
+                <a class="w-full" href="#">
+                    <div class="flex h-[52px] flex-row items-center gap-[10px] border-t w-full border-light_grey text-[16px] font-bold text-dark_grey">
+                        <span>پرسش های متداول</span>
+                    </div>
+                </a>
+                <a class="w-full" href="#">
+                    <div class="flex h-[52px] flex-row items-center gap-[10px] border-t w-full border-light_grey text-[16px] font-bold text-dark_grey">
+                        <span> راهنمای خرید</span>
+                    </div>
+                </a>
+                <a class="w-full" href="#">
+                    <div class="flex h-[52px] flex-row items-center gap-[10px] border-t w-full border-light_grey text-[16px] font-bold text-dark_grey">
+                        <span>شرایط بازگشت کالا</span>
+                    </div>
+                </a>
+                <a class="w-full" href="#">
+                    <div class="flex h-[52px] flex-row items-center gap-[10px] border-t w-full border-light_grey text-[16px] font-bold text-dark_grey">
+                        <span>حریم خصوصی</span>
+                    </div>
+                </a>
+                <a class="w-full" href="#">
+                    <div class="flex h-[52px] flex-row items-center gap-[10px] border-t w-full border-light_grey text-[16px] font-bold text-dark_grey">
+                        <span>شرایط و قوانین</span>
+                    </div>
+                </a>
+                <a class="w-full" href="#">
+                    <a href="./installment.html" class="flex h-[52px] flex-row items-center gap-[10px] border-t w-full border-light_grey text-[16px] font-bold text-dark_grey">
+                        <span>خرید اقساطی</span>
+                    </a>
+                </a>
+            </div>
+        </div>
+    </div>
