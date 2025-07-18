@@ -10,5 +10,5 @@ function add_theme_support_function(){
 
 add_action('after_setup_theme' , 'register_my_menu');
 function register_my_menu(){
-    register_nav_menus(array('primary' => 'منوی اصلی' , 'secondary' => 'منوی ثانویه'));
+    register_nav_menus(array('primary' => 'منوی اصلی' , 'megamenu' => 'منوی محصولات'));
 }

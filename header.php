@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="<?php echo THEME_DIR; ?>/src/swiper-bundle.min.css">
 </head>
 <body>
-<svg class="hidden">
+    <svg class="hidden">
         <symbol id="arrow-icon" viewBox="0 0 16 16">
             <path d="M4 10L8 6L12 10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
         </symbol>
@@ -725,21 +725,21 @@
 
                     </div>
                 </div>
-                <a href="./installment.html" class="flex items-center group gap-1">
-                    <p class="text-[#757575] lg:group-hover:text-[#e11010]">خرید اقساطی</p>
-                </a>
-                <a href="./mag.html" class="flex items-center group gap-1">
-                    <p class="text-[#757575] lg:group-hover:text-[#e11010]">مجله وی جی لند</p>
-                </a>
-                <a href="./goldenoffer.html" class="flex items-center group gap-1">
-                    <p class="text-[#757575] lg:group-hover:text-[#e11010]">پیشنهاد طلایی</p>
-                </a>
-                <a href="#" class="flex items-center group gap-1">
-                    <p class="text-[#757575] lg:group-hover:text-[#e11010]">شعب وی جی لند</p>
-                </a>
-                <a href="./insurance.html" class="flex items-center group gap-1 relative">
-                    <p class="text-[#757575] lg:group-hover:text-[#e11010]">خرید بیمه موبایل</p>
-                </a>
+                <?php
+                $menu_name = "primary";
+                $locations = get_nav_menu_locations();
+
+                if(isset($locations[$menu_name])){
+                    $menu = wp_get_nav_menu_object($locations[$menu_name]);
+                    $menu_items = wp_get_nav_menu_items($menu->term_id);
+                }
+                if(isset($menu_items)){
+                    foreach($menu_items as $item){ ?>
+                        <a href="<?php echo $item->url; ?>" class="flex items-center group gap-1">
+                            <p class="text-[#757575] lg:group-hover:text-[#e11010]"><?php echo $item->title; ?></p>
+                        </a>
+                    <?php }
+                } ?>
             </div>
         </div>
     </section>
@@ -752,51 +752,23 @@
                         <img alt="vgna main logo" loading="lazy" width="148" height="35" decoding="async" data-nimg="1" style="color:transparent" src="<?php echo THEME_DIR; ?>/src/img/dgland_main_logo.png">
                     </a>
                 </div>
-                <a href="./goldenoffer.html">
-                    <div class="flex mt-5 h-[40px] w-full flex-row items-center gap-[10px] border-light_grey text-[16px] font-bold text-dark_grey">
-                        <span> پیشنهاد ویژه</span>
-                    </div>
-                </a>
-                <a class="w-full" href="./mag.html">
-                    <div class="flex h-[52px] flex-row items-center gap-[10px] border-t w-full border-light_grey text-[16px] font-bold text-dark_grey">
-                            <span>مجله وی‌جی‌نا</span>
-                        </div>
-                </a>
-                <a class="w-full" href="#">
-                    <div class="flex h-[52px] flex-row items-center gap-[10px] border-t w-full border-light_grey text-[16px] font-bold text-dark_grey">
-                        <span>شعب وی‌جی‌نا</span>
-                    </div>
-                </a>
-                <a class="w-full" href="#">
-                    <div class="flex h-[52px] flex-row items-center gap-[10px] border-t w-full border-light_grey text-[16px] font-bold text-dark_grey">
-                        <span>پرسش های متداول</span>
-                    </div>
-                </a>
-                <a class="w-full" href="#">
-                    <div class="flex h-[52px] flex-row items-center gap-[10px] border-t w-full border-light_grey text-[16px] font-bold text-dark_grey">
-                        <span> راهنمای خرید</span>
-                    </div>
-                </a>
-                <a class="w-full" href="#">
-                    <div class="flex h-[52px] flex-row items-center gap-[10px] border-t w-full border-light_grey text-[16px] font-bold text-dark_grey">
-                        <span>شرایط بازگشت کالا</span>
-                    </div>
-                </a>
-                <a class="w-full" href="#">
-                    <div class="flex h-[52px] flex-row items-center gap-[10px] border-t w-full border-light_grey text-[16px] font-bold text-dark_grey">
-                        <span>حریم خصوصی</span>
-                    </div>
-                </a>
-                <a class="w-full" href="#">
-                    <div class="flex h-[52px] flex-row items-center gap-[10px] border-t w-full border-light_grey text-[16px] font-bold text-dark_grey">
-                        <span>شرایط و قوانین</span>
-                    </div>
-                </a>
-                <a class="w-full" href="#">
-                    <a href="./installment.html" class="flex h-[52px] flex-row items-center gap-[10px] border-t w-full border-light_grey text-[16px] font-bold text-dark_grey">
-                        <span>خرید اقساطی</span>
-                    </a>
-                </a>
+                <?php
+                $menu_name = "primary";
+                $locations = get_nav_menu_locations();
+
+                if(isset($locations[$menu_name])){
+                    $menu = wp_get_nav_menu_object($locations[$menu_name]);
+                    $menu_items = wp_get_nav_menu_items($menu->term_id);
+                }
+                if(isset($menu_items)){
+                    foreach($menu_items as $item){ ?>
+                        <a href="<?php echo $item->url; ?>">
+                            <div class="flex mt-5 h-[40px] w-full flex-row items-center gap-[10px] border-light_grey text-[16px] font-bold text-dark_grey">
+                                <span><?php echo $item->title; ?></span>
+                            </div>
+                        </a>
+                    <?php }
+                } ?>
             </div>
         </div>
     </div>
