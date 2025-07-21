@@ -1,3 +1,33 @@
+<?php
+$menu_name = "megamenu";
+$locations = get_nav_menu_locations();
+
+if(isset($locations[$menu_name])){
+    $menu = wp_get_nav_menu_object($locations[$menu_name]);
+    $menu_items = wp_get_nav_menu_items($menu->term_id);
+
+    $menu_tree = [];
+
+    foreach($menu_items as $item){
+        $item->children = [];
+
+        if($item->menu_item_parent == 0){
+            $menu_tree[$item->ID] = $item;
+        }else{
+            $parent = $item->menu_item_parent;
+            if ( isset($menu_tree[$parent])){
+                $menu_tree[$parent]->children[$item->ID] = $item;
+            }else{
+                foreach($menu_tree as $parent_item){
+                    if(isset($parent_item->children[$parent])){
+                        $parent_item->children[$parent]->children[$item->ID] = $item;
+                    }
+                }
+            }
+        }
+    }
+}
+?>
 <!DOCTYPE html>
 <html lang="en" dir="rtl">
 <head>
@@ -71,310 +101,78 @@
         </div>
         <div class="flex w-full overflow-hidden bg-white">
             <div id="sub-menu-mobile" class="min-w-[102px] overflow-y-scroll overflow-x-hidden bg-[#F6F6F6]" style="height: calc(-142px + 100vh)">
-                <div data-state="sub-1" class="sub-child flex h-[70px] w-[102px] cursor-pointer flex-col items-center justify-center text-[11px] Active border border-surface-40 text-text-30 !text-blue-600">
-                    <span class="mt-1 max-w-[90%] text-center">موبایل</span>
-                </div>
-                <div data-state="sub-2" class="sub-child flex h-[70px] w-[102px] cursor-pointer flex-col items-center justify-center text-[11px] unActive border border-surface-40 text-text-30" >
-                    <span class="mt-1 max-w-[90%] text-center">لوازم جانبی موبایل</span>
-                </div>
-                <div data-state="sub-3" class="sub-child flex h-[70px] w-[102px] cursor-pointer flex-col items-center justify-center text-[11px] unActive border border-surface-40 text-text-30" >
-                    <span class="mt-1 max-w-[90%] text-center">هدفون و هندزفری</span>
-                </div>
-                <div data-state="sub-4" class="sub-child flex h-[70px] w-[102px] cursor-pointer flex-col items-center justify-center text-[11px] unActive border border-surface-40 text-text-30" >
-                    <span class="mt-1 max-w-[90%] text-center">لپ تاپ و تبلت</span>
-                </div>
-                <div data-state="sub-5" class="sub-child flex h-[70px] w-[102px] cursor-pointer flex-col items-center justify-center text-[11px] unActive border border-surface-40 text-text-30" >
-                    <span class="mt-1 max-w-[90%] text-center">کامپیوتر</span>
-                </div>
-                <div data-state="sub-6" class="sub-child flex h-[70px] w-[102px] cursor-pointer flex-col items-center justify-center text-[11px] unActive border border-surface-40 text-text-30" >
-                    <span class="mt-1 max-w-[90%] text-center">ساعت هوشمند</span>
-                </div>
-                <div data-state="sub-7" class="sub-child flex h-[70px] w-[102px] cursor-pointer flex-col items-center justify-center text-[11px] unActive border border-surface-40 text-text-30">
-                    <span class="mt-1 max-w-[90%] text-center">گیمینگ</span>
-                </div>
-                <div data-state="sub-8" class="sub-child flex h-[70px] w-[102px] cursor-pointer flex-col items-center justify-center text-[11px] unActive border border-surface-40 text-text-30" >
-                    <span class="mt-1 max-w-[90%] text-center">صوتی و تصویری</span>
-                </div>
-                <div data-state="sub-9" class="sub-child flex h-[70px] w-[102px] cursor-pointer flex-col items-center justify-center text-[11px] unActive border border-surface-40 text-text-30" >
-                    <span class="mt-1 max-w-[90%] text-center">تجهیزات <br /> ذخیره سازی</span>
-                </div>
-            </div>
-            <div data-target="sub-1" class="menu-category w-full overflow-hidden overflow-y-auto px-4 Active" >
-                <div class="w-full overflow-hidden overflow-y-scroll">
-                    <h2 class="flex w-full cursor-pointer items-center py-[10px] pb-[12px] pl-1 text-[12px] font-bold text-[#0085ff]">
-                        <span class="relative top-[1px] text-[12px] font-bold">همه محصولات موبایل</span>
-                        <span class="mr-1">
-                            <svg width="16" height="16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <use xlink:href="#left-arrow"></use>
-                            </svg>
-                        </span>
-                    </h2>
-                    <div class="w-full" style="height: calc(-210px + 100vh)">
-                        <div class="w-full items-center">
-                            <div data-model="model1" class="mobile-model flex w-full items-center justify-between py-3 cursor-pointer">
-                                <span class="text-root text-body1-fa text-[14px] font-semibold">موبایل بر اساس برند</span>
-                                <div class="arrow-1 flex h-8 w-8 items-center justify-center rounded-md duration-300 rotate-180" >
-                                    <div class="duration-300">
-                                        <svg width="16" height="16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <use xlink:href="#arrow-icon"></use>
-                                        </svg>
-                                    </div>
-                                </div>
-                            </div>
-                            <div data-model="model1" class="grid mobile-model-1 gap-2 duration-700 overflow-hidden max-h-0">
-                                <a href="#" class="text-[#565656] before:content-[' '] relative left-[5px] mb-4 flex cursor-pointer items-center overflow-hidden text-ellipsis text-nowrap pr-[2px] text-right text-[14px] font-bold text-text-normal before:ml-[3px] before:block before:h-[14px] before:w-[2px] before:min-w-[2px] before:bg-red-600 hover:text-primary-normal">لینک یک</a>
-                            </div>
+                <?php
+                if(isset($menu_tree)){
+                    $counter = 1;
+                    
+                    foreach($menu_tree as $item){
+                        ?>
+                        <div data-state="sub-<?php echo $counter; ?>" class="sub-child flex h-[70px] w-[102px] cursor-pointer flex-col items-center justify-center text-[11px] <?php echo $counter>1 ? 'unActive': 'Active !text-blue-600'; ?> border border-surface-40 text-text-30 ">
+                            <span class="mt-1 max-w-[90%] text-center"><?php echo $item->title; ?></span>
                         </div>
-                        <div class="w-full items-center">
-                            <div data-model="model11" class="mobile-model flex w-full items-center justify-between py-3 cursor-pointer">
-                                <span class="text-root text-body1-fa text-[14px] font-semibold">موبایل بر اساس برند</span>
-                                <div class="arrow-1 flex h-8 w-8 items-center justify-center rounded-md duration-300 rotate-180">
-                                    <div class="duration-300">
-                                        <svg width="16" height="16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <use xlink:href="#arrow-icon"></use>
-                                        </svg>
+                        <?php
+                        $counter++;
+                    }
+                }
+                
+                ?>
+            </div>
+            <?php
+            $counter = 1;
+            $child_counter = 1;
+            foreach($menu_tree as $item){
+                if(!empty($item->children)){
+                    ?>
+                    <div data-target="sub-<?php echo $counter; ?>" class="menu-category w-full overflow-hidden overflow-y-auto px-4 <?php echo $counter>1 ?'hidden  ':'Active'; ?>" >
+                        <div class="w-full overflow-hidden overflow-y-scroll">
+                            <h2 class="flex w-full cursor-pointer items-center py-[10px] pb-[12px] pl-1 text-[12px] font-bold text-[#0085ff]">
+                                <a href="<?php echo $item->url; ?>" class="relative top-[1px] text-[12px] font-bold">همه محصولات <?php echo $item->title; ?></a>
+                                <span class="mr-1">
+                                    <svg width="16" height="16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <use xlink:href="#left-arrow"></use>
+                                    </svg>
+                                </span>
+                            </h2>
+                            <div class="w-full" style="height: calc(-210px + 100vh)">
+                                <?php
+                                foreach($item->children as $child){
+                                    ?>
+                                    <div class="w-full items-center">
+                                        <div data-model="model<?php echo $child_counter; ?>" class="mobile-model flex w-full items-center justify-between py-3 cursor-pointer">
+                                            <span class="text-root text-body1-fa text-[14px] font-semibold"><?php echo $child->title; ?></span>
+                                            <div class="arrow-1 flex h-8 w-8 items-center justify-center rounded-md duration-300 rotate-180" >
+                                                <div class="duration-300">
+                                                    <svg width="16" height="16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                        <use xlink:href="#arrow-icon"></use>
+                                                    </svg>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div data-model="model<?php echo $child_counter; ?>" class="grid mobile-model-1 gap-2 duration-700 overflow-hidden max-h-0">
+                                            <?php
+                                            if(!empty($child->children)){
+                                                foreach($child->children as $grandChild){
+                                                    ?>
+                                                        <a href="<?php echo $grandChild->url; ?>" class="text-[#565656] before:content-[' '] relative left-[5px] mb-4 flex cursor-pointer items-center overflow-hidden text-ellipsis text-nowrap pr-[2px] text-right text-[14px] font-bold text-text-normal before:ml-[3px] before:block before:h-[14px] before:w-[2px] before:min-w-[2px] before:bg-red-600 hover:text-primary-normal"><?php echo $grandChild->title; ?></a>
+                                                    <?php
+                                                }
+                                            }
+                                            ?>
+                                        </div>
                                     </div>
-                                </div>
-                            </div>
-                            <div data-model="model11" class="grid mobile-model-1 gap-2 duration-700 overflow-hidden max-h-0">
-                                <a href="#" class="text-[#565656] before:content-[' '] relative left-[5px] mb-4 flex cursor-pointer items-center overflow-hidden text-ellipsis text-nowrap pr-[2px] text-right text-[14px] font-bold text-text-normal before:ml-[3px] before:block before:h-[14px] before:w-[2px] before:min-w-[2px] before:bg-red-600 hover:text-primary-normal">لینک یک</a>
+                                    <?php
+                                    $child_counter++;
+                                }
+                                ?>
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
-            <div data-target="sub-2" class="menu-category hidden w-full overflow-hidden overflow-y-auto px-4 Active">
-                <div class="w-full overflow-hidden overflow-y-scroll">
-                    <h2 class="flex w-full cursor-pointer items-center py-[10px] pb-[12px] pl-1 text-[12px] font-bold text-[#0085ff]">
-                        <span class="relative top-[1px] text-[12px] font-bold">همه محصولات موبایل</span>
-                        <span class="mr-1">
-                            <svg width="16" height="16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <use xlink:href="#left-arrow"></use>
-                            </svg>
-                        </span>
-                    </h2>
-                    <div class="w-full" style="height: calc(-250px + 100vh)">
-                        <div class="w-full items-center">
-                            <div data-model="model2" class="mobile-model flex w-full items-center justify-between py-3 cursor-pointer">
-                                <span class="text-root text-body1-fa text-[14px] font-semibold">موبایل بر اساس برند</span>
-                                <div class="arrow-1 flex h-8 w-8 items-center justify-center rounded-md duration-300 rotate-180">
-                                    <div class="duration-300">
-                                        <svg width="16" height="16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <use xlink:href="#arrow-icon"></use>
-                                        </svg>
-                                    </div>
-                                </div>
-                            </div>
-                            <div data-model="model2" class="grid mobile-model-1 gap-2 duration-700 overflow-hidden max-h-0">
-                                <a href="#" class="text-[#565656] before:content-[' '] relative left-[5px] mb-4 flex cursor-pointer items-center overflow-hidden text-ellipsis text-nowrap pr-[2px] text-right text-[14px] font-bold text-text-normal before:ml-[3px] before:block before:h-[14px] before:w-[2px] before:min-w-[2px] before:bg-red-600 hover:text-primary-normal">لینک یک</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div data-target="sub-3" class="menu-category hidden w-full overflow-hidden overflow-y-auto px-4 Active">
-                <div class="w-full overflow-hidden overflow-y-scroll">
-                    <h2 class="flex w-full cursor-pointer items-center py-[10px] pb-[12px] pl-1 text-[12px] font-bold text-[#0085ff]">
-                        <span class="relative top-[1px] text-[12px] font-bold">همه محصولات موبایل</span>
-                        <span class="mr-1">
-                            <svg width="16" height="16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <use xlink:href="#left-arrow"></use>
-                            </svg>
-                        </span>
-                    </h2>
-                    <div class="w-full" style="height: calc(-250px + 100vh)">
-                        <div class="w-full items-center">
-                            <div data-model="model3" class="mobile-model flex w-full items-center justify-between py-3 cursor-pointer">
-                                <span class="text-root text-body1-fa text-[14px] font-semibold">موبایل بر اساس برند</span>
-                                <div class="arrow-1 flex h-8 w-8 items-center justify-center rounded-md duration-300 rotate-180">
-                                    <div class="duration-300">
-                                        <svg width="16" height="16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <use xlink:href="#arrow-icon"></use>
-                                        </svg>
-                                    </div>
-                                </div>
-                            </div>
-                            <div data-model="model3" class="grid mobile-model-1 gap-2 duration-700 overflow-hidden max-h-0">
-                                <a href="#" class="text-[#565656] before:content-[' '] relative left-[5px] mb-4 flex cursor-pointer items-center overflow-hidden text-ellipsis text-nowrap pr-[2px] text-right text-[14px] font-bold text-text-normal before:ml-[3px] before:block before:h-[14px] before:w-[2px] before:min-w-[2px] before:bg-red-600 hover:text-primary-normal">لینک یک</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div data-target="sub-4" class="menu-category hidden w-full overflow-hidden overflow-y-auto px-4 Active">
-                <div class="w-full overflow-hidden overflow-y-scroll">
-                    <h2 class="flex w-full cursor-pointer items-center py-[10px] pb-[12px] pl-1 text-[12px] font-bold text-[#0085ff]">
-                        <span class="relative top-[1px] text-[12px] font-bold">همه محصولات موبایل</span>
-                        <span class="mr-1">
-                            <svg width="16" height="16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <use xlink:href="#left-arrow"></use>
-                            </svg>
-                        </span>
-                    </h2>
-                    <div class="w-full" style="height: calc(-250px + 100vh)">
-                        <div class="w-full items-center">
-                            <div data-model="model4" class="mobile-model flex w-full items-center justify-between py-3 cursor-pointer">
-                                <span class="text-root text-body1-fa text-[14px] font-semibold">موبایل بر اساس برند</span>
-                                <div class="arrow-1 flex h-8 w-8 items-center justify-center rounded-md duration-300 rotate-180">
-                                    <div class="duration-300">
-                                        <svg width="16" height="16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <use xlink:href="#arrow-icon"></use>
-                                        </svg>
-                                    </div>
-                                </div>
-                            </div>
-                            <div data-model="model4" class="grid mobile-model-1 gap-2 duration-700 overflow-hidden max-h-0">
-                                <a href="#" class="text-[#565656] before:content-[' '] relative left-[5px] mb-4 flex cursor-pointer items-center overflow-hidden text-ellipsis text-nowrap pr-[2px] text-right text-[14px] font-bold text-text-normal before:ml-[3px] before:block before:h-[14px] before:w-[2px] before:min-w-[2px] before:bg-red-600 hover:text-primary-normal">لینک یک</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div data-target="sub-5" class="menu-category hidden w-full overflow-hidden overflow-y-auto px-4 Active">
-                <div class="w-full overflow-hidden overflow-y-scroll">
-                    <h2 class="flex w-full cursor-pointer items-center py-[10px] pb-[12px] pl-1 text-[12px] font-bold text-[#0085ff]">
-                        <span class="relative top-[1px] text-[12px] font-bold">همه محصولات موبایل</span>
-                        <span class="mr-1">
-                            <svg width="16" height="16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <use xlink:href="#left-arrow"></use>
-                            </svg>
-                        </span>
-                    </h2>
-                    <div class="w-full" style="height: calc(-250px + 100vh)">
-                        <div class="w-full items-center">
-                            <div data-model="model5" class="mobile-model flex w-full items-center justify-between py-3 cursor-pointer">
-                                <span class="text-root text-body1-fa text-[14px] font-semibold">موبایل بر اساس برند</span>
-                                <div class="arrow-1 flex h-8 w-8 items-center justify-center rounded-md duration-300 rotate-180">
-                                    <div class="duration-300">
-                                        <svg width="16" height="16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <use xlink:href="#arrow-icon"></use>
-                                        </svg>
-                                    </div>
-                                </div>
-                            </div>
-                            <div data-model="model5" class="grid mobile-model-1 gap-2 duration-700 overflow-hidden max-h-0">
-                                <a href="#" class="text-[#565656] before:content-[' '] relative left-[5px] mb-4 flex cursor-pointer items-center overflow-hidden text-ellipsis text-nowrap pr-[2px] text-right text-[14px] font-bold text-text-normal before:ml-[3px] before:block before:h-[14px] before:w-[2px] before:min-w-[2px] before:bg-red-600 hover:text-primary-normal" >لینک یک</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div data-target="sub-6" class="menu-category hidden w-full overflow-hidden overflow-y-auto px-4 Active">
-                <div class="w-full overflow-hidden overflow-y-scroll">
-                    <h2 class="flex w-full cursor-pointer items-center py-[10px] pb-[12px] pl-1 text-[12px] font-bold text-[#0085ff]">
-                        <span class="relative top-[1px] text-[12px] font-bold">همه محصولات موبایل</span>
-                        <span class="mr-1">
-                            <svg width="16" height="16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <use xlink:href="#left-arrow"></use>
-                            </svg>
-                        </span>
-                    </h2>
-                    <div class="w-full" style="height: calc(-250px + 100vh)">
-                        <div class="w-full items-center">
-                            <div data-model="model6" class="mobile-model flex w-full items-center justify-between py-3 cursor-pointer">
-                                <span class="text-root text-body1-fa text-[14px] font-semibold">موبایل بر اساس برند</span>
-                                <div class="arrow-1 flex h-8 w-8 items-center justify-center rounded-md duration-300 rotate-180">
-                                    <div class="duration-300">
-                                        <svg width="16" height="16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <use xlink:href="#arrow-icon"></use>
-                                        </svg>
-                                    </div>
-                                </div>
-                            </div>
-                            <div data-model="model6" class="grid mobile-model-1 gap-2 duration-700 overflow-hidden max-h-0">
-                                <a href="#" class="text-[#565656] before:content-[' '] relative left-[5px] mb-4 flex cursor-pointer items-center overflow-hidden text-ellipsis text-nowrap pr-[2px] text-right text-[14px] font-bold text-text-normal before:ml-[3px] before:block before:h-[14px] before:w-[2px] before:min-w-[2px] before:bg-red-600 hover:text-primary-normal">لینک یک</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div data-target="sub-7" class="menu-category hidden w-full overflow-hidden overflow-y-auto px-4 Active">
-                <div class="w-full overflow-hidden overflow-y-scroll">
-                    <h2 class="flex w-full cursor-pointer items-center py-[10px] pb-[12px] pl-1 text-[12px] font-bold text-[#0085ff]">
-                        <span class="relative top-[1px] text-[12px] font-bold">همه محصولات موبایل</span>
-                        <span class="mr-1">
-                            <svg width="16" height="16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <use xlink:href="#left-arrow"></use>
-                            </svg>
-                        </span>
-                    </h2>
-                    <div class="w-full" style="height: calc(-250px + 100vh)">
-                        <div class="w-full items-center">
-                            <div data-model="model7" class="mobile-model flex w-full items-center justify-between py-3 cursor-pointer">
-                                <span class="text-root text-body1-fa text-[14px] font-semibold">موبایل بر اساس برند</span>
-                                <div class="arrow-1 flex h-8 w-8 items-center justify-center rounded-md duration-300 rotate-180">
-                                    <div class="duration-300">
-                                        <svg width="16" height="16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <use xlink:href="#arrow-icon"></use>
-                                        </svg>
-                                    </div>
-                                </div>
-                            </div>
-                            <div data-model="model7" class="grid mobile-model-1 gap-2 duration-700 overflow-hidden max-h-0">
-                                <a href="#" class="text-[#565656] before:content-[' '] relative left-[5px] mb-4 flex cursor-pointer items-center overflow-hidden text-ellipsis text-nowrap pr-[2px] text-right text-[14px] font-bold text-text-normal before:ml-[3px] before:block before:h-[14px] before:w-[2px] before:min-w-[2px] before:bg-red-600 hover:text-primary-normal">لینک یک</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div data-target="sub-8" class="menu-category hidden w-full overflow-hidden overflow-y-auto px-4 Active">
-                <div class="w-full overflow-hidden overflow-y-scroll">
-                    <h2 class="flex w-full cursor-pointer items-center py-[10px] pb-[12px] pl-1 text-[12px] font-bold text-[#0085ff]">
-                        <span class="relative top-[1px] text-[12px] font-bold">همه محصولات موبایل</span>
-                        <span class="mr-1">
-                            <svg width="16" height="16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <use xlink:href="#left-arrow"></use>
-                            </svg>
-                        </span>
-                    </h2>
-                    <div class="w-full" style="height: calc(-250px + 100vh)">
-                        <div class="w-full items-center">
-                            <div data-model="model8" class="mobile-model flex w-full items-center justify-between py-3 cursor-pointer">
-                                <span class="text-root text-body1-fa text-[14px] font-semibold">موبایل بر اساس برند</span>
-                                <div class="arrow-1 flex h-8 w-8 items-center justify-center rounded-md duration-300 rotate-180">
-                                    <div class="duration-300">
-                                        <svg width="16" height="16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <use xlink:href="#arrow-icon"></use>
-                                        </svg>
-                                    </div>
-                                </div>
-                            </div>
-                            <div data-model="model8" class="grid mobile-model-1 gap-2 duration-700 overflow-hidden max-h-0">
-                                <a href="#" class="text-[#565656] before:content-[' '] relative left-[5px] mb-4 flex cursor-pointer items-center overflow-hidden text-ellipsis text-nowrap pr-[2px] text-right text-[14px] font-bold text-text-normal before:ml-[3px] before:block before:h-[14px] before:w-[2px] before:min-w-[2px] before:bg-red-600 hover:text-primary-normal">لینک یک</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div data-target="sub-9" class="menu-category hidden w-full overflow-hidden overflow-y-auto px-4 Active">
-                <div class="w-full overflow-hidden overflow-y-scroll">
-                    <h2 class="flex w-full cursor-pointer items-center py-[10px] pb-[12px] pl-1 text-[12px] font-bold text-[#0085ff]">
-                        <span class="relative top-[1px] text-[12px] font-bold">همه محصولات موبایل</span>
-                        <span class="mr-1">
-                            <svg width="16" height="16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <use xlink:href="#left-arrow"></use>
-                            </svg>
-                        </span>
-                    </h2>
-                    <div class="w-full" style="height: calc(-210px + 100vh)">
-                        <div class="w-full items-center">
-                            <div data-model="model9" class="mobile-model flex w-full items-center justify-between py-3 cursor-pointer">
-                                <span class="text-root text-body1-fa text-[14px] font-semibold">موبایل بر اساس برند</span>
-                                <div class="arrow-1 flex h-8 w-8 items-center justify-center rounded-md duration-300 rotate-180">
-                                    <div class="duration-300">
-                                        <svg width="16" height="16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <use xlink:href="#arrow-icon"></use>
-                                        </svg>
-                                    </div>
-                                </div>
-                            </div>
-                            <div data-model="model9" class="grid mobile-model-1 gap-2 duration-700 overflow-hidden max-h-0">
-                                <a href="#" class="text-[#565656] before:content-[' '] relative left-[5px] mb-4 flex cursor-pointer items-center overflow-hidden text-ellipsis text-nowrap pr-[2px] text-right text-[14px] font-bold text-text-normal before:ml-[3px] before:block before:h-[14px] before:w-[2px] before:min-w-[2px] before:bg-red-600 hover:text-primary-normal">لینک یک</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+                    <?php
+                }
+                $counter++;
+            }
+            ?>
+
         </div>
     </div>
     <section id="header" class="fixed top-0 z-[99] bg-[#fff] w-full">
