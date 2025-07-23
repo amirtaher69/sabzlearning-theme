@@ -5,7 +5,6 @@ $locations = get_nav_menu_locations();
 if(isset($locations[$menu_name])){
     $menu = wp_get_nav_menu_object($locations[$menu_name]);
     $menu_items = wp_get_nav_menu_items($menu->term_id);
-
     $menu_tree = [];
 
     foreach($menu_items as $item){
@@ -413,110 +412,66 @@ if(isset($locations[$menu_name])){
                     <div id="sub-menu" class="max-h-[560px] h-[480px] hidden overflow-hidden absolute z-50 top-[39px]">
                         <div class="max-h-[560px] h-[480px] w-[1143px] bg-[#fff] flex justify-start">
                             <div class="w-[232px] max-h-[542px] flex flex-col items-start">
-                            <div data-content="mobile" class="category-model flex w-full text-red-500 bg-[#FFFAFA] cursor-pointer items-center py-3 pr-6 text-[14px] font-bold  text-text-normal">         
-                                <span>موبایل</span>
+                            <?php
+                            if(isset($menu_tree)){
+                                $counter = 1;
+                                foreach($menu_tree as $item){
+                                    ?>
+                                    <div data-content="parent<?php echo $counter; ?>" class="category-model flex w-full <?php echo $counter>1 ?'text-[#505050]':'text-red-500 bg-[#FFFAFA]'; ?> cursor-pointer items-center py-3 pr-6 text-[14px] font-bold  text-text-normal">         
+                                        <span><?php echo $item->title ; ?></span>
+                                    </div>
+                                    <?php
+                                    $counter++;
+                                }
+                            }
+                            ?>
                             </div>
-                            <div data-content="mobile1" class="category-model flex w-full text-[#505050] cursor-pointer items-center py-3 pr-6 text-[14px] font-bold  text-text-normal">
-                                <span>لوازم جانبی موبایل</span>
-                            </div>
-                            <div data-content="headphone" class="category-model flex w-full text-[#505050] cursor-pointer items-center py-3 pr-6 text-[14px] font-bold  text-text-normal">
-                                <span>هدفون هندزفری</span>
-                            </div>
-                            <div data-content="laptop" class="category-model flex w-full text-[#505050] cursor-pointer items-center py-3 pr-6 text-[14px] font-bold  text-text-normal">
-                                <span>لپ تاپ و تبلت</span>
-                            </div>
-                            <div data-content="computer" class="category-model flex w-full text-[#505050] cursor-pointer items-center py-3 pr-6 text-[14px] font-bold  text-text-normal">
-                                <span>کامپیوتر</span>
-                            </div>
-                            <div data-content="clock" class="category-model flex w-full text-[#505050] cursor-pointer items-center py-3 pr-6 text-[14px] font-bold  text-text-normal">
-                                <span>ساعت هوشمند</span>
-                            </div>
-                            <div data-content="gaming" class="category-model flex w-full text-[#505050] cursor-pointer items-center py-3 pr-6 text-[14px] font-bold  text-text-normal">
-                                <span>گیمینگ</span>
-                            </div>
-                            <div data-content="audio" class="category-model flex w-full text-[#505050] cursor-pointer items-center py-3 pr-6 text-[14px] font-bold  text-text-normal">
-                                <span>صوتی و تصویری</span>
-                            </div>
-                            <div data-content="save" class="category-model flex w-full text-[#505050] cursor-pointer items-center py-3 pr-6 text-[14px] font-bold  text-text-normal">
-                                <span>تجهیزات ذخیره سازی</span>
-                            </div>
-                            </div>
-                            <div class="w-full px-[24px] flex flex-col">
-                                <div class="h-[60px] text-[12px] font-bold text-[#0085ff] pt-[10px] pb-[26px] flex">
-                                    <a class="flex items-center" href="#">
-                                        <span> همه محصولات <span>موبایل</span></span> 
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M15.41 16.59L10.83 12L15.41 7.41L14 6L8 12L14 18L15.41 16.59Z" fill="#0085FF"></path></svg>
-                                    </a>
-                                    
-                                </div>
-                                <div class="flex flex-col h-[615px]">
-                                    <div id="menu-item" class="flex w-full flex-row flex-wrap ">
-                                        <div class="min-w-[154px] max-w-[270px] pl-3 flex flex-col">
-                                            <p class="text-[#565656] before:content-[' '] relative left-[5px] mb-4 flex cursor-pointer items-center overflow-hidden text-ellipsis text-nowrap pr-[2px] text-right text-[14px] font-bold text-text-normal before:ml-[3px] before:block before:h-[14px] before:w-[2px] before:min-w-[2px] before:bg-red-600 hover:text-primary-normal">موبایل بر اساس برند</p>
-                                            <p class="mb-4 cursor-pointer overflow-hidden text-ellipsis text-nowrap text-right text-[12px] text-text-40 hover:text-primary-normal">
-                                                موبایل سامسونگ
-                                            </p>
-                                            <p class="mb-4 cursor-pointer overflow-hidden text-ellipsis text-nowrap text-right text-[12px] text-text-40 hover:text-primary-normal">
-                                                موبایل سامسونگ
-                                            </p>
-                                            <p class="mb-4 cursor-pointer overflow-hidden text-ellipsis text-nowrap text-right text-[12px] text-text-40 hover:text-primary-normal">
-                                                موبایل سامسونگ
-                                            </p>
-                                            <p class="mb-4 cursor-pointer overflow-hidden text-ellipsis text-nowrap text-right text-[12px] text-text-40 hover:text-primary-normal">
-                                                موبایل سامسونگ
-                                            </p>
-                                            <p class="mb-4 cursor-pointer overflow-hidden text-ellipsis text-nowrap text-right text-[12px] text-text-40 hover:text-primary-normal">
-                                                موبایل سامسونگ
-                                            </p>
-                                            <p class="mb-4 cursor-pointer overflow-hidden text-ellipsis text-nowrap text-right text-[12px] text-text-40 hover:text-primary-normal">
-                                                موبایل سامسونگ
-                                            </p>
+                            <?php
+                            if(isset($menu_tree)){
+                                $counter = 1;
+                                foreach($menu_tree as $item){
+                                    ?>
+                                    <div data-megamenutarget="parent<?php echo $counter; ?>" class="sub-megamenu w-full px-[24px]  flex-col <?php echo $counter>1 ? 'hidden' : 'flex'; ?>">
+                                        <div class="h-[60px] text-[12px] font-bold text-[#0085ff] pt-[10px] pb-[26px] flex">
+                                            <a class="flex items-center" href="<?php echo $item->url; ?>">
+                                                <span> همه محصولات <span><?php echo $item->title; ?></span></span> 
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M15.41 16.59L10.83 12L15.41 7.41L14 6L8 12L14 18L15.41 16.59Z" fill="#0085FF"></path></svg>
+                                            </a>
+                                            
                                         </div>
-                                        <div class="min-w-[154px] max-w-[270px] pl-3 flex flex-col">
-                                            <p class="text-[#565656] before:content-[' '] relative left-[5px] mb-4 flex cursor-pointer items-center overflow-hidden text-ellipsis text-nowrap pr-[2px] text-right text-[14px] font-bold text-text-normal before:ml-[3px] before:block before:h-[14px] before:w-[2px] before:min-w-[2px] before:bg-red-600 hover:text-primary-normal">موبایل بر اساس کاربرد</p>
-                                            <p class="mb-4 cursor-pointer overflow-hidden text-ellipsis text-nowrap text-right text-[12px] text-text-40 hover:text-primary-normal">
-                                                موبایل سامسونگ
-                                            </p>
-                                            <p class="mb-4 cursor-pointer overflow-hidden text-ellipsis text-nowrap text-right text-[12px] text-text-40 hover:text-primary-normal">
-                                                موبایل سامسونگ
-                                            </p>
-                                            <p class="mb-4 cursor-pointer overflow-hidden text-ellipsis text-nowrap text-right text-[12px] text-text-40 hover:text-primary-normal">
-                                                موبایل سامسونگ
-                                            </p>
-                                            <p class="mb-4 cursor-pointer overflow-hidden text-ellipsis text-nowrap text-right text-[12px] text-text-40 hover:text-primary-normal">
-                                                موبایل سامسونگ
-                                            </p>
-                                            <p class="mb-4 cursor-pointer overflow-hidden text-ellipsis text-nowrap text-right text-[12px] text-text-40 hover:text-primary-normal">
-                                                موبایل سامسونگ
-                                            </p>
-                                            <p class="mb-4 cursor-pointer overflow-hidden text-ellipsis text-nowrap text-right text-[12px] text-text-40 hover:text-primary-normal">
-                                                موبایل سامسونگ
-                                            </p>
-                                        </div>
-                                        <div class="min-w-[154px] max-w-[270px] pl-3 flex flex-col">
-                                            <p class="text-[#565656] before:content-[' '] relative left-[5px] mb-4 flex cursor-pointer items-center overflow-hidden text-ellipsis text-nowrap pr-[2px] text-right text-[14px] font-bold text-text-normal before:ml-[3px] before:block before:h-[14px] before:w-[2px] before:min-w-[2px] before:bg-red-600 hover:text-primary-normal">موبایل بر اساس قیمت</p>
-                                            <p class="mb-4 cursor-pointer overflow-hidden text-ellipsis text-nowrap text-right text-[12px] text-text-40 hover:text-primary-normal">
-                                                موبایل سامسونگ
-                                            </p>
-                                            <p class="mb-4 cursor-pointer overflow-hidden text-ellipsis text-nowrap text-right text-[12px] text-text-40 hover:text-primary-normal">
-                                                موبایل سامسونگ
-                                            </p>
-                                            <p class="mb-4 cursor-pointer overflow-hidden text-ellipsis text-nowrap text-right text-[12px] text-text-40 hover:text-primary-normal">
-                                                موبایل سامسونگ
-                                            </p>
-                                            <p class="mb-4 cursor-pointer overflow-hidden text-ellipsis text-nowrap text-right text-[12px] text-text-40 hover:text-primary-normal">
-                                                موبایل سامسونگ
-                                            </p>
-                                            <p class="mb-4 cursor-pointer overflow-hidden text-ellipsis text-nowrap text-right text-[12px] text-text-40 hover:text-primary-normal">
-                                                موبایل سامسونگ
-                                            </p>
-                                            <p class="mb-4 cursor-pointer overflow-hidden text-ellipsis text-nowrap text-right text-[12px] text-text-40 hover:text-primary-normal">
-                                                موبایل سامسونگ
-                                            </p>
+                                        <div class="flex flex-col h-[615px]">
+                                            <div id="menu-item" class="flex w-full flex-row flex-wrap ">
+                                                <?php
+                                                if(!empty($item->children)){
+                                                    foreach($item->children as $child){
+                                                        ?>
+                                                        <div class="min-w-[154px] max-w-[270px] pl-3 flex flex-col">
+                                                            <a href="<?php echo $child->url; ?>" class="text-[#565656] before:content-[' '] relative left-[5px] mb-4 flex cursor-pointer items-center overflow-hidden text-ellipsis text-nowrap pr-[2px] text-right text-[14px] font-bold text-text-normal before:ml-[3px] before:block before:h-[14px] before:w-[2px] before:min-w-[2px] before:bg-red-600 hover:text-primary-normal"><?php echo $child->title; ?></a>
+                                                            <?php
+                                                            if(!empty($child->children)){
+                                                                foreach($child->children as $grandChild){
+                                                                    ?>
+                                                                    <a href="<?php echo $grandChild->url; ?>" class="mb-4 cursor-pointer overflow-hidden text-ellipsis text-nowrap text-right text-[12px] text-text-40 hover:text-primary-normal">
+                                                                        <?php echo $grandChild->title; ?>
+                                                                    </a>
+                                                                    <?php
+                                                                }
+                                                            }
+                                                            ?>
+                                                        </div>
+                                                        <?php
+                                                    }
+                                                }
+                                                ?>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            </div>
+                                    <?php
+                                    $counter++;
+                                }
+                            }
+                            ?>
+                            
                     </div>
                     </div>
                     <div id="shadow" class="fixed left-0 right-0 top-[203px] min-h-screen w-screen bg-black opacity-30 hidden z-[49]">
