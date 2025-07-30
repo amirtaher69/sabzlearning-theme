@@ -1,9 +1,17 @@
 <?php
 get_header();
+
+$post_id = get_the_ID();
+$post_thumbnail = get_the_post_thumbnail_url($post_id);
+$post_title = get_the_title();
+$post_date = get_the_date('Y M d' , $post_id);
+$author_id = get_post_field('post_author' , $post_id );
+$author_name = get_the_author_meta('display_name' , $author_id);
+
 ?>
     <section class="max-w-[1250px] mx-auto mt-[124px] lg:mt-[200px] flex flex-col lg:flex-row gap-20">
         <div class="w-full lg:max-w-[66.666667%] flex flex-col gap-7 px-[15px]">
-            <p class="w-full lg:w-[800px] text-[24px] font-semibold">هر آنچه درباره گلکسی اس ۲۵ می دانیم | مشخصات + قیمت احتمالی و تاریخ عرضه </p>
+            <h1 class="w-full lg:w-[800px] text-[24px] font-semibold"><?php echo $post_title; ?></h1>
             <div class="flex lg:hidden justify-center flex-row items-center mx-[20px] text-[11px] font-bold gap-2 text-white">
                     <div class="flex items-center justify-center px-[10px] h-[19px] rounded-[4px] bg-[#007bff]">   
                         تکنولوژی        
@@ -23,45 +31,23 @@ get_header();
                 </div>
                 <div class="flex flex-wrap justify-center lg:justify-start items-center gap-1">   
                     <div><img class="rounded-full" width="45" height="45" src="<?php echo THEME_DIR; ?>/src/img/Default_Profile_Picture1.jpg" alt=""></div>
-                    <a class="text-[14px] font-semibold" href="#">محمود یزدان پناه</a>
+                    <a class="text-[14px] font-semibold" href="#"><?php echo $author_name; ?></a>
                 </div>
                 <div class="flex flex-wrap gap-2 lg:gap-4 text-[14px] font-normal text-[#6f6f6f]">
-                    <p>20 آبان 1403</p>
+                    <p><?php echo $post_date; ?> </p>
                     <p>زمان مورد نیاز برای مطالعه: 2 دقیقه</p>
                 </div>
             </div>
-            <img class="w-full h-auto lg:h-[450px] rounded-[4px]" src="<?php echo THEME_DIR; ?>/src/img/galaxy-s25-ultra.jpg" alt="">
-            <p class="text-[14px] font-normal leading-[28px]">
-                در بحث تغییرات ظاهری گلکسی اس ۲۵، سامسونگ در سری اس ۲۴ اولترا شاهد شکایت کاربران در مورد طراحی تیز و لبه دار آن بود. به همین دلیل، سامسونگ نسخه اس ۲۵ اولترا را همانند سایر نسخه های این خانواده مجهز به طراحی انحنادار کرد. این موضوع در کنار رفع شکایت کاربران، فعالیت طولانی مدت با این گوشی را راحت‌تر می‌کند. <br>
-                این احتمال با توجه به رندر منتشر شده از این گوشی، بیش از همیشه قوت گرفته است و سبب شده تا کاربران انتظار بدنه‌ای با طراحی مشابه نسخه عادی و پلاس را داشته باشند. <br>
-                در بحث نسخه های معمولی و پلاس نیز خبری از تغییر نبوده و این موضوع نشان از بلوغ طراحی سامسونگ برای سری اس دارد. البته سامسونگ قبلا در سری های اس ۸، ۹ و ۱۰ خود از طراحی‌های مشابه استفاده کرده اما بعد از آن، زبان طراحی خود را مجددا بازنگری کرده است. بنابراین بعید نیست که شاهد چنین موضوعی در سری گلکسی اس ۲۵ باشیم. <br>
-                در بحث جنس بدنه نیز سامسونگ در سری اولترا از تیتانیوم و در سری عادی و پلاس از آلومینیوم بهره برده است. البته با توجه به تغییر طراحی و کوچک تر شدن بدنه اس ۲۵۴ اولترا، شاهد وزن کمتر آن به نسبت اس ۲۴ اولترا و آیفون ۱۶ پرومکس هستیم. <br>
-                البته ابعاد دستگاه نیز کمی کاهش یافته که با ترکیب وزن پایین تر باعث شده تا کاربران حس راحتی بیشتری داشته و در استفاده های طولانی مدت دچار درد مچ دست نشوند.
-            </p>
-            <h1 class="text-[30px] font-black">سخت افزار گلکسی اس ۲۵</h1>
-            <p class="text-[14px] font-normal leading-[28px]">
-                از ابتدای عرضه سری اس ۲۴، شایعات و نظرات مختلف پیرامون سخت افزار گلکسی اس ۲۵ در سطح اینترنت و شبکه‌های مجازی در حال گردش است. با توجه به شکست سامسونگ در تولید انبوه پردازنده ۳ نانومتری خود با نام اکسینوس ۲۵۰۰، این شرکت احتمالا در تمامی سری گلکسی اس ۲۵ از پردازنده های تولیدی کوالکام استفاده می‌کند. <br>
-                البته چندی قبل شایعاتی مبنی بر استفاده از پردازنده های مدیاتک (مشابه اتفاقی که در سری گلکسی تب اس ۱۰ رخ داد) در پرچمداران سامسونگ مطرح شد که بسیاری از کاربران آن را بلوفی برای ترساندن کوالکام می‌دانستند. حال با نزدیک شدن رونمایی از این گوشی و عدم تامین پردازنده‌های ۳ نانومتری اکسینوس ۲۵۰۰، سامسونگ مانند سری اس ۲۳، تمامی مدل های خانواده گلکسی اس ۲۵ با پردازنده اسنپدراگون عرضه می‌کند. <br>
-                با توجه به عرضه پردازنده Qualcomm Snapdragon 8 Elite انتظار می‌رود که کلیه مدل های گلکسی اس ۲۵ نیز به این پردازنده مجهز شوند. این پردازنده رقیب جدی برای سری A شرکت اپل بوده و رقابت را بیش از پیش برای کوپرتینویی‌ها سخت کرده است. <br>
-                همچنین نسخه اولترا مجهز به ۱۶ گیگابایت حافظه رم بوده تا پردازش‌های AI به شکل روانتری صورت گیرد. همینطور در سری اس ۲۵ خبری از افزایش ظرفیت باتری نیست و در مدل اولترا همان باتری ۵۰۰۰ میلی‌آمپر ساعتی قرار دارد.
-            </p>
-            <h3 class="text-[#6f6f6f] text-[14px] font-black">
-                صفحه نمایش گلکسی اس ۲۵
-            </h3>
-            <p class="text-[14px] font-normal leading-[28px]">
-                سامسونگ برای صفحه نمایش گلکسی اس ۲۵ از پنل M13 (مشابه با اس ۲۴ اولترا) استفاده کرده است. این پنل در مقابل پنل M14 از طول عمر پایین تر و مصرف باتری بیشتری دارد. پنل M14 در حال حاضر برای سری ۱۶ پر و ۱۶ پرومکس اپل استفاده می‌شود. <br>
-                صفحه نمایش اس ۲۵ اولتر از پنلی با ابعاد ۶٫۸۶ اینچی بهره‌ند بوده که در حقیقت، آن را یک گوشی ۶٫۹ اینچی می‌کند. با توجه به حاشیه باریک و منحنی، صفحه نمایش این گوشی کمی کوچکتر به نظر می‌رسد. <br>
-                در مدل های عادی و پلاس اس ۲۵ ابعاد صفحه نمایش مشابه نسخه قبلی است و خبری از افزایش آن نیست. این موضوع را عکس‌های افشا شده از نسخه‌های دام این گوشی ها تایید می‌کند.
-            </p>
-            <img class="w-full h-auto lg:h-[450px] rounded-[4px]" src="<?php echo THEME_DIR; ?>/src/img/galaxy-s25-ultra-back-render.jpg" alt="">
-            <h3 class="text-[#6f6f6f] text-[14px] font-black">
-                سخن پایانی
-            </h3>
-            <p class="text-[14px] font-normal leading-[28px]">
-                سامسونگ مطابق رسم هر ساله خود، در بهمن ماه از محصولات جدید سال ۲۰۲۵ خود رونمایی کرده که سری گلکسی اس گل سرسبد این رونمایی‌ها  <br>
-                است. در مراسم آنپکد ۲۰۲۵ پیش رو نیز این شرکت از سری گلکسی اس ۲۵ خود رونمایی خواهد کرد. در این مقاله به بررسی تمامی مشخصات <br>
-                ظاهری و فنی پرداخته‌ایم و شایعات و اخبار پیرامون این محصول را بررسی کرده‌ایم.
-            </p>
+            <?php if($post_thumbnail){ ?>
+                <img class="w-full h-auto lg:h-[450px] rounded-[4px]" src="<?php echo $post_thumbnail; ?>" alt="<?php echo $post_title; ?> ">
+            <?php } ?>
+            
+            <div class="text-[14px] font-normal leading-[28px]">
+                <?php the_content(); ?>
+            </div>
+
+
+ 
             <div class="flex gap-2 items-center py-[20px] border-t border-b border-[#c5c5c5] mb-[15px]">
                 <img class="w-[70px] h-[70px] rounded-full" src="<?php echo THEME_DIR; ?>/src/img/profile.jpg" alt="">
                 <p class="text-[#6d6d6d] text-[14px] font-bold">محمود یزدان پناه</p>
