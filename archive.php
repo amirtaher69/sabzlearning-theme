@@ -12,7 +12,7 @@ if(have_posts()){
         $post_id = get_the_ID();
         $post_thumbnail = get_the_post_thumbnail_url($post_id);
         $post_title = get_the_title();
-        $post_date = get_the_date('Y M d' , $post_id);
+        $post_date = get_the_date('d M Y' , $post_id);
         $author_id = get_post_field('post_author' , $post_id );
         $author_name = get_the_author_meta('display_name' , $author_id);
         $post_link = get_permalink();
