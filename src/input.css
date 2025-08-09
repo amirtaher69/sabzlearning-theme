@@ -475,3 +475,10 @@ html {
   background-image: url(./img/Subtract-1.png);
   background-repeat: no-repeat;
 }
+
+ol.children {
+  padding-right: 2rem;
+}
+div#respond {
+  margin-bottom: 1rem;
+}

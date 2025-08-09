@@ -145,25 +145,14 @@ $author_name = get_the_author_meta('display_name' , $author_id);
                     </div>
                 </div>
             </div>
-            <form class="w-full flex flex-col py-8 gap-6">
-                <div class="grid grid-cols-2 gap-6">
-                    <div class="border border-[#d4d4d4] px-[12px] py-[10px] rounded-[5px]">
-                        <input class="outline-none w-full" type="text" placeholder="نام">
-                    </div>
-                    <div class="border border-[#d4d4d4] px-[12px] py-[10px] rounded-[5px]">
-                        <input class="outline-none w-full" type="text" placeholder="ایمیل">
-                    </div>
-                </div>
-                    <div class="border border-[#d4d4d4] px-[12px] py-[10px] rounded-[5px]">
-                        <input class="outline-none w-full" type="text" placeholder="وبسایت">
-                    </div>
-                <textarea class="textArea-root peer border border-[#d4d4d4] px-[12px] py-[10px] rounded-[5px] outline-none" rows="6" dir="rtl" autocomplete="off" autocorrect="off" autocapitalize="none" spellcheck="false" placeholder="دیدگاه"></textarea>
-                <div class="col-span-2 flex w-full justify-start">
-                    <button data-variant="filled" class="px-[35px] bg-red-600 text-white h-[45px] font-bold">
-                        <div class="flex items-center gap-6">ارسال دیدگاه</div>
-                    </button>
-                </div>
-        </form>
+            
+            <section class="container mx-auto">
+                <?php
+                if(comments_open()){
+                    comments_template();
+                }
+                ?>
+            </section>
         </div>
         <div class="w-full lg:max-w-[25%] flex flex-col gap-12 px-[15px]">
             <a href="#" class="w-full lg:w-[290px] h-[311px] border border-[#ede9e9] flex items-center flex-col justify-between rounded-[10px]">
