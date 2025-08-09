@@ -247,60 +247,13 @@ if(isset($locations[$menu_name])){
             <div class="max-w-screen-xl mx-auto h-[72px] flex justify-between items-center">
                 <div class="flex gap-[24px] relative">
                     <div class="w-[150px] h-[40px]"><img class="w-full h-full" src="<?php echo THEME_DIR; ?>/src/img/dgland_main_logo.png" alt=""></div>
-                    <div class="w-[616px] h-[40px] bg-[#f6f5f5] rounded-[22px] relative flex items-center">
-                    <div class="rounded-full w-[36px] h-[36px] absolute right-2 bg-white flex justify-center items-center">
-                        <svg class="text-[#e11010]" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M21 21L16.6588 16.6549C15.209 18.1187 13.223 19 11 19C6.58172 19 3 15.4183 3 11C3 6.58172 6.58172 3 11 3C15.4183 3 19 6.58172 19 11C19 12.073 18.7888 13.0967 18.4056 14.0317" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
-                    </div>
-                    <input id="input-search" class="absolute right-12 outline-none h-full placholder-[#a6abb6] " placeholder="جستجو ..." type="text">
-                    <div id="pop-up-desktop" class="w-[616px] h-[216px] bg-white absolute top-[50px] shadow-2xl z-60 rounded-[10px] rounded-t-[22px] p-[30px] hidden flex-col gap-4">
-                        <div class="flex gap-4">
-                            <div>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 21 21" fill="none"><path d="M18.993 9.64601C18.9242 7.89624 18.3464 6.20456 17.3304 4.77828C16.3144 3.352 14.9045 2.25309 13.2733 1.61622C11.642 0.979341 9.86047 0.832167 8.14687 1.19273C6.43326 1.55329 4.86207 2.40593 3.62582 3.64616C2.38958 4.88638 1.542 6.46031 1.18694 8.17507C0.831888 9.88982 0.984788 11.6709 1.6269 13.3001C2.26902 14.9292 3.37246 16.3357 4.80199 17.347C6.23153 18.3584 7.92506 18.9308 9.67504 18.994M10 5V10L11 11M18.1992 18.2L19.9992 20M13 16C13 16.7956 13.3161 17.5587 13.8787 18.1213C14.4413 18.6839 15.2044 19 16 19C16.7956 19 17.5587 18.6839 18.1213 18.1213C18.6839 17.5587 19 16.7956 19 16C19 15.2044 18.6839 14.4413 18.1213 13.8787C17.5587 13.3161 16.7956 13 16 13C15.2044 13 14.4413 13.3161 13.8787 13.8787C13.3161 14.4413 13 15.2044 13 16Z" stroke="#A4A4A4" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg>
-                            </div>
-                            <div>
-                                <p class="text-[14px] font-bold">آخرین جستجوهای شما</p>
-                            </div>
-                        </div>
-                        <div class="text-[14px] font-normal bg-[#f9f9f9] w-[168px] h-[32px] flex justify-between items-center rounded-[8px] px-1 cursor-pointer">
-                            <p>گوشی سامسونگ A16</p> 
-                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M10 12L6 8L10 4" stroke="#E10A0A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg>
-                        </div>
-                        <div class="flex gap-4">
-                            <div>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M11.9993 20.0001L4.49932 12.5721C4.00463 12.0907 3.61497 11.5121 3.35487 10.8727C3.09478 10.2333 2.96989 9.54701 2.98806 8.85699C3.00624 8.16697 3.16709 7.48819 3.46048 6.86339C3.75388 6.23859 4.17346 5.68131 4.69281 5.22663C5.21216 4.77196 5.82003 4.42974 6.47814 4.22154C7.13624 4.01333 7.83033 3.94364 8.51669 4.01686C9.20306 4.09007 9.86682 4.30461 10.4662 4.64696C11.0656 4.98931 11.5876 5.45205 11.9993 6.00605C12.7602 4.99403 13.8766 4.30835 15.1233 4.0874C16.37 3.86644 17.6541 4.12669 18.7164 4.81559C19.7787 5.5045 20.5401 6.57076 20.8469 7.79916C21.1536 9.02755 20.983 10.3266 20.3693 11.4341M20.1992 20.2L21.9992 22M15 18C15 18.7956 15.3161 19.5587 15.8787 20.1213C16.4413 20.6839 17.2044 21 18 21C18.7956 21 19.5587 20.6839 20.1213 20.1213C20.6839 19.5587 21 18.7956 21 18C21 17.2044 20.6839 16.4413 20.1213 15.8787C19.5587 15.3161 18.7956 15 18 15C17.2044 15 16.4413 15.3161 15.8787 15.8787C15.3161 16.4413 15 17.2044 15 18Z" stroke="#A4A4A4" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg>
-                            </div>
-                            <div>
-                                <p class="text-[14px] font-bold">جستجو های پرطرفدار</p>
-                            </div>
-                        </div>
-                        <div class="flex items-center gap-3 overflow-hidden overflow-x-auto overflow-y-hidden hide-scrollbar hideScrollbar">
-                            <span class="min-w-[124px] h-[35px] rounded-[8px] bg-[#f9f9f9] flex items-center justify-between px-1 cursor-pointer">
-                                <button class="text-[14px] font-normal text-[#505050]">پاوربانک</button>
-                                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M10 12L6 8L10 4" stroke="#E10A0A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg>
-                            </span>
-                            <span class="min-w-[124px] h-[35px] rounded-[8px] bg-[#f9f9f9] flex items-center justify-between px-1 cursor-pointer">
-                                <button class="text-[14px] font-normal text-[#505050]">آیفون 16</button>
-                                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M10 12L6 8L10 4" stroke="#E10A0A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg>
-                            </span>
-                            <span class="min-w-[124px] h-[35px] rounded-[8px] bg-[#f9f9f9] flex items-center justify-between px-1 cursor-pointer">
-                                <button class="text-[14px] font-normal text-[#505050]">ساعت</button>
-                                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M10 12L6 8L10 4" stroke="#E10A0A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg>
-                            </span>
-                            <span class="min-w-[124px] h-[35px] rounded-[8px] bg-[#f9f9f9] flex items-center justify-between px-1 cursor-pointer">
-                                <button class="text-[14px] font-normal text-[#505050]">هارد اکسترنال</button>
-                                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M10 12L6 8L10 4" stroke="#E10A0A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg>
-                            </span>
-                            <span class="min-w-[124px] h-[35px] rounded-[8px] bg-[#f9f9f9] flex items-center justify-between px-1 cursor-pointer">
-                                <button class="text-[14px] font-normal text-[#505050]">هارد اکسترنال</button>
-                                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M10 12L6 8L10 4" stroke="#E10A0A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg>
-                            </span>
-                            <span class="min-w-[124px] h-[35px] rounded-[8px] bg-[#f9f9f9] flex items-center justify-between px-1 cursor-pointer">
-                                <button class="text-[14px] font-normal text-[#505050]">هارد اکسترنال</button>
-                                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M10 12L6 8L10 4" stroke="#E10A0A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg>
-                            </span>
-                        </div>
-                    </div>
-                    </div>
+                    <form method="get" action="<?php home_url("/"); ?>" class="w-[616px] h-[40px] bg-[#f6f5f5] rounded-[22px] relative flex items-center">
+                        <button type="submit" class="cursor-pointer rounded-full w-[36px] h-[36px] absolute right-2 bg-white flex justify-center items-center">
+                            <svg class="text-[#e11010]" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M21 21L16.6588 16.6549C15.209 18.1187 13.223 19 11 19C6.58172 19 3 15.4183 3 11C3 6.58172 6.58172 3 11 3C15.4183 3 19 6.58172 19 11C19 12.073 18.7888 13.0967 18.4056 14.0317" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                        </button>
+                        <input id="input-search" name="s" class="absolute right-12 outline-none h-full placholder-[#a6abb6] " placeholder="جستجو ..." type="text">
+                        <input type="hidden" name="post_type" value="post">
+                    </form>
                 </div>
                 <div class="flex items-center gap-2">
                     <button data-dialog-target="modal-login" class="w-[135px] h-[41px] border border-surface-normal rounded-[10px] flex justify-center items-center gap-1 text-[#e31e1e] cursor-pointer">
