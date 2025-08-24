@@ -246,7 +246,7 @@ if(isset($locations[$menu_name])){
         <div class="container mx-auto hidden lg:block">
             <div class="max-w-screen-xl mx-auto h-[72px] flex justify-between items-center">
                 <div class="flex gap-[24px] relative">
-                    <div class="w-[150px] h-[40px]"><img class="w-full h-full" src="<?php echo THEME_DIR; ?>/src/img/dgland_main_logo.png" alt=""></div>
+                    <div class="w-[150px] h-[40px]"><img class="w-full h-full" src="<?php echo get_option("header_logo"); ?>" alt=""></div>
                     <form method="get" action="<?php home_url("/"); ?>" class="w-[616px] h-[40px] bg-[#f6f5f5] rounded-[22px] relative flex items-center">
                         <button type="submit" class="cursor-pointer rounded-full w-[36px] h-[36px] absolute right-2 bg-white flex justify-center items-center">
                             <svg class="text-[#e11010]" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M21 21L16.6588 16.6549C15.209 18.1187 13.223 19 11 19C6.58172 19 3 15.4183 3 11C3 6.58172 6.58172 3 11 3C15.4183 3 19 6.58172 19 11C19 12.073 18.7888 13.0967 18.4056 14.0317" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>

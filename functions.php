@@ -20,6 +20,14 @@ function register_my_settings(){
     register_setting("theme_setting" , "header_logo");
     add_settings_section("header_section" , "تنظیمات هدر" , "__return_false" , "theme-setting-header");
 
+    add_settings_field(
+        "header_logo_field" ,
+        "لوگوی هدر" ,
+        "header_logo_field_callback" ,
+        "theme-setting-header" ,
+        "header_section"
+    );
+
     // homepage settings
     register_setting("theme_setting" , "home_slider");
     add_settings_section("home_section" , "تنظیمات صفحه اصلی" , "__return_false" , "theme-setting-home");
@@ -27,6 +35,37 @@ function register_my_settings(){
     // footer settings
     register_setting("theme_setting" , "footer_text");
     add_settings_section("footer_section" , "تنظیمات فوتر" , "__return_false" , "theme-setting-footer");
+}
+
+// header logo field
+function header_logo_field_callback(){
+    $logo = get_option("header_logo");
+    ?>
+    <div>
+        <input type="text" name="header_logo" id="header_logo" value="<?php echo $logo; ?>" style="width:60%">
+        <button type="button" class="button upload_logo_button">انتخاب لوگو</button>
+
+        <br>
+        <?php if($logo): ?>
+            <img src="<?php echo $logo; ?>" alt="" style="max-width: 150px; display:block; margin-top:10px;">
+        <?php endif; ?>
+    </div>
+    <script>
+        jQuery(document).ready(function($){
+            $('.upload_logo_button').click(function(e){
+                e.preventDefault();
+                var image = wp.media({
+                    title : "انتخاب لوگو" ,
+                    multiple : false
+                }).open()
+                .on('select' , function(){
+                    var uploaded_image = image.state().get('selection').first().toJSON();
+                    $('#header_logo').val(uploaded_image.url);
+                });
+            });
+        });
+    </script>
+    <?php
 }
 
 // add setting menu page
@@ -86,3 +125,9 @@ function theme_setting_output(){
     <?php
 }
 
+add_action("admin_enqueue_scripts" , function($hook){
+    if($hook != 'toplevel_page_theme-setting'){
+        return;
+    }
+    wp_enqueue_media();
+});
