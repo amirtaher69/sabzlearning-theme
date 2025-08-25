@@ -737,63 +737,22 @@ get_header();
     <div class="lg:w-[1024px] xl:w-[1280px] mx-auto mb-[16px] flex w-full flex-col items-center text-text-40 mt-2 px-[10px] lg:px-0">
         <div class="relative flex w-full flex-col items-center rounded-[16px] border border-[#e8eaed]">
             <div id="text-box" class="mb-[16px] mt-[16px] flex w-11/12 flex-col items-start overflow-hidden duration-75 h-[240px]">
-                <div class=" flex w-full flex-col items-start">
-                    <h1 class="mt-[16px] text-[14px] font-semibold"> خرید گوشی</h1>
-                    <p class="mt-[8px] text-[14px] font-normal leading-[30px] lg:leading-[27px]">خرید گوشی و خرید اینترنتی گوشی در این روزها، می‌تواند زمان زیادی از شما بگیرد. در هنگام خرید گوشی موبایل باید به نکات متعددی مانند<!-- --> 
-                        <a target="_blank" class="text-[#0085ff] underline underline-offset-4" rel="noopener noreferrer" href="#">خرید گوشی موبایل</a>، امکانات گوشی موبایل، ضمانت گوشی موبایل و رجیستری گوشی موبایل در کنار اصالت فروشگاه موبایل دقت کرد. مهم‌‎ترین عامل اثرگذار در تصمیم گیری ما، قیمت روز گوشی موبایل می‌باشد. شما می‌توانید از طریق خرید اینترنتی گوشی از<!-- --> 
-                        <a target="_blank" class="text-[#0085ff] underline underline-offset-4" rel="noopener noreferrer" href="#">فروشگاه اینترنتی موبایل<!-- --> </a> <!-- -->یا خرید حضوری از شعب وی‌جی‌نا اقدام به خرید گوشی سامسونگ، خرید گوشی شیائومی و سایر برندها کنید.</p>
+                <?php echo get_option("home_content"); ?>
+            </div>
+            <div id="shadow1" class="absolute bottom-[16px] z-10 flex  w-full select-none flex-row items-end justify-start gap-[4px] px-[56px] text-[14px] duration-75 h-[140px] gradient-active text-[#0085ff]">
+                <div id="show-all" class="flex items-center cursor-pointer">
+                    <span class="h-[20px] cursor-pointer font-semibold">مشاهده بیشتر</span>
+                    <span id="show-svg" class="h-[20px]  duration-75 -rotate-180 text-[#0085ff] ">
                     </div>
-                    <div class=" flex w-full flex-col items-start">
-                        <h2 class="mt-[16px] text-[19px] lg:text-[14px] font-semibold">فروشگاه اینترنتی موبایل</h2>
-                        <p class="mt-[8px] text-[14px] font-normal leading-[30px] lg:leading-[27px]">خرید گوشی موبایل از فروشگاه اینترنتی موبایل، یکی از سریع‌ترین راه‌ها به شمار می‌آید. در زمان خرید اینترنتی گوشی موبایل، باید به نکاتی مانند نشان نماد الکترونیکی، پروتکل SSL و درگاه امن پرداخت فروشگاه اینترنتی توجه کنید. قبل از خرید موبایل، نظرات کاربران را بررسی کنید. این نظرات می‌تواند به شما درک بهتری از تجربه خرید دیگران و کیفیت سرویس‌دهی آن فروشگاه اینترنتی بدهد. مورد بعدی که می‌بایست به آن دقت شود اصالت کالای دیجیتال است.</p>
-                    </div>
-                    <div class=" flex w-full flex-col items-start">
-                        <h2 class="mt-[16px] text-[19px] lg:text-[14px] font-semibold">خرید اقساطی گوشی</h2>
-                        <p class="mt-[8px] text-[14px] font-normal leading-[30px] lg:leading-[27px]">این‌ روزها خرید اقساطی گوشی به دلیل نوسان قیمت گوشی موبایل بهترین راه خرید گوشی محسوب می‌شود. وی‌جی‌نا با فراهم کردن امکان خرید قسطی گوشی موبایل، خرید قسطی لپ تاپ و سایر کالاهای دیجیتال، شرایطی آسان را برای خرید جدیدترین محصولات دیجیتال فراهم کرده است. شما می‌توانید به دو روش حضوری و آنلاین گوشی مورد نظر خود را به صورت قسطی خریداری نمایید. در روش آنلاین کافیست به صفحه ویژه<!-- --> 
-                            <a target="_blank" class="text-[#0085ff] underline underline-offset-4" rel="noopener noreferrer" href="#">خرید قسطی کالای دیجیتال</a> <!-- -->وی‌جی‌نا و برای خرید حضوری گوشی موبایل کافیست به یکی از شعب وی‌جی‌نا مراجعه کنید تا خرید خود را در سریعترین زمان ممکن و با شرایطی آسان انجام دهید.</p>
-                        </div>
-                        <div class=" flex w-full flex-col items-start">
-                            <h2 class="mt-[16px] text-[19px] lg:text-[14px] font-semibold">خرید گوشی سامسونگ</h2>
-                            <p class="mt-[8px] text-[14px] font-normal leading-[30px] lg:leading-[27px]">
-                                <a target="_blank" class="text-[#0085ff] underline underline-offset-4" rel="noopener noreferrer" href="#">خرید گوشی سامسونگ</a> <!-- -->همیشه یکی از انتخاب‌های اول خریداران موبایل در ایران است. این محبوبیت به دلایل متعددی مثل به‌روزرسانی‌های نرم‌افزاری منظم گوشی‌های سامسونگ، امنیت و پشتیبانی قوی گوشی سامسونگ می‌باشد که خیال شما را تا سال‌ها راحت می‌کند. به‌عنوان مثال جدیدترین گوشی سامسونگ یعنی گلکسی اس ۲۴، گلکسی اس ۲۴ پلاس و گلکسی اس ۲۴ اولترا تا هفت سال پشتیبانی نرم‌افزاری دریافت خواهند کرد. اگر به‌دنبال خرید گوشی اقتصادی سامسونگ هستید یا انتخاب شما گوشی میان‌رده سامسونگ است و یا قصد خرید گوشی پرچمدار سامسونگ را دارید، وی‌جی‌نا خرید آنلاین گوشی موبایل سامسونگ و خرید حضوری گوشی موبایل سامسونگ را برای شما با قیمت مناسب و ضمانت معتبر فراهم کرده است.</p>
-                            </div>
-                            <div class=" flex w-full flex-col items-start">
-                                <h2 class="mt-[16px] text-[19px] lg:text-[14px] font-semibold">خرید گوشی شیائومی<!-- --> </h2>
-                                <p class="mt-[8px] text-[14px] font-normal leading-[30px] lg:leading-[27px]">شیائومی برندی است که کار خود را در چین آغاز کرد و خیلی زود به یکی از غول‌های تکنولوژی در دنیا تبدیل شد. گوشی‌ شیائومی همیشه به مناسب بودن قیمت معروف بوده‌ و خریداران معمولا برای خرید گوشی هوشمند با امکانات خوب و قیمت مناسب به سراغ این برند می‌روند؛ اما شیائومی تنها گوشی اقتصادی یا گوشی ارزان قیمت تولید نمی‌کند. چند سالی است که به گوشی های شیائومی، گوشی‌ پرچمدار نیز اضافه شده است تا این برند به رقیبی جدی برای گوشی آیفون و گوشی سری اس سامسونگ تبدیل شود.<!-- --> 
-                                    <a target="_blank" class="text-[#0085ff] underline underline-offset-4" rel="noopener noreferrer" href="#">قیمت گوشی شیائومی</a> <!-- -->همانند سایر مدل‌ها در وی‌جی‌نا همواره به‌روز است و شما می‌توانید مدل دلخواه خود را با گارانتی ۱۸ ماهه معتبر خریداری کنید.</p>
-                            </div>
-                                <div class=" flex w-full flex-col items-start">
-                                    <h2 class="mt-[16px] text-[19px] lg:text-[14px] font-semibold">خرید گوشی اپل </h2>
-                                    <p class="mt-[8px] text-[14px] font-normal leading-[30px] lg:leading-[27px]">شرکت اپل با ورود به دنیای تلفن‌های همراه، معنای گوشی هوشمند را برای همه تعریف کرد. از سال ۲۰۰۷ که اولین آیفون معرفی شد، هر ساله کمپانی‌های بزرگ منتظر رونمایی آیفون جدید هستند تا قابلیت‌های جدید این گوشی را بررسی و مدلی قابل رقابتی را به بازار عرضه کنند.<!-- --> 
-                                        <a target="_blank" class="text-[#0085ff] underline underline-offset-4" rel="noopener noreferrer" href="#">قیمت گوشی آیفون<!-- --> </a> <!-- -->همیشه از سایر برندها بالاتر بوده اما طرفدارانش معمولا تا سال‌ها به آن وفادار می‌مانند. از لیست قیمت آیفون در فروشگاه اینترنتی وی‌جی‌نا می‌توانید انواع گوشی آیفون از مدل‌های آیفون ۱۳ ، آیفون 13 پرو ، آیفون ۱۳ پرومکس گرفته تا آیفون SE را مشاهده کنید و با خیالی راحت از رجیستری آیفون و همینطور ۱۸ ماه ضمانت، آیفون مورد نظر خود را سفارش دهید.</p>
-                                    </div>
-                                    <div class=" flex w-full flex-col items-start"><h2 class="mt-[16px] text-[19px] lg:text-[14px] font-semibold">خرید گوشی هواوی </h2>
-                                        <p class="mt-[8px] text-[14px] font-normal leading-[30px] lg:leading-[27px]">هواوی در طول سال‌های فعالیت خود ثابت کرده است که یکی از نوآوران عرصه تکنولوژی به حساب می‌آید. کاربران گوشی های هواوی می‌دانند که این برند حساسیت ویژه‌ای روی دوربین گوشی های خود دارد. فرقی نمی‌کند شما گوشی اقتصادی هواوی را داشته باشید یا گوشی میان رده هوآوی یا گوشی پرچمدار هواوی، همیشه می‌توانید از دوربین باکیفیت گوشی خود لذت ببرید.<!-- --> 
-                                            <a target="_blank" class="text-[#0085ff] underline underline-offset-4" rel="noopener noreferrer" href="#">قیمت گوشی هواوی</a> <!-- -->را همیشه می‌توانید از صفحه گوشی هواوی در سایت وی‌جی‌نا مشاهده و با ضمانت معتبر بخرید.</p>
-                                        </div>
-                                        <div class=" flex w-full flex-col items-start">
-                                            <h2 class="mt-[16px] text-[19px] lg:text-[14px] font-semibold">فروشگاه موبایل، کالای دیجیتال و لوازم جانبی وی‌جی‌نا</h2>
-                                            <p class="mt-[8px] text-[14px] font-normal leading-[30px] lg:leading-[27px]">فروشگاه اینترنتی وی‌جی‌نا، اولین و بزرگترین فروشگاه اینترنتی و حضوری کالای دیجیتال در ایران است. از خرید گوشی موبایل یا خرید لپ ‌تاپ تا خرید اسپیکر یا خرید ساعت هوشمند را می‌توانید از فروشگاه اینترنتی وی‌جی‌نا انجام دهید. وی‌جی‌نا علاوه بر فروشگاه اینترنتی، امکان خرید حضوری از شعب خود (۱۰ شعبه در کشور) را فراهم کرده است. شما می‌توانید از یکی از دو روش ذکر شده انواع گوشی‌های سامسونگ، شیائومی، اپل، نوکیا، انواع تبلت، انواع لپتاپ، انواع<!-- --> 
-                                                <a target="_blank" class="text-[#0085ff] underline underline-offset-4" rel="noopener noreferrer" href="#">هدفون و هندزفری<!-- --> </a>، انواع<!-- --> 
-                                                <a target="_blank" class="text-[#0085ff] underline underline-offset-4" rel="noopener noreferrer" href="#">ساعت هوشمند<!-- --> </a>، انواع<!-- --> 
-                                                <a target="_blank" class="text-[#0085ff] underline underline-offset-4" rel="noopener noreferrer" href="#">تلویزیون<!-- --> </a>، انواع<!-- --> 
-                                                <a target="_blank" class="text-[#0085ff] underline underline-offset-4" rel="noopener noreferrer" href="#">اسپیکر<!-- --> </a> <!-- -->و<!-- --> <a target="_blank" class="text-[#0085ff] underline underline-offset-4" rel="noopener noreferrer" href="#">ساندبار<!-- --> </a>، گجت‌های هوشمند و سایر کالاهای دیجیتال را با بهترین قیمت و معتبر ترین گارانتی خریداری کنید. همچنین اگر قصد خرید اینترنتی را دارید می‌توانید تمامی کالاهای دیجیتال را در هر ساعتی از شبانه‌روز و با ارسال سریع از سایت وی‌جی‌نا سفارش دهید.</p>
-                                            </div>
-                                        </div>
-                                        <div id="shadow1" class="absolute bottom-[16px] z-10 flex  w-full select-none flex-row items-end justify-start gap-[4px] px-[56px] text-[14px] duration-75 h-[140px] gradient-active text-[#0085ff]">
-                                            <div id="show-all" class="flex items-center cursor-pointer">
-                                                <span class="h-[20px] cursor-pointer font-semibold">مشاهده بیشتر</span>
-                                                <span id="show-svg" class="h-[20px]  duration-75 -rotate-180 text-[#0085ff] ">
-                                            </div>
-                                            
-                                                <span class="rotate-180">
-                                                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                    <path d="M4 10L8 6L12 10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
-                                                </svg>
-                                            </span>
-                                        </span>
-                                    </div>
-                                </div>
+                    
+                    <span class="rotate-180">
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M4 10L8 6L12 10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                        </svg>
+                    </span>
+                </span>
+            </div>
+        </div>
     </div>
     
     <?php

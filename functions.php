@@ -30,7 +30,17 @@ function register_my_settings(){
 
     // homepage settings
     register_setting("theme_setting" , "home_slider");
+    register_setting("theme_setting" , "home_content");
+
     add_settings_section("home_section" , "تنظیمات صفحه اصلی" , "__return_false" , "theme-setting-home");
+
+    add_settings_field(
+        "home_content_field",
+        "متن صفحه اصلی",
+        "home_content_field_callback",
+        "theme-setting-home",
+        "home_section"
+    );
 
     // footer settings
     register_setting("theme_setting" , "footer_text");
@@ -66,6 +76,20 @@ function header_logo_field_callback(){
         });
     </script>
     <?php
+}
+
+// home content field
+function home_content_field_callback(){
+    $content = get_option("home_content");
+    wp_editor(
+        $content,
+        "home_content",
+        array(
+        "textarea_name" => "home_content" ,
+        "media_buttons" => true ,
+        "textarea_rows" => 10
+        )
+    );
 }
 
 // add setting menu page
