@@ -17,7 +17,7 @@ add_action("admin_init" , "register_my_settings");
 function register_my_settings(){
     
     // header settings
-    register_setting("theme_setting" , "header_logo");
+    register_setting("theme_setting_header" , "header_logo");
     add_settings_section("header_section" , "تنظیمات هدر" , "__return_false" , "theme-setting-header");
 
     add_settings_field(
@@ -29,8 +29,8 @@ function register_my_settings(){
     );
 
     // homepage settings
-    register_setting("theme_setting" , "home_slider");
-    register_setting("theme_setting" , "home_content");
+    register_setting("theme_setting_home" , "home_slider");
+    register_setting("theme_setting_home" , "home_content");
 
     add_settings_section("home_section" , "تنظیمات صفحه اصلی" , "__return_false" , "theme-setting-home");
 
@@ -43,7 +43,7 @@ function register_my_settings(){
     );
 
     // footer settings
-    register_setting("theme_setting" , "footer_text");
+    register_setting("theme_setting_footer" , "footer_text");
     add_settings_section("footer_section" , "تنظیمات فوتر" , "__return_false" , "theme-setting-footer");
 }
 
@@ -131,14 +131,17 @@ function theme_setting_output(){
         </h2>
         <form action="options.php" method="post">
             <?php
-            settings_fields("theme_setting");
+            
             if($active_tab=="header"){
+                settings_fields("theme_setting_header");
                 do_settings_sections("theme-setting-header");
             }
             if($active_tab=="home"){
+                settings_fields("theme_setting_home");
                 do_settings_sections("theme-setting-home");
             }
             if($active_tab=="footer"){
+                settings_fields("theme_setting_footer");
                 do_settings_sections("theme-setting-footer");
             }
             submit_button();
