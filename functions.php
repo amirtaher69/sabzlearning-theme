@@ -31,6 +31,8 @@ function register_my_settings(){
     // homepage settings
     register_setting("theme_setting_home" , "home_slider");
     register_setting("theme_setting_home" , "home_content");
+    register_setting("theme_setting_home" , "home_sale_section");
+    
 
     add_settings_section("home_section" , "تنظیمات صفحه اصلی" , "__return_false" , "theme-setting-home");
 
@@ -38,6 +40,14 @@ function register_my_settings(){
         "home_content_field",
         "متن صفحه اصلی",
         "home_content_field_callback",
+        "theme-setting-home",
+        "home_section"
+    );
+
+    add_settings_field(
+        "home_sale_section_field",
+        "نمایش بخش فروش ویژه",
+        "home_sale_section_field_callback",
         "theme-setting-home",
         "home_section"
     );
@@ -90,6 +100,18 @@ function home_content_field_callback(){
         "textarea_rows" => 10
         )
     );
+}
+
+// home sale section field
+function home_sale_section_field_callback(){
+    $value = get_option("home_sale_section");
+    ?>
+    <label>
+        <input type="checkbox" name="home_sale_section" value="1" <?php checked(1 , $value); ?> >
+        فعال باشد
+    </label>
+    
+    <?php
 }
 
 // add setting menu page

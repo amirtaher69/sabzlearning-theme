@@ -80,6 +80,7 @@ get_header();
             </a>
         </div>
     </section>
+    <?php if(get_option("home_sale_section")) : ?>
     <section class="w-full bg-[#d20707] mt-[30px]">
         <div class="flex items-center justify-center h-[65px] lg:h-[88px] gap-1">
             <img src="<?php echo THEME_DIR; ?>/src/img/big_white_golden_offer.svg" alt="">
@@ -216,6 +217,7 @@ get_header();
             </div>
         </div>
     </section>
+    <?php endif; ?>
     <section class="w-full mt-[15px]">
         <div class="w-full lg:w-[1024px] xl:w-[1280px] mx-auto">
             <div class="h-[60px] lg:h-[94px] flex flex-col justify-center items-center gap-2">
