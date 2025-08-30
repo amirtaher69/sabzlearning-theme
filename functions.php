@@ -37,6 +37,14 @@ function register_my_settings(){
     add_settings_section("home_section" , "تنظیمات صفحه اصلی" , "__return_false" , "theme-setting-home");
 
     add_settings_field(
+        "home_slider_field",
+        "اسلایدر صفحه اصلی",
+        "home_slider_field_callback",
+        "theme-setting-home",
+        "home_section"
+    );
+
+    add_settings_field(
         "home_content_field",
         "متن صفحه اصلی",
         "home_content_field_callback",
@@ -85,6 +93,40 @@ function header_logo_field_callback(){
             });
         });
     </script>
+    <?php
+}
+
+// home slider field
+function home_slider_field_callback(){
+    $slides = get_option("home_slider" , []);
+    if(!is_array($slides)){
+        $slides = [];
+    }
+    ?>
+    <div id="slider-wrapper">
+        <?php foreach($slides as $index => $slide) : ?>
+            <div class="slider-item">
+                <label>تصویر دسکتاپ</label>
+                <input type="text" name="home_slider[<?php echo $index; ?>][desktop]" value="<?php echo $slide["desktop"]; ?>" style="width: 60%;">
+                <button type="button" class="button upload-image">انتخاب</button>
+
+                <br>
+
+                <label>تصویر موبایل</label>
+                <input type="text" name="home_slider[<?php echo $index; ?>][mobile]" value="<?php echo $slide["mobile"]; ?>" style="width: 60%;">
+                <button type="button" class="button upload-image">انتخاب</button>
+
+                <br>
+                <label>لینک اسلاید</label>
+                <input type="text" name="home_slider[<?php echo $index; ?>][link]" value="<?php echo $slide["link"]; ?>" style="width: 60%;">
+
+                <br>
+
+                <button type="button" class="button remove-slide">حذف اسلاید</button>
+            </div>
+        <?php endforeach; ?>
+    </div>
+    <button type="button" class="button add-slide">افزودن اسلاید +</button>
     <?php
 }
 
