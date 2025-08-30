@@ -105,7 +105,7 @@ function home_slider_field_callback(){
     ?>
     <div id="slider-wrapper">
         <?php foreach($slides as $index => $slide) : ?>
-            <div class="slider-item">
+            <div class="slider-item" style="border: 1px solid; margin-bottom: 20px; padding:10px;">
                 <label>تصویر دسکتاپ</label>
                 <input type="text" name="home_slider[<?php echo $index; ?>][desktop]" value="<?php echo $slide["desktop"]; ?>" style="width: 60%;">
                 <button type="button" class="button upload-image">انتخاب</button>
@@ -127,6 +127,24 @@ function home_slider_field_callback(){
         <?php endforeach; ?>
     </div>
     <button type="button" class="button add-slide">افزودن اسلاید +</button>
+
+    <script>
+        jQuery(document).ready(function($){
+            var slideIndex = $('#slider-wrapper .slider-item').length;
+
+            $('.add-slide').on('click' , function(e){
+                e.preventDefault();
+                var html ='<div class="slider-item" style="border: 1px solid; margin-bottom: 20px; padding:10px;"><label>تصویر دسکتاپ</label><input type="text" name="home_slider['+slideIndex+'][desktop]" style="width: 60%;"><button type="button" class="button upload-image">انتخاب</button><br><label>تصویر موبایل</label><input type="text" name="home_slider['+slideIndex+'][mobile]" style="width: 60%;"><button type="button" class="button upload-image">انتخاب</button><br><label>لینک اسلاید</label><input type="text" name="home_slider['+slideIndex+'][link]" style="width: 60%;"><br><button type="button" class="button remove-slide">حذف اسلاید</button></div>';
+
+                $('#slider-wrapper').append(html);
+                slideIndex++;
+            });
+            $(document).on('click' , '.remove-slide' , function(e){
+                e.preventDefault();
+                $(this).closest('.slider-item').remove();
+            });
+        });
+    </script>
     <?php
 }
 
