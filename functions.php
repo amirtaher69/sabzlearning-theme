@@ -131,6 +131,8 @@ function home_slider_field_callback(){
     <script>
         jQuery(document).ready(function($){
             var slideIndex = $('#slider-wrapper .slider-item').length;
+            
+            // add a new item to slider wrapper
 
             $('.add-slide').on('click' , function(e){
                 e.preventDefault();
@@ -139,9 +141,30 @@ function home_slider_field_callback(){
                 $('#slider-wrapper').append(html);
                 slideIndex++;
             });
+
+            // remove an item from slider wrapper
+
             $(document).on('click' , '.remove-slide' , function(e){
                 e.preventDefault();
                 $(this).closest('.slider-item').remove();
+            });
+
+            // handle upload files for slider
+
+            $(document).on('click' , '.upload-image' , function(e){
+                e.preventDefault();
+                var button = $(this);
+
+                var input = button.prev('input');
+
+                var image = wp.media({
+                    title : "انتخاب لوگو" ,
+                    multiple : false
+                }).open()
+                .on('select' , function(){
+                    var uploaded_image = image.state().get('selection').first().toJSON();
+                    input.val(uploaded_image.url);
+                });
             });
         });
     </script>
