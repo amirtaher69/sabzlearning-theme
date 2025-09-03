@@ -1,33 +1,25 @@
 <?php
 get_header();
+
+$slider = get_option('home_slider');
+
 ?>
-    <section class="w-full lg:h-[300px] xl:h-[400px] mt-[124px] lg:mt-[200px]">
+    <section class="mt-[124px] lg:mt-[200px]"></section>
+    <?php if(is_array($slider) && count($slider) > 0) : ?>
+    <section class="w-full lg:h-[300px] xl:h-[400px]">    
         <div class="swiper swiper-banner h-full">
             <div class="swiper-wrapper w-full h-full">
-                <div class="swiper-slide w-full h-full">
-                    <a href="#"><img class="hidden lg:block w-full h-full object-cover" src="<?php echo THEME_DIR; ?>/src/img/DESKTOPSLIDE-1.webp" alt=""></a>
-                    <a href="#"><img class="block lg:hidden w-full h-full object-cover" src="<?php echo THEME_DIR; ?>/src/img/MOBILESLIDE-1.webp" alt=""></a>
-                </div>
-                <div class="swiper-slide w-full h-full">
-                    <a href="#"><img class="hidden lg:block w-full h-full object-cover" src="<?php echo THEME_DIR; ?>/src/img/DESKTOPSLIDE-2.jpg" alt=""></a>
-                    <a href="#"><img class="block lg:hidden w-full h-full object-cover" src="<?php echo THEME_DIR; ?>/src/img/MOBILESLIDE-2.jpg" alt=""></a>
-                </div>
-                <div class="swiper-slide w-full h-full">
-                    <a href="#"><img class="hidden lg:block w-full h-full object-cover" src="<?php echo THEME_DIR; ?>/src/img/DESKTOPSLIDE-3.webp" alt=""></a>
-                    <a href="#"><img class="block lg:hidden w-full h-full object-cover" src="<?php echo THEME_DIR; ?>/src/img/MOBILESLIDE-3.webp" alt=""></a>
-                </div>
-                <div class="swiper-slide w-full h-full">
-                    <a href="#"><img class="hidden lg:block w-full h-full object-cover" src="<?php echo THEME_DIR; ?>/src/img/DESKTOPSLIDE-4.webp" alt=""></a>
-                    <a href="#"><img class="block lg:hidden w-full h-full object-cover" src="<?php echo THEME_DIR; ?>/src/img/MOBILESLIDE-4.webp" alt=""></a>
-                </div>
-                <div class="swiper-slide w-full h-full">
-                    <a href="#"><img class="hidden lg:block w-full h-full object-cover" src="<?php echo THEME_DIR; ?>/src/img/DESKTOPSLIDE-5.webp" alt=""></a>
-                    <a href="#"><img class="block lg:hidden w-full h-full object-cover" src="<?php echo THEME_DIR; ?>/src/img/MOBILESLIDE-5.webp" alt=""></a>
-                </div>
+                <?php foreach($slider as $slide) : ?>
+                    <div class="swiper-slide w-full h-full">
+                        <a href="<?php echo $slide['link']; ?>"><img class="hidden lg:block w-full h-full object-cover" src="<?php echo $slide['desktop']; ?>" alt=""></a>
+                        <a href="<?php echo $slide['link']; ?>"><img class="block lg:hidden w-full h-full object-cover" src="<?php echo $slide['mobile']; ?>" alt=""></a>
+                    </div>
+                <?php endforeach; ?>
             </div>
             <div class="swiper-pagination"></div>
         </div>
     </section>
+    <?php endif; ?>
     <section class="w-full">
         <div class="flex flex-col items-center">
             <div class="h-[94px] flex flex-col justify-center items-center gap-2">

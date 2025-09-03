@@ -29,7 +29,11 @@ function register_my_settings(){
     );
 
     // homepage settings
-    register_setting("theme_setting_home" , "home_slider");
+    register_setting("theme_setting_home" , "home_slider" , array(
+        'type' => 'array' ,
+        'sanitize_callback' => 'sanitize_home_slider',
+        'default' => []
+    ));
     register_setting("theme_setting_home" , "home_content");
     register_setting("theme_setting_home" , "home_sale_section");
     
@@ -195,6 +199,30 @@ function home_sale_section_field_callback(){
     </label>
     
     <?php
+}
+
+// sanitize home slider
+function sanitize_home_slider($input){
+    if(!is_array($input)) return [];
+
+    $output = [];
+    foreach($input as $row){
+        $desktop = isset($row['desktop']) ? $row['desktop'] : '';
+        $mobile = isset($row['mobile']) ? $row['mobile'] : '';
+        $link = isset($row['link']) ? $row['link'] : '';
+
+        if($desktop == '' && $mobile == '' && $link == ''){
+            continue;
+        }
+        
+        $output[] = [
+            'desktop' => $desktop ,
+            'mobile' => $mobile ,
+            'link' => $link
+        ];
+    }
+
+    return array_values($output);
 }
 
 // add setting menu page
