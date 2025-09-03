@@ -245,6 +245,8 @@ function theme_setting_output(){
     ?>
     <div class="wrap">
         <h1>تنظیمات قالب</h1>
+    </div>
+    <div class="wrap">
         <h2 class="nav-tab-wrapper">
             <a 
             href="?page=theme-setting&tab=header" 
@@ -290,4 +292,5 @@ add_action("admin_enqueue_scripts" , function($hook){
         return;
     }
     wp_enqueue_media();
+    wp_enqueue_style("theme-setting-styles" , THEME_DIR.'/src/admin/theme-setting.css');
 });
