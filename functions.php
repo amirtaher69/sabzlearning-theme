@@ -5,7 +5,7 @@ add_action('after_setup_theme' , 'add_theme_support_function');
 function add_theme_support_function(){
     add_theme_support('post-thumbnails');
     add_theme_support('widgets');
-
+    add_theme_support('woocommerce');
 }
 
 add_action('after_setup_theme' , 'register_my_menu');
