@@ -68,15 +68,14 @@ get_header();
             <article class="w-[80%] lg:w-[336px] xl:w-[488px] mt-[50px] lg:mt-[220px] flex flex-col gap-6 mx-auto">
                 <div class="flex w-full items-center justify-between">
                     <a href="#" class="text-[#a4a4a4] text-[18px] font-normal">برند : اپل</a>
-                    <div class="flex items-center gap-2">
+                    <!-- <div class="flex items-center gap-2">
                         <svg class="cursor-pointer text-gray-400" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9.97559 16.3191H18.2593C18.6409 16.3191 18.9506 16.0116 18.9506 15.6318V4.36832C18.9506 3.98897 18.6414 3.68103 18.2593 3.68103H9.97559V16.3191Z" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"></path><path d="M9.97506 16.3191H1.69139C1.30978 16.3191 1 16.0116 1 15.6318V4.36832C1 3.98897 1.30928 3.68103 1.69139 3.68103H9.97506V16.3191V16.3191Z" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="4 4"></path><path d="M9.97559 1V19" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"></path></svg>
                         <svg class="cursor-pointer text-transparent" width="23" height="20" viewBox="0 0 23 20" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M11.3861 19C18.1228 15.7916 21.7722 10.8191 21.7722 7.10662C21.7722 3.39418 19.189 1 16.1696 1C13.1502 1 11.3861 3.32633 11.3861 3.32633C11.3861 3.32633 9.62197 1 6.60258 1C3.5832 1 1 3.38934 1 7.10662C1 10.8239 4.64943 15.7916 11.3861 19Z" stroke="#A4A4A4" stroke-width="1.5" stroke-miterlimit="10" stroke-linejoin="round"></path></svg>
                         <svg class="cursor-pointer text-gray-400" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M15.8743 7.25247C17.6009 7.25247 19.0005 5.85281 19.0005 4.12623C19.0005 2.39966 17.6009 1 15.8743 1C14.1477 1 12.748 2.39966 12.748 4.12623C12.748 5.85281 14.1477 7.25247 15.8743 7.25247Z" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10" stroke-linejoin="round"></path><path d="M15.8743 18.878C17.6009 18.878 19.0005 17.4783 19.0005 15.7517C19.0005 14.0252 17.6009 12.6255 15.8743 12.6255C14.1477 12.6255 12.748 14.0252 12.748 15.7517C12.748 17.4783 14.1477 18.878 15.8743 18.878Z" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10" stroke-linejoin="round"></path><path d="M4.12623 13.0647C5.85281 13.0647 7.25247 11.6651 7.25247 9.93849C7.25247 8.21192 5.85281 6.81226 4.12623 6.81226C2.39966 6.81226 1 8.21192 1 9.93849C1 11.6651 2.39966 13.0647 4.12623 13.0647Z" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10" stroke-linejoin="round"></path><path d="M6.91699 8.53236L13.0388 5.44531" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10" stroke-linejoin="round"></path><path d="M6.91699 11.5236L13.0388 14.6106" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10" stroke-linejoin="round"></path></svg>
-                    </div>
+                    </div> -->
                 </div>
                 <div>
                     <h1 class="text-[14px] xl:text-[16px] font-normal text-[#2b2b2b]">هدفون بلوتوثی اپل مدل AirPods Pro (2nd generation 2023)</h1>
-                    <h2 class="text-[14px] font-normal text-[#acacac]">Apple Airpods PRO 2 Wireless Headphones with Type-C</h2>
                 </div>
                 <div class="flex items-center gap-4">
                     <span class="flex items-center">
@@ -103,7 +102,7 @@ get_header();
                     <p class="text-[14px] font-normal text-[#adadad]">رابط : <span class="text-black mr-1">بلوتوث</span></p>
                     <p class="text-[14px] font-normal text-[#adadad]">کاربردی : <span class="text-black mr-1">استفاده روزمره</span></p>
                 </div>
-                <div class="text-[#656565]">رنگ : سفید</div>
+                <!-- <div class="text-[#656565]">رنگ : سفید</div>
                 <div class="w-full flex items-center gap-3">
                     <div class="color-product flex h-[30px] w-[30px] cursor-pointer items-center justify-center rounded-full border-[3px] border-semi_dark p-[2px]">
                         <div class="h-full w-full rounded-full bg-[#f0f0f0]"></div>
@@ -176,7 +175,7 @@ get_header();
                             </div>
                         </div>
                     </div>
-                </div>    
+                </div>   
                 <div class="relative  flex w-full flex-col items-start">
                     <a class="flex min-h-[56px] w-full cursor-pointer flex-col items-start gap-[12px] rounded-[8px] border px-[7px] py-[8px] text-[14px]  hover:border-red-primary border-[#e5e7eb]" href="">
                         <div class="flex flex-row items-start gap-[4px]">
@@ -193,18 +192,18 @@ get_header();
                             </div>
                         </div>
                     </a>
-                </div>  
+                </div>   -->
                 <div class="hidden lg:flex w-full select-none flex-row items-center justify-start gap-[16px]">
                     <div class="flex justify-center items-center mt-[26px] h-[44px] w-2/3 min-w-[150px] rounded-[10px] bg-red-primary px-[5px] text-white hover:bg-red-700  lg:text-[18px]">
                         افزودن به سبد خرید
                     </div>
                 </div>          
             </article>
-            <article class="mr-0 lg:mr-[30px] flex flex-col gap-2">
-                <div class="flex items-center mx-auto gap-2 mt-[50px] lg:mt-[220px] bg-[#f6f5f5] w-[80%] lg:w-[300px] xl:w-[340px] h-[56px] rounded-[8px] p-[16px]">
+            <article class="mt-[50px] lg:mt-[220px] mr-0 lg:mr-[30px] flex flex-col gap-2">
+                <!--<div class="flex items-center mx-auto gap-2  bg-[#f6f5f5] w-[80%] lg:w-[300px] xl:w-[340px] h-[56px] rounded-[8px] p-[16px]">
                     <svg width="23" height="12" viewBox="0 0 23 12" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="Isolation_Mode" clip-path="url(#clip0_10077_41937)"><path id="Vector" d="M8.19875 0.75H17.6988C18.0988 0.75 18.4188 1.07 18.4188 1.47V8.65C18.4188 9.05 18.0988 9.37 17.6988 9.37H16.0188C16.0188 8.38 15.2187 7.58 14.2287 7.58C13.2387 7.58 12.4387 8.38 12.4387 9.37H8.18875C7.78875 9.37 7.46875 9.05 7.46875 8.65V1.47C7.46875 1.07 7.79875 0.75 8.18875 0.75H8.19875Z" stroke="#E10A0A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path id="Vector_2" d="M1.36 5.17031L3.02 2.42031C3.15 2.20031 3.38 2.07031 3.64 2.07031H7.48V8.66031C7.48 9.06031 7.16 9.38031 6.76 9.38031H6.1C6.03 8.45031 5.26 7.72031 4.32 7.72031C3.38 7.72031 2.61 8.45031 2.54 9.38031H1.97C1.57 9.38031 1.25 9.06031 1.25 8.66031V5.55031C1.25 5.42031 1.29 5.29031 1.36 5.18031V5.17031Z" stroke="#E10A0A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path id="Vector_3" d="M19.7013 4.08984H14.0312" stroke="#E10A0A" stroke-linecap="round" stroke-linejoin="round"></path><path id="Vector_4" d="M21.6895 6.07812H16.0195" stroke="#E10A0A" stroke-linecap="round" stroke-linejoin="round"></path><path id="Vector_5" d="M4.77891 3.53906V5.52906H2.87891" stroke="#E10A0A" stroke-linecap="round" stroke-linejoin="round"></path><path id="Vector_6" d="M6.11125 9.37891C6.11125 10.3689 5.31125 11.1689 4.32125 11.1689C3.33125 11.1689 2.53125 10.3689 2.53125 9.37891" stroke="#E10A0A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path id="Vector_7" d="M16.0214 9.37891C16.0214 10.3689 15.2214 11.1689 14.2314 11.1689C13.2414 11.1689 12.4414 10.3689 12.4414 9.37891" stroke="#E10A0A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></g><defs><clipPath id="clip0_10077_41937"><rect width="21.69" height="11.91" fill="white" transform="translate(0.5)"></rect></clipPath></defs></svg>
                     <p class="text-[12px] font-normal text-[#5d5d5d]">ارسال این کالا از 1 روز کاری آینده</p>
-                </div>
+                </div>-->
                 <div class="w-[80%] mx-auto lg:w-full p-[16px] border-spacing-2 border border-dashed rounded-[8px] border-[#e8eaed]">
                     <div class="flex flex-col h-[240px] gap-3 overflow-hidden overflow-y-auto">
                         <div class="flex items-center gap-2">
@@ -260,10 +259,6 @@ get_header();
                 <div class="w-[80%] mx-auto lg:w-full h-[56px] bg-[#effcf5] rounded-[10px] mt-2 flex items-center gap-2 p-[16px]">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 3C9.71429 5 4 5.5 4 5.5V14.07C4 14.07 7.42857 19 12 21C16.5714 19 20 14.07 20 14.07V5.5C19.9886 5.5 14.2857 5 12 3Z" stroke="#1CB65D" stroke-width="2" stroke-linejoin="round"></path><path d="M9 11.78L11.1648 14L15.0387 10.0273" stroke="#1CB65D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
                     <p class="text-[12px] font-normal text-[#555656]">ضمانت اصالت و سلامت فیزیکی کالا</p>
-                </div>
-                <div class="w-[80%] mx-auto lg:w-full h-[86px] bg-[#f6f5f5] rounded-[10px] mt-2 flex items-center gap-2 p-[16px]">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 21C16.9706 21 21 16.9706 21 12C21 7.02944 16.9706 3 12 3C7.02944 3 3 7.02944 3 12C3 16.9706 7.02944 21 12 21Z" stroke="#888888" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path><path d="M12 11V16" stroke="#888888" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path><path d="M11.9502 8H12.0502V8.1H11.9502V8Z" stroke="#888888" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
-                    <p class="text-[12px] font-normal text-[#555656] max-w-[266px]">امکان برگشت کالا به دلیل انصراف از خرید در دسته بندی هدفون و هندزفری تنها در صورتی مورد قبول است که پلمپ کالا باز نشده باشد.</p>
                 </div>
             </article>
         </div>
@@ -464,8 +459,6 @@ get_header();
             <p class="text-[16px] font-normal  cursor-pointer text-red-primary">مشخصات‌فنی</p>
             <div class="block text-medium_grey">|</div>
             <a href="#comment" class="text-[16px] font-normal text-dark_grey">دیدگاه کاربران</a>
-            <div class="block text-medium_grey">|</div>
-            <a href="#question" class="text-[16px] font-normal cursor-pointer text-dark_grey">پرسش‌وپاسخ</a>
         </div>
         <div class="lg:w-[1024px] xl:w-[1280px] mx-auto ">
             <div id="airpod2" class="w-full h-[315px] flex flex-col gap-5 overflow-hidden mt-6 lg:mt-0">
@@ -631,7 +624,7 @@ get_header();
                             هدفون بلوتوثی اپل مدل AirPods Pro (2nd generation 2023)
                         </div>
                         <p class="text-[14px] font-semibold text-dark_grey">بسیار عالی</p>
-                        <div class="flex gap-8 pb-1">
+                        <!--<div class="flex gap-8 pb-1">
                             <div class="flex items-center gap-1">
                                 <div class="flex items-start text-[14px] leading-none">1</div>
                                 <div class="mb-1 cursor-pointer">
@@ -644,142 +637,12 @@ get_header();
                                     <svg width="18" height="18" viewBox="0 0 20 18" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12.5 0.5H4.99998C4.30831 0.5 3.71665 0.916666 3.46665 1.51667L0.94998 7.39167C0.87498 7.58333 0.833313 7.78333 0.833313 8V9.66667C0.833313 10.5833 1.58331 11.3333 2.49998 11.3333H7.75831L6.96665 15.1417L6.94165 15.4083C6.94165 15.75 7.08331 16.0667 7.30831 16.2917L8.19165 17.1667L13.6833 11.675C13.9833 11.375 14.1666 10.9583 14.1666 10.5V2.16667C14.1666 1.25 13.4166 0.5 12.5 0.5ZM12.5 10.5L8.88331 14.1167L9.99998 9.66667H2.49998V8L4.99998 2.16667H12.5V10.5ZM15.8333 0.5H19.1666V10.5H15.8333V0.5Z" fill="#A4A4A4"></path></svg>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                    <div class="flex flex-col items-start gap-4 border-b-[1px] border-b-gray-200 px-2">
-                        <div class="flex items-center gap-2 pt-1">
-                            <svg width="20" height="20" viewBox="0 0 14 15" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M13.0527 15V13.75C13.0527 11.5409 11.2619 9.75 9.05274 9.75H5.67773C3.4686 9.75 1.67773 11.5409 1.67773 13.75V15" stroke="#A4A4A4" stroke-width="1.5"></path><circle cx="7.47461" cy="4.0625" r="3.0625" stroke="#A4A4A4" stroke-width="1.5"></circle></svg>
-                            <p class="text-sm text-dark_grey">
-                                نسترن سلیمانی
-                            </p>
-                            <span class="rounded-md bg-Success-20 px-2 py-1 text-sm text-Success-70">
-                                خریدار
-                            </span>
-                        </div>
-                        <div class="flex items-center gap-2">
-                            <div class="overflow:hidden;position:relative">
-                                <span class="" style="position: relative; overflow: hidden; cursor: default; display: block; float: left; color: rgb(225, 10, 10); font-size: 20px;" data-index="0" data-forhalf="[object Object]"><svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M1.55664 6.89127C1.34781 6.69815 1.46125 6.34902 1.74371 6.31553L5.74609 5.84099C5.86122 5.82734 5.96121 5.75481 6.00977 5.64954L7.69792 1.98963C7.81705 1.73134 8.18425 1.73131 8.30339 1.9896L9.99154 5.64959C10.0401 5.75486 10.1394 5.82735 10.2546 5.841L14.2572 6.31553C14.5396 6.34902 14.653 6.69817 14.4442 6.89129L11.4853 9.62778C11.4002 9.70649 11.3622 9.82381 11.3848 9.93752L12.1701 13.8907C12.2255 14.1697 11.9286 14.3855 11.6804 14.2465L8.16352 12.2779C8.06236 12.2213 7.93914 12.2212 7.83798 12.2778L4.32072 14.2466C4.07252 14.3855 3.77529 14.1697 3.83073 13.8908L4.61625 9.93747C4.63884 9.82377 4.60089 9.70653 4.51578 9.62782L1.55664 6.89127Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg></span>
-                                <span class="" style="position: relative; overflow: hidden; cursor: default; display: block; float: left; color: rgb(225, 10, 10); font-size: 20px;" data-index="0" data-forhalf="[object Object]"><svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M1.55664 6.89127C1.34781 6.69815 1.46125 6.34902 1.74371 6.31553L5.74609 5.84099C5.86122 5.82734 5.96121 5.75481 6.00977 5.64954L7.69792 1.98963C7.81705 1.73134 8.18425 1.73131 8.30339 1.9896L9.99154 5.64959C10.0401 5.75486 10.1394 5.82735 10.2546 5.841L14.2572 6.31553C14.5396 6.34902 14.653 6.69817 14.4442 6.89129L11.4853 9.62778C11.4002 9.70649 11.3622 9.82381 11.3848 9.93752L12.1701 13.8907C12.2255 14.1697 11.9286 14.3855 11.6804 14.2465L8.16352 12.2779C8.06236 12.2213 7.93914 12.2212 7.83798 12.2778L4.32072 14.2466C4.07252 14.3855 3.77529 14.1697 3.83073 13.8908L4.61625 9.93747C4.63884 9.82377 4.60089 9.70653 4.51578 9.62782L1.55664 6.89127Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg></span>
-                                <span class="" style="position: relative; overflow: hidden; cursor: default; display: block; float: left; color: rgb(225, 10, 10); font-size: 20px;" data-index="0" data-forhalf="[object Object]"><svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M1.55664 6.89127C1.34781 6.69815 1.46125 6.34902 1.74371 6.31553L5.74609 5.84099C5.86122 5.82734 5.96121 5.75481 6.00977 5.64954L7.69792 1.98963C7.81705 1.73134 8.18425 1.73131 8.30339 1.9896L9.99154 5.64959C10.0401 5.75486 10.1394 5.82735 10.2546 5.841L14.2572 6.31553C14.5396 6.34902 14.653 6.69817 14.4442 6.89129L11.4853 9.62778C11.4002 9.70649 11.3622 9.82381 11.3848 9.93752L12.1701 13.8907C12.2255 14.1697 11.9286 14.3855 11.6804 14.2465L8.16352 12.2779C8.06236 12.2213 7.93914 12.2212 7.83798 12.2778L4.32072 14.2466C4.07252 14.3855 3.77529 14.1697 3.83073 13.8908L4.61625 9.93747C4.63884 9.82377 4.60089 9.70653 4.51578 9.62782L1.55664 6.89127Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg></span>
-                                <span class="" style="position: relative; overflow: hidden; cursor: default; display: block; float: left; color: rgb(225, 10, 10); font-size: 20px;" data-index="0" data-forhalf="[object Object]"><svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M1.55664 6.89127C1.34781 6.69815 1.46125 6.34902 1.74371 6.31553L5.74609 5.84099C5.86122 5.82734 5.96121 5.75481 6.00977 5.64954L7.69792 1.98963C7.81705 1.73134 8.18425 1.73131 8.30339 1.9896L9.99154 5.64959C10.0401 5.75486 10.1394 5.82735 10.2546 5.841L14.2572 6.31553C14.5396 6.34902 14.653 6.69817 14.4442 6.89129L11.4853 9.62778C11.4002 9.70649 11.3622 9.82381 11.3848 9.93752L12.1701 13.8907C12.2255 14.1697 11.9286 14.3855 11.6804 14.2465L8.16352 12.2779C8.06236 12.2213 7.93914 12.2212 7.83798 12.2778L4.32072 14.2466C4.07252 14.3855 3.77529 14.1697 3.83073 13.8908L4.61625 9.93747C4.63884 9.82377 4.60089 9.70653 4.51578 9.62782L1.55664 6.89127Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg></span>
-                                <span class="" style="position: relative; overflow: hidden; cursor: default; display: block; float: left; color: rgb(225, 10, 10); font-size: 20px;" data-index="0" data-forhalf="[object Object]"><svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M1.55664 6.89127C1.34781 6.69815 1.46125 6.34902 1.74371 6.31553L5.74609 5.84099C5.86122 5.82734 5.96121 5.75481 6.00977 5.64954L7.69792 1.98963C7.81705 1.73134 8.18425 1.73131 8.30339 1.9896L9.99154 5.64959C10.0401 5.75486 10.1394 5.82735 10.2546 5.841L14.2572 6.31553C14.5396 6.34902 14.653 6.69817 14.4442 6.89129L11.4853 9.62778C11.4002 9.70649 11.3622 9.82381 11.3848 9.93752L12.1701 13.8907C12.2255 14.1697 11.9286 14.3855 11.6804 14.2465L8.16352 12.2779C8.06236 12.2213 7.93914 12.2212 7.83798 12.2778L4.32072 14.2466C4.07252 14.3855 3.77529 14.1697 3.83073 13.8908L4.61625 9.93747C4.63884 9.82377 4.60089 9.70653 4.51578 9.62782L1.55664 6.89127Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg></span>
-                            </div>
-                            <div class="text-sm text-dark_grey">
-                                14 دی 1403
-                            </div>
-                        </div>
-                        <div class="text-base font-semibold text-dark_grey">
-                            هدفون بلوتوثی اپل مدل AirPods Pro (2nd generation 2023)
-                        </div>
-                        <p class="text-[14px] font-semibold text-dark_grey">بسیار عالی</p>
-                        <div class="flex gap-8 pb-1">
-                            <div class="flex items-center gap-1">
-                                <div class="flex items-start text-[14px] leading-none">1</div>
-                                <div class="mb-1 cursor-pointer">
-                                    <svg width="20" height="20" viewBox="0 0 20 18" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7.50004 17.4987H15C15.6917 17.4987 16.2834 17.082 16.5334 16.482L19.05 10.607C19.125 10.4154 19.1667 10.2154 19.1667 9.9987V8.33203C19.1667 7.41536 18.4167 6.66536 17.5 6.66536H12.2417L13.0334 2.85703L13.0584 2.59036C13.0584 2.2487 12.9167 1.93203 12.6917 1.70703L11.8084 0.832031L6.31671 6.3237C6.01671 6.6237 5.83337 7.04036 5.83337 7.4987V15.832C5.83337 16.7487 6.58337 17.4987 7.50004 17.4987ZM7.50004 7.4987L11.1167 3.88203L10 8.33203H17.5V9.9987L15 15.832H7.50004V7.4987ZM0.833374 7.4987H4.16671V17.4987H0.833374V7.4987Z" fill="#A4A4A4"></path></svg>
-                                </div>
-                            </div>
-                            <div class="flex items-center gap-1">
-                                <div class="flex items-start text-[14px] leading-none">0</div>
-                                <div class="mt-1 cursor-pointer">
-                                    <svg width="18" height="18" viewBox="0 0 20 18" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12.5 0.5H4.99998C4.30831 0.5 3.71665 0.916666 3.46665 1.51667L0.94998 7.39167C0.87498 7.58333 0.833313 7.78333 0.833313 8V9.66667C0.833313 10.5833 1.58331 11.3333 2.49998 11.3333H7.75831L6.96665 15.1417L6.94165 15.4083C6.94165 15.75 7.08331 16.0667 7.30831 16.2917L8.19165 17.1667L13.6833 11.675C13.9833 11.375 14.1666 10.9583 14.1666 10.5V2.16667C14.1666 1.25 13.4166 0.5 12.5 0.5ZM12.5 10.5L8.88331 14.1167L9.99998 9.66667H2.49998V8L4.99998 2.16667H12.5V10.5ZM15.8333 0.5H19.1666V10.5H15.8333V0.5Z" fill="#A4A4A4"></path></svg>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="flex flex-col items-start gap-4 border-b-[1px] border-b-gray-200 px-2 mt-4">
-                        <div class="flex items-center gap-2 pt-1">
-                            <svg width="20" height="20" viewBox="0 0 14 15" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M13.0527 15V13.75C13.0527 11.5409 11.2619 9.75 9.05274 9.75H5.67773C3.4686 9.75 1.67773 11.5409 1.67773 13.75V15" stroke="#A4A4A4" stroke-width="1.5"></path><circle cx="7.47461" cy="4.0625" r="3.0625" stroke="#A4A4A4" stroke-width="1.5"></circle></svg>
-                            <p class="text-sm text-dark_grey">
-                                نسترن سلیمانی
-                            </p>
-                            <span class="rounded-md bg-Success-20 px-2 py-1 text-sm text-Success-70">
-                                خریدار
-                            </span>
-                        </div>
-                        <div class="flex items-center gap-2">
-                            <div class="overflow:hidden;position:relative">
-                                <span class="" style="position: relative; overflow: hidden; cursor: default; display: block; float: left; color: rgb(225, 10, 10); font-size: 20px;" data-index="0" data-forhalf="[object Object]"><svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M1.55664 6.89127C1.34781 6.69815 1.46125 6.34902 1.74371 6.31553L5.74609 5.84099C5.86122 5.82734 5.96121 5.75481 6.00977 5.64954L7.69792 1.98963C7.81705 1.73134 8.18425 1.73131 8.30339 1.9896L9.99154 5.64959C10.0401 5.75486 10.1394 5.82735 10.2546 5.841L14.2572 6.31553C14.5396 6.34902 14.653 6.69817 14.4442 6.89129L11.4853 9.62778C11.4002 9.70649 11.3622 9.82381 11.3848 9.93752L12.1701 13.8907C12.2255 14.1697 11.9286 14.3855 11.6804 14.2465L8.16352 12.2779C8.06236 12.2213 7.93914 12.2212 7.83798 12.2778L4.32072 14.2466C4.07252 14.3855 3.77529 14.1697 3.83073 13.8908L4.61625 9.93747C4.63884 9.82377 4.60089 9.70653 4.51578 9.62782L1.55664 6.89127Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg></span>
-                                <span class="" style="position: relative; overflow: hidden; cursor: default; display: block; float: left; color: rgb(225, 10, 10); font-size: 20px;" data-index="0" data-forhalf="[object Object]"><svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M1.55664 6.89127C1.34781 6.69815 1.46125 6.34902 1.74371 6.31553L5.74609 5.84099C5.86122 5.82734 5.96121 5.75481 6.00977 5.64954L7.69792 1.98963C7.81705 1.73134 8.18425 1.73131 8.30339 1.9896L9.99154 5.64959C10.0401 5.75486 10.1394 5.82735 10.2546 5.841L14.2572 6.31553C14.5396 6.34902 14.653 6.69817 14.4442 6.89129L11.4853 9.62778C11.4002 9.70649 11.3622 9.82381 11.3848 9.93752L12.1701 13.8907C12.2255 14.1697 11.9286 14.3855 11.6804 14.2465L8.16352 12.2779C8.06236 12.2213 7.93914 12.2212 7.83798 12.2778L4.32072 14.2466C4.07252 14.3855 3.77529 14.1697 3.83073 13.8908L4.61625 9.93747C4.63884 9.82377 4.60089 9.70653 4.51578 9.62782L1.55664 6.89127Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg></span>
-                                <span class="" style="position: relative; overflow: hidden; cursor: default; display: block; float: left; color: rgb(225, 10, 10); font-size: 20px;" data-index="0" data-forhalf="[object Object]"><svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M1.55664 6.89127C1.34781 6.69815 1.46125 6.34902 1.74371 6.31553L5.74609 5.84099C5.86122 5.82734 5.96121 5.75481 6.00977 5.64954L7.69792 1.98963C7.81705 1.73134 8.18425 1.73131 8.30339 1.9896L9.99154 5.64959C10.0401 5.75486 10.1394 5.82735 10.2546 5.841L14.2572 6.31553C14.5396 6.34902 14.653 6.69817 14.4442 6.89129L11.4853 9.62778C11.4002 9.70649 11.3622 9.82381 11.3848 9.93752L12.1701 13.8907C12.2255 14.1697 11.9286 14.3855 11.6804 14.2465L8.16352 12.2779C8.06236 12.2213 7.93914 12.2212 7.83798 12.2778L4.32072 14.2466C4.07252 14.3855 3.77529 14.1697 3.83073 13.8908L4.61625 9.93747C4.63884 9.82377 4.60089 9.70653 4.51578 9.62782L1.55664 6.89127Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg></span>
-                                <span class="" style="position: relative; overflow: hidden; cursor: default; display: block; float: left; color: rgb(225, 10, 10); font-size: 20px;" data-index="0" data-forhalf="[object Object]"><svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M1.55664 6.89127C1.34781 6.69815 1.46125 6.34902 1.74371 6.31553L5.74609 5.84099C5.86122 5.82734 5.96121 5.75481 6.00977 5.64954L7.69792 1.98963C7.81705 1.73134 8.18425 1.73131 8.30339 1.9896L9.99154 5.64959C10.0401 5.75486 10.1394 5.82735 10.2546 5.841L14.2572 6.31553C14.5396 6.34902 14.653 6.69817 14.4442 6.89129L11.4853 9.62778C11.4002 9.70649 11.3622 9.82381 11.3848 9.93752L12.1701 13.8907C12.2255 14.1697 11.9286 14.3855 11.6804 14.2465L8.16352 12.2779C8.06236 12.2213 7.93914 12.2212 7.83798 12.2778L4.32072 14.2466C4.07252 14.3855 3.77529 14.1697 3.83073 13.8908L4.61625 9.93747C4.63884 9.82377 4.60089 9.70653 4.51578 9.62782L1.55664 6.89127Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg></span>
-                                <span class="" style="position: relative; overflow: hidden; cursor: default; display: block; float: left; color: rgb(225, 10, 10); font-size: 20px;" data-index="0" data-forhalf="[object Object]"><svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M1.55664 6.89127C1.34781 6.69815 1.46125 6.34902 1.74371 6.31553L5.74609 5.84099C5.86122 5.82734 5.96121 5.75481 6.00977 5.64954L7.69792 1.98963C7.81705 1.73134 8.18425 1.73131 8.30339 1.9896L9.99154 5.64959C10.0401 5.75486 10.1394 5.82735 10.2546 5.841L14.2572 6.31553C14.5396 6.34902 14.653 6.69817 14.4442 6.89129L11.4853 9.62778C11.4002 9.70649 11.3622 9.82381 11.3848 9.93752L12.1701 13.8907C12.2255 14.1697 11.9286 14.3855 11.6804 14.2465L8.16352 12.2779C8.06236 12.2213 7.93914 12.2212 7.83798 12.2778L4.32072 14.2466C4.07252 14.3855 3.77529 14.1697 3.83073 13.8908L4.61625 9.93747C4.63884 9.82377 4.60089 9.70653 4.51578 9.62782L1.55664 6.89127Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg></span>
-                            </div>
-                            <div class="text-sm text-dark_grey">
-                                14 دی 1403
-                            </div>
-                        </div>
-                        <div class="text-base font-semibold text-dark_grey">
-                            هدفون بلوتوثی اپل مدل AirPods Pro (2nd generation 2023)
-                        </div>
-                        <p class="text-[14px] font-semibold text-dark_grey">بسیار عالی</p>
-                        <div class="flex gap-8 pb-1">
-                            <div class="flex items-center gap-1">
-                                <div class="flex items-start text-[14px] leading-none">1</div>
-                                <div class="mb-1 cursor-pointer">
-                                    <svg width="20" height="20" viewBox="0 0 20 18" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7.50004 17.4987H15C15.6917 17.4987 16.2834 17.082 16.5334 16.482L19.05 10.607C19.125 10.4154 19.1667 10.2154 19.1667 9.9987V8.33203C19.1667 7.41536 18.4167 6.66536 17.5 6.66536H12.2417L13.0334 2.85703L13.0584 2.59036C13.0584 2.2487 12.9167 1.93203 12.6917 1.70703L11.8084 0.832031L6.31671 6.3237C6.01671 6.6237 5.83337 7.04036 5.83337 7.4987V15.832C5.83337 16.7487 6.58337 17.4987 7.50004 17.4987ZM7.50004 7.4987L11.1167 3.88203L10 8.33203H17.5V9.9987L15 15.832H7.50004V7.4987ZM0.833374 7.4987H4.16671V17.4987H0.833374V7.4987Z" fill="#A4A4A4"></path></svg>
-                                </div>
-                            </div>
-                            <div class="flex items-center gap-1">
-                                <div class="flex items-start text-[14px] leading-none">0</div>
-                                <div class="mt-1 cursor-pointer">
-                                    <svg width="18" height="18" viewBox="0 0 20 18" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12.5 0.5H4.99998C4.30831 0.5 3.71665 0.916666 3.46665 1.51667L0.94998 7.39167C0.87498 7.58333 0.833313 7.78333 0.833313 8V9.66667C0.833313 10.5833 1.58331 11.3333 2.49998 11.3333H7.75831L6.96665 15.1417L6.94165 15.4083C6.94165 15.75 7.08331 16.0667 7.30831 16.2917L8.19165 17.1667L13.6833 11.675C13.9833 11.375 14.1666 10.9583 14.1666 10.5V2.16667C14.1666 1.25 13.4166 0.5 12.5 0.5ZM12.5 10.5L8.88331 14.1167L9.99998 9.66667H2.49998V8L4.99998 2.16667H12.5V10.5ZM15.8333 0.5H19.1666V10.5H15.8333V0.5Z" fill="#A4A4A4"></path></svg>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div id="question" class="flex flex-col lg:flex-row w-full justify-between gap-2 mb-[20px]">
-                <div class="top-[192px] flex h-fit w-full lg:w-1/4 flex-col justify-start gap-4 pl-6">
-                    <div class="flex w-full flex-row gap-[10px] text-[16px] font-semibold text-dark_grey">
-                        <span class="text-root text-body1-fa border-r-2 border-primary-normal pr-2 text-text-normal">پرسش و پاسخ</span>
-                    </div>
-                    <p class="text-sm text-medium_grey">هدفون بلوتوثی اپل مدل AirPods Pro (2nd generation 2023)</p>
-                    <p class="text-base font-semibold text-dark_grey">درباره ی این کالا سوالی دارید ؟ سوال خود را ثبت کنید.</p>
-                    <button class="btn-root btn-outline btn-large w-full">
-                        <div class="flex items-center justify-center gap-6">
-                            افزودن سوال
-                        </div>
-                    </button>
-                </div>
-                <div class="flex w-full my-6 lg:my-0 lg:w-3/4 flex-col justify-center">
-                    <div class="border-b-[1px] border-b-gray-200">
-                        <p class="my-2 text-[14px] lg:text-base font-semibold text-dark_grey">
-                            تفاوت این محصول با مشابه سایت خودتون چی هست که اختلاف قیمت دارند؟
-                            https://dgland.com/product/dglp-6113/apple-airpods-pro-2-wireless-headphones            
-                        </p>
-                        <div class="flex w-full flex-col gap-4">
-                            <div class="flex w-full gap-2">
-                                <p class="my-2 w-fit rounded-md border border-semi_dark p-1 text-xs text-semi_dark cursor-pointer">
-                                    ثبت پاسخ جدید
-                                </p>
-                            </div>
-                        </div>
+                        </div>-->
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     <footer class="fixed bottom-0 left-0 z-20 flex lg:hidden h-[130px] w-full select-none flex-row items-center bg-white px-[20px] shadow-all_sides pb-18">
         <div class="flex w-full flex-row items-center gap-[10px]">
