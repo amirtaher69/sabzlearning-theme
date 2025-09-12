@@ -12,6 +12,18 @@ $regular_price = $product->get_regular_price();
 if($sale_price){
     $discount_percentage = round(($regular_price - $sale_price) / $regular_price * 100);
 }
+// product images
+$product_image = $product->get_image_id();
+$product_image_url = wp_get_attachment_url($product_image);
+$product_gallery = $product->get_gallery_image_ids();
+$product_gallery_urls = array();
+if($product_image_url){
+    $product_gallery_urls[] = $product_image_url;
+}
+
+foreach($product_gallery as $gallery_id){
+    $product_gallery_urls[] = wp_get_attachment_url($gallery_id);
+}
 
 ?>
     <div class="w-full">
@@ -23,27 +35,24 @@ if($sale_price){
                             <div class="box w-[350px] xl:w-[400px] gallery">
                               <div class="swiper main-slide-carousel swiper-container relative w-full">
                                 <div class="swiper-wrapper">
-                                  <div class="swiper-slide">
-                                    <div class="block w-full mx-auto h-[450px] rounded-3xl">
-                                      <img src="<?php echo THEME_DIR; ?>/src/img/PrdImages-1.gif" alt="Gallery image" class="gallery-image w-full h-full mx-auto rounded-3xl object-contain"/>
-                                    </div>
-                                  </div>
-                                 
-                                  <div class="swiper-slide">
-                                    <div class="block w-full mx-auto h-[450px] rounded-3xl">
-                                      <img src="<?php echo THEME_DIR; ?>/src/img/PrdImages-2.gif" alt="Gallery image" class="gallery-image w-full h-full mx-auto rounded-3xl object-contain"/>
-                                    </div>
-                                  </div>
-                                  <div class="swiper-slide">
-                                    <div class="block w-full mx-auto h-[450px] rounded-3xl">
-                                      <img src="<?php echo THEME_DIR; ?>/src/img/PrdImages-3.gif" alt="Gallery image" class="gallery-image w-full h-full mx-auto rounded-3xl object-contain"/>
-                                    </div>
-                                  </div>
-                                  <div class="swiper-slide">
-                                    <div class="block w-full mx-auto h-[450px] rounded-3xl">
-                                      <img src="<?php echo THEME_DIR; ?>/src/img/PrdImages-4.gif" alt="Gallery image" class="gallery-image w-full h-full mx-auto rounded-3xl object-contain"/>
-                                    </div>
-                                  </div>
+                                    <?php
+                                    if($product_gallery_urls){
+                                    foreach($product_gallery_urls as $gallery_url){ ?>
+                                        <div class="swiper-slide">
+                                            <div class="block w-full mx-auto h-[450px] rounded-3xl">
+                                            <img src="<?php echo $gallery_url; ?>" alt="Gallery image" class="gallery-image w-full h-full mx-auto rounded-3xl object-contain"/>
+                                            </div>
+                                        </div>
+                                    <?php }
+                                    }else {
+                                        ?>
+                                        <div class="swiper-slide">
+                                            <div class="block w-full mx-auto h-[450px] rounded-3xl">
+                                            <img src="<?php echo THEME_DIR; ?>/src/img/image-placeholder.webp" alt="Gallery image" class="gallery-image w-full h-full mx-auto rounded-3xl object-contain"/>
+                                            </div>
+                                        </div>
+                                        <?php
+                                    } ?>
                                 </div>
                                 <div class="swiper-button-prev"></div>
                                 <div class="swiper-button-next"></div>
@@ -54,18 +63,20 @@ if($sale_price){
                             <div class="lg:w-[300px] xl:w-[390px] overflow-hidden">
                               <div class="nav-for-slider">
                                 <div class="swiper-wrapper flex justify-center md:gap-7 gap-4">
-                                  <div class="swiper-slide thumbs-slide !w-[64px] !h-[64px] p-[5px]">
-                                    <img src="<?php echo THEME_DIR; ?>/src/img/PrdImages-1.gif" alt="Gallery image" class="gallery-image w-full cursor-pointer h-full rounded-2xl border-2 border-gray-200 transition-all duration-500 hover:border-indigo-600 object-cover"/>
-                                  </div>
-                                  <div class="swiper-slide thumbs-slide !w-[64px] !h-[64px] p-[5px]">
-                                    <img src="<?php echo THEME_DIR; ?>/src/img/PrdImages-2.gif" alt="Gallery image" class="gallery-image w-full cursor-pointer h-full rounded-2xl border-2 border-gray-200 transition-all duration-500 hover:border-indigo-600 object-cover"/>
-                                  </div>
-                                  <div class="swiper-slide thumbs-slide !w-[64px] !h-[64px] p-[5px]" >
-                                    <img src="<?php echo THEME_DIR; ?>/src/img/PrdImages-3.gif" alt="Gallery image" class="gallery-image w-full cursor-pointer h-full rounded-2xl border-2 border-gray-200 transition-all duration-500 hover:border-indigo-600 object-cover"/>
-                                  </div>
-                                  <div class="swiper-slide thumbs-slide !w-[64px] !h-[64px] p-[5px]">
-                                    <img src="<?php echo THEME_DIR; ?>/src/img/PrdImages-4.gif" alt="Gallery image" class="gallery-image w-full cursor-pointer h-full rounded-2xl border-2 border-gray-200 transition-all duration-500 hover:border-indigo-600 object-cover"/>
-                                  </div>                   
+                                    <?php 
+                                    if($product_gallery_urls){
+                                    foreach($product_gallery_urls as $gallery_url){ ?>    
+                                        <div class="swiper-slide thumbs-slide !w-[64px] !h-[64px] p-[5px]">
+                                            <img src="<?php echo $gallery_url; ?>" alt="Gallery image" class="gallery-image w-full cursor-pointer h-full rounded-2xl border-2 border-gray-200 transition-all duration-500 hover:border-indigo-600 object-cover"/>
+                                        </div>
+                                    <?php }
+                                    }else {
+                                        ?>
+                                        <div class="swiper-slide thumbs-slide !w-[64px] !h-[64px] p-[5px]">
+                                            <img src="<?php echo THEME_DIR; ?>/src/img/image-placeholder.webp" alt="Gallery image" class="gallery-image w-full cursor-pointer h-full rounded-2xl border-2 border-gray-200 transition-all duration-500 hover:border-indigo-600 object-cover"/>
+                                        </div>
+                                        <?php
+                                    } ?>                 
                                 </div>
                               </div>
                             </div>
