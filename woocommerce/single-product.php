@@ -25,6 +25,9 @@ foreach($product_gallery as $gallery_id){
     $product_gallery_urls[] = wp_get_attachment_url($gallery_id);
 }
 
+// product attributes
+$product_attributes = $product->get_attributes();
+
 ?>
     <div class="w-full">
         <div class="lg:w-[1024px] xl:w-[1280px] mx-auto flex flex-col gap-2 lg:flex-row">
@@ -132,11 +135,22 @@ foreach($product_gallery as $gallery_id){
                     <?php } ?>
                     <div class="text-[18px] font-bold text-[#e10a0a]"><span class="text-[20px] xl:text-[28px] ml-2"><?php echo $sale_price?number_format($sale_price):number_format($regular_price) ; ?></span>تومان</div>
                 </div>
+                <?php if($product_attributes){ ?>
                 <div class="flex flex-col gap-2">
-                    <p class="text-[14px] font-normal text-[#adadad]">نوع گوشی : <span class="text-black mr-1">دو گوشی</span></p>
-                    <p class="text-[14px] font-normal text-[#adadad]">رابط : <span class="text-black mr-1">بلوتوث</span></p>
-                    <p class="text-[14px] font-normal text-[#adadad]">کاربردی : <span class="text-black mr-1">استفاده روزمره</span></p>
+                    <?php
+                    $product_attributes = array_slice($product_attributes, 0, 3);
+                    foreach($product_attributes as $attribute){
+                        if($attribute->is_taxonomy()){
+                            $terms = wc_get_product_terms($product_id, $attribute->get_name() , array('fields' => 'names'));
+                            $attributeValue = implode(', ', $terms);
+                        }else {
+                            $attributeValue = $attribute['value'];
+                        }
+                        ?>
+                        <p class="text-[14px] font-normal text-[#adadad]"><?php echo wc_attribute_label($attribute->get_name()); ?> : <span class="text-black mr-1"><?php echo $attributeValue; ?></span></p>
+                    <?php } ?>
                 </div>
+                <?php } ?>
                 <!-- <div class="text-[#656565]">رنگ : سفید</div>
                 <div class="w-full flex items-center gap-3">
                     <div class="color-product flex h-[30px] w-[30px] cursor-pointer items-center justify-center rounded-full border-[3px] border-semi_dark p-[2px]">
