@@ -243,9 +243,9 @@ $product_attributes = $product->get_attributes();
                     </a>
                 </div>   -->
                 <div class="hidden lg:flex w-full select-none flex-row items-center justify-start gap-[16px]">
-                    <div class="flex justify-center items-center mt-[26px] h-[44px] w-2/3 min-w-[150px] rounded-[10px] bg-red-primary px-[5px] text-white hover:bg-red-700  lg:text-[18px]">
+                    <a href="<?php echo wc_get_cart_url(); ?>?add-to-cart=<?php echo $product_id; ?>" class="flex justify-center items-center mt-[26px] h-[44px] w-2/3 min-w-[150px] rounded-[10px] bg-red-primary px-[5px] text-white hover:bg-red-700  lg:text-[18px]">
                         افزودن به سبد خرید
-                    </div>
+                    </a>
                 </div>          
             </article>
             <article class="mt-[50px] lg:mt-[220px] mr-0 lg:mr-[30px] flex flex-col gap-2">
@@ -695,9 +695,9 @@ $product_attributes = $product->get_attributes();
 
     <footer class="fixed bottom-0 left-0 z-20 flex lg:hidden h-[130px] w-full select-none flex-row items-center bg-white px-[20px] shadow-all_sides pb-18">
         <div class="flex w-full flex-row items-center gap-[10px]">
-            <button class="flex h-[44px] w-full items-center justify-center rounded-[10px] bg-red-primary text-white">
+            <a href="<?php echo wc_get_cart_url(); ?>?add-to-cart=<?php echo $product_id; ?>"  class="flex h-[44px] w-full items-center justify-center rounded-[10px] bg-red-primary text-white">
                 افزودن به سبد خرید
-            </button>
+            </a>
         </div>
     </footer>
 
