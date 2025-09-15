@@ -36,6 +36,7 @@ if(isset($locations[$menu_name])){
     <link rel="icon" href="<?php echo THEME_DIR; ?>/src/img/favicon.png" type="image/x-icon">
     <link rel="stylesheet" href="<?php echo THEME_DIR; ?>/src/output.css">
     <link rel="stylesheet" href="<?php echo THEME_DIR; ?>/src/swiper-bundle.min.css">
+    <?php wp_head(); ?>
 </head>
 <body>
     <svg class="hidden">

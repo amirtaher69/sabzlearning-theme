@@ -243,5 +243,6 @@
     </footer>
     <script src="<?php echo THEME_DIR; ?>/src/swiper-bundle.min.js"></script>
     <script src="<?php echo THEME_DIR; ?>/src/script.js"></script>
+    <?php wp_footer(); ?>
 </body>
 </html>
