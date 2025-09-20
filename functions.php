@@ -294,3 +294,27 @@ add_action("admin_enqueue_scripts" , function($hook){
     wp_enqueue_media();
     wp_enqueue_style("theme-setting-styles" , THEME_DIR.'/src/admin/theme-setting.css');
 });
+
+add_action('init' , function(){
+    $cart_page_id = wc_get_page_id('cart');
+    if ($cart_page_id && get_post($cart_page_id)){
+        $cart_content = get_post_field('post_content' , $cart_page_id);
+        if(strpos($cart_content , '[woocommerce_cart]') === false){
+            wp_update_post([
+                'ID' => $cart_page_id,
+                'post_content' => '[woocommerce_cart]'
+            ]);
+        }
+    }
+
+    $checkout_page_id = wc_get_page_id('checkout');
+    if ($checkout_page_id && get_post($checkout_page_id)){
+        $checkout_content = get_post_field('post_content' , $checkout_page_id);
+        if(strpos($checkout_content , '[woocommerce_checkout]') === false){
+            wp_update_post([
+                'ID' => $checkout_page_id,
+                'post_content' => '[woocommerce_checkout]'
+            ]);
+        }
+    }
+});
