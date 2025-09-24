@@ -38,7 +38,7 @@ if(isset($locations[$menu_name])){
     <link rel="stylesheet" href="<?php echo THEME_DIR; ?>/src/swiper-bundle.min.css">
     <?php wp_head(); ?>
 </head>
-<body>
+<body <?php body_class(); ?>>
     <svg class="hidden">
         <symbol id="arrow-icon" viewBox="0 0 16 16">
             <path d="M4 10L8 6L12 10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
