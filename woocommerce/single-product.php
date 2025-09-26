@@ -28,6 +28,19 @@ foreach($product_gallery as $gallery_id){
 // product attributes
 $product_attributes = $product->get_attributes();
 
+// related products
+$related_ids = wc_get_related_products( $product_id , 4);
+$related_products = wc_get_products(array(
+    'include' => $related_ids,
+    'status' => 'publish',
+));
+
+$upsell_ids = $product->get_upsell_ids();
+$upsell_products = wc_get_products(array(
+    'include' => $upsell_ids,
+    'status' => 'publish',
+));
+
 ?>
     <div class="w-full">
         <div class="lg:w-[1024px] xl:w-[1280px] mx-auto flex flex-col gap-2 lg:flex-row">
@@ -253,58 +266,37 @@ $product_attributes = $product->get_attributes();
                     <svg width="23" height="12" viewBox="0 0 23 12" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="Isolation_Mode" clip-path="url(#clip0_10077_41937)"><path id="Vector" d="M8.19875 0.75H17.6988C18.0988 0.75 18.4188 1.07 18.4188 1.47V8.65C18.4188 9.05 18.0988 9.37 17.6988 9.37H16.0188C16.0188 8.38 15.2187 7.58 14.2287 7.58C13.2387 7.58 12.4387 8.38 12.4387 9.37H8.18875C7.78875 9.37 7.46875 9.05 7.46875 8.65V1.47C7.46875 1.07 7.79875 0.75 8.18875 0.75H8.19875Z" stroke="#E10A0A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path id="Vector_2" d="M1.36 5.17031L3.02 2.42031C3.15 2.20031 3.38 2.07031 3.64 2.07031H7.48V8.66031C7.48 9.06031 7.16 9.38031 6.76 9.38031H6.1C6.03 8.45031 5.26 7.72031 4.32 7.72031C3.38 7.72031 2.61 8.45031 2.54 9.38031H1.97C1.57 9.38031 1.25 9.06031 1.25 8.66031V5.55031C1.25 5.42031 1.29 5.29031 1.36 5.18031V5.17031Z" stroke="#E10A0A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path id="Vector_3" d="M19.7013 4.08984H14.0312" stroke="#E10A0A" stroke-linecap="round" stroke-linejoin="round"></path><path id="Vector_4" d="M21.6895 6.07812H16.0195" stroke="#E10A0A" stroke-linecap="round" stroke-linejoin="round"></path><path id="Vector_5" d="M4.77891 3.53906V5.52906H2.87891" stroke="#E10A0A" stroke-linecap="round" stroke-linejoin="round"></path><path id="Vector_6" d="M6.11125 9.37891C6.11125 10.3689 5.31125 11.1689 4.32125 11.1689C3.33125 11.1689 2.53125 10.3689 2.53125 9.37891" stroke="#E10A0A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path id="Vector_7" d="M16.0214 9.37891C16.0214 10.3689 15.2214 11.1689 14.2314 11.1689C13.2414 11.1689 12.4414 10.3689 12.4414 9.37891" stroke="#E10A0A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></g><defs><clipPath id="clip0_10077_41937"><rect width="21.69" height="11.91" fill="white" transform="translate(0.5)"></rect></clipPath></defs></svg>
                     <p class="text-[12px] font-normal text-[#5d5d5d]">ارسال این کالا از 1 روز کاری آینده</p>
                 </div>-->
+                <?php if($upsell_ids): ?>
                 <div class="w-[80%] mx-auto lg:w-full p-[16px] border-spacing-2 border border-dashed rounded-[8px] border-[#e8eaed]">
                     <div class="flex flex-col h-[240px] gap-3 overflow-hidden overflow-y-auto">
                         <div class="flex items-center gap-2">
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M19 15V18L12 21L5 18V15" stroke="#888888" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path><path d="M9 13L3 11L5.5 8L12 10L9 13Z" stroke="#888888" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path><path d="M15 13L21 11L18.5 8L12 10L15 13Z" stroke="#888888" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path><path d="M12 17V15" stroke="#888888" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path><path d="M16 5C16.2222 4.44444 16.9333 3.26667 18 3" stroke="#E10A0A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path><path d="M8 5C7.77778 4.44444 7.06667 3.26667 6 3" stroke="#E10A0A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path><path d="M12 6V2" stroke="#E10A0A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
                             <p class="text-[14px] font-bold text-[#505050]">محصولات مرتبط</p>
                         </div> 
-                        <a href="#">
+                        <?php foreach($upsell_products as $upsell_product): 
+                            $upsell_product_id = $upsell_product->get_id();
+
+                            $upsell_product_image_id = $upsell_product->get_image_id();
+                            $upsell_product_image = wp_get_attachment_image_url($upsell_product_image_id);
+                            $upsell_product_name = $upsell_product->get_name();
+                            $upsell_product_price = $upsell_product->get_price();
+                            $upsell_product_link = get_permalink($upsell_product_id);
+                            ?>
+                        <a href="<?php echo $upsell_product_link; ?>">
                             <div class="w-full h-[72px] bg-none hover:bg-[#f6f5f5] flex gap-3 items-center rounded-[4px]">
                                 <div class=" h-[56px] w-[56px] pr-2">
-                                    <img alt="PrdImages-80d8ce8b-7557-487c-9165-ef16ddee1f38.png" loading="lazy" width="56" height="56" decoding="async" data-nimg="1" style="color: transparent;" src="<?php echo THEME_DIR; ?>/src/img/PrdImages-10.jpeg">
+                                    <img alt="<?php echo $upsell_product_name; ?>" loading="lazy" width="56" height="56" decoding="async" data-nimg="1" style="color: transparent;" src="<?php echo $upsell_product_image; ?>">
                                 </div>
                                 <div class="flex flex-col">
-                                    <p class="text-[12px] font-normal">شارژر اپل مدل 20 وات</p>
-                                    <p class="text-[14px] font-bold text-[#e10a0a]">1,569,000 تومان </p>
+                                    <p class="text-[12px] font-normal"><?php echo $upsell_product_name; ?></p>
+                                    <p class="text-[14px] font-bold text-[#e10a0a]"><?php echo number_format($upsell_product_price); ?> تومان </p>
                                 </div>
                             </div>
                         </a>
-                        <a href="#">
-                            <div class="w-full h-[72px] bg-none hover:bg-[#f6f5f5] flex gap-3 items-center rounded-[4px]">
-                                <div class=" h-[56px] w-[56px] pr-2">
-                                    <img alt="PrdImages-80d8ce8b-7557-487c-9165-ef16ddee1f38.png" loading="lazy" width="56" height="56" decoding="async" data-nimg="1" style="color: transparent;" src="<?php echo THEME_DIR; ?>/src/img/PrdImages-10.jpeg">
-                                </div>
-                                <div class="flex flex-col">
-                                    <p class="text-[12px] font-normal">شارژر اپل مدل 20 وات</p>
-                                    <p class="text-[14px] font-bold text-[#e10a0a]">1,569,000 تومان </p>
-                                </div>
-                            </div>
-                        </a>
-                        <a href="#">
-                            <div class="w-full h-[72px] bg-none hover:bg-[#f6f5f5] flex gap-3 items-center rounded-[4px]">
-                                <div class=" h-[56px] w-[56px] pr-2">
-                                    <img alt="PrdImages-80d8ce8b-7557-487c-9165-ef16ddee1f38.png" loading="lazy" width="56" height="56" decoding="async" data-nimg="1" style="color: transparent;" src="<?php echo THEME_DIR; ?>/src/img/PrdImages-10.jpeg">
-                                </div>
-                                <div class="flex flex-col">
-                                    <p class="text-[12px] font-normal">شارژر اپل مدل 20 وات</p>
-                                    <p class="text-[14px] font-bold text-[#e10a0a]">1,569,000 تومان </p>
-                                </div>
-                            </div>
-                        </a>
-                        <a href="#">
-                            <div class="w-full h-[72px] bg-none hover:bg-[#f6f5f5] flex gap-3 items-center rounded-[4px]">
-                                <div class=" h-[56px] w-[56px] pr-2">
-                                    <img alt="PrdImages-80d8ce8b-7557-487c-9165-ef16ddee1f38.png" loading="lazy" width="56" height="56" decoding="async" data-nimg="1" style="color: transparent;" src="<?php echo THEME_DIR; ?>/src/img/PrdImages-10.jpeg">
-                                </div>
-                                <div class="flex flex-col">
-                                    <p class="text-[12px] font-normal">شارژر اپل مدل 20 وات</p>
-                                    <p class="text-[14px] font-bold text-[#e10a0a]">1,569,000 تومان </p>
-                                </div>
-                            </div>
-                        </a>
+                        <?php endforeach; ?>
                     </div>
                 </div>
+                <?php endif; ?>
                 <div class="w-[80%] mx-auto lg:w-full h-[56px] bg-[#effcf5] rounded-[10px] mt-2 flex items-center gap-2 p-[16px]">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 3C9.71429 5 4 5.5 4 5.5V14.07C4 14.07 7.42857 19 12 21C16.5714 19 20 14.07 20 14.07V5.5C19.9886 5.5 14.2857 5 12 3Z" stroke="#1CB65D" stroke-width="2" stroke-linejoin="round"></path><path d="M9 11.78L11.1648 14L15.0387 10.0273" stroke="#1CB65D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
                     <p class="text-[12px] font-normal text-[#555656]">ضمانت اصالت و سلامت فیزیکی کالا</p>
@@ -312,6 +304,7 @@ $product_attributes = $product->get_attributes();
             </article>
         </div>
     </div>
+    <?php if($related_products): ?>
     <div class="w-full h-[60px] flex items-center justify-center mt-10 gap-2">
         <img alt="" loading="lazy" width="48" height="5" decoding="async" data-nimg="1" style="color: transparent; width: auto; height: auto;" src="<?php echo THEME_DIR; ?>/src/img/red_title_wing.svg">
         <p class="text-[18px] font-semibold text-[#505050]">محصولات مشابه</p>
@@ -320,189 +313,48 @@ $product_attributes = $product->get_attributes();
     <div class="w-full h-[335px] lg:h-[470px] mx-auto bg-[#f6f5f5] pt-[10px] lg:pt-[40px] mt-[25px] px-[10px] lg:px-0">
         <div class="swiper swiper-card2 lg:w-[1024px] xl:w-[1280px] mx-auto h-full mt-[15px]">
             <div class="swiper-wrapper">
-                <a href="#" class="swiper-slide bg-white rounded-[10px] lg:rounded-[28px] !w-[181px] lg:!w-[240px] !h-[288px] lg:!h-[388px] relative group !flex !flex-col items-center gap-2 lg:gap-2.5 ">
-                    <img class="w-[136px] lg:w-[179px] h-[136px] lg:h-[179px] lg:group-hover:-mt-[15px] duration-500 z-10 mt-0 lg:mt-[35px] relative object-contain" src="<?php echo THEME_DIR; ?>/src/img/PrdImages-pro.gif" alt="">
+                <?php foreach($related_products as $related_product):
+                    $related_product_id = $related_product->get_id();
+                    $related_product_image_id = $related_product->get_image_id();
+                    $related_product_image = wp_get_attachment_image_url($related_product_image_id);
+                    $related_product_name = $related_product->get_name();
+                    $related_product_sale_price = $related_product->get_sale_price();
+                    $related_product_regular_price = $related_product->get_regular_price();
+                    $related_product_discount_percentage = 0;
+                    if($related_product_sale_price){
+                        $related_product_discount_percentage = round(($related_product_regular_price - $related_product_sale_price) / $related_product_regular_price * 100);
+                    }
+                    $related_product_link = get_permalink($related_product_id);
+                ?>
+                <a href="<?php echo $related_product_link; ?>" class="swiper-slide bg-white rounded-[10px] lg:rounded-[28px] !w-[181px] lg:!w-[240px] !h-[288px] lg:!h-[388px] relative group !flex !flex-col items-center gap-2 lg:gap-2.5 ">
+                    <img class="w-[136px] lg:w-[179px] h-[136px] lg:h-[179px] lg:group-hover:-mt-[15px] duration-500 z-10 mt-0 lg:mt-[35px] relative object-contain" src="<?php echo $related_product_image; ?>" alt="<?php echo $related_product_name; ?>">
                     <div class="shadow-product hidden lg:block h-[0px] w-[180px] duration-500 lg:group-hover:mt-[18px] lg:group-hover:h-[32px] lg:group-hover:rotate-1"></div>
-                    <p class="text-[13px] font-medium text-center z-10 px-[10px] line-clamp-2 mt-[15px] lg:mt-0">هدفون بلوتوثی اپل مدل AirPods Pro (2nd generation 2023)</p>
+                    <p class="text-[13px] font-medium text-center z-10 px-[10px] line-clamp-2 mt-[15px] lg:mt-0"><?php echo $related_product_name; ?></p>
                     <div class="flex w-full px-[10px] items-center justify-between z-10 mt-[20px]">
+                        <?php if($related_product_discount_percentage): ?>
                         <span class="w-[30px] h-[30px] rounded-full flex justify-center items-center bg-[#e10a0a] duration-300">
-                            <p class="text-[12px] font-bold text-white duration-300">%8</p>
+                            <p class="text-[12px] font-bold text-white duration-300">%<?php echo $related_product_discount_percentage; ?></p>
                         </span>
+                        <?php endif; ?>
                         <span>
+                            <?php if($related_product_sale_price): ?>
                             <div class="flex text-[#b9b9b9] text-[12px] lg:text-[13px] font-normal gap-1 ">
-                                <p class="line-through">22,749,000</p>
+                                <p class="line-through"><?php echo number_format($related_product_regular_price); ?></p>
                                 <span>تومان</span>
                             </div>
+                            <?php endif; ?>
                             <div class="flex text-[#e10b0b] duration-300 gap-1 text-[16px] lg:text-[20px] font-bold">
-                                <p>21,749,000</p>
+                                <p><?php echo $related_product_sale_price?number_format($related_product_sale_price):number_format($related_product_regular_price); ?></p>
                                 <span>تومان</span>
                             </div>
                         </span>
                     </div>
                 </a>
-                <a href="#" class="swiper-slide bg-white rounded-[10px] lg:rounded-[28px] !w-[181px] lg:!w-[240px] !h-[288px] lg:!h-[388px] relative group !flex !flex-col items-center gap-2 lg:gap-2.5 ">
-                    <img class="w-[136px] lg:w-[179px] h-[136px] lg:h-[179px] lg:group-hover:-mt-[15px] duration-500 z-10 mt-0 lg:mt-[35px] relative object-contain" src="<?php echo THEME_DIR; ?>/src/img/PrdImages-pro.gif" alt="">
-                    <div class="shadow-product hidden lg:block h-[0px] w-[180px] duration-500 lg:group-hover:mt-[18px] lg:group-hover:h-[32px] lg:group-hover:rotate-1"></div>
-                    <p class="text-[13px] font-medium text-center z-10 px-[10px] line-clamp-2 mt-[15px] lg:mt-0">هدفون بلوتوثی اپل مدل AirPods Pro (2nd generation 2023)</p>
-                    <div class="flex w-full px-[10px] items-center justify-between z-10 mt-[20px]">
-                        <span class="w-[30px] h-[30px] rounded-full flex justify-center items-center bg-[#e10a0a] duration-300">
-                            <p class="text-[12px] font-bold text-white duration-300">%8</p>
-                        </span>
-                        <span>
-                            <div class="flex text-[#b9b9b9] text-[12px] lg:text-[13px] font-normal gap-1 ">
-                                <p class="line-through">22,749,000</p>
-                                <span>تومان</span>
-                            </div>
-                            <div class="flex text-[#e10b0b] duration-300 gap-1 text-[16px] lg:text-[20px] font-bold">
-                                <p>21,749,000</p>
-                                <span>تومان</span>
-                            </div>
-                        </span>
-                    </div>
-                </a>
-                <a href="#" class="swiper-slide bg-white rounded-[10px] lg:rounded-[28px] !w-[181px] lg:!w-[240px] !h-[288px] lg:!h-[388px] relative group !flex !flex-col items-center gap-2 lg:gap-2.5 ">
-                    <img class="w-[136px] lg:w-[179px] h-[136px] lg:h-[179px] lg:group-hover:-mt-[15px] duration-500 z-10 mt-0 lg:mt-[35px] relative object-contain" src="<?php echo THEME_DIR; ?>/src/img/PrdImages-pro.gif" alt="">
-                    <div class="shadow-product hidden lg:block h-[0px] w-[180px] duration-500 lg:group-hover:mt-[18px] lg:group-hover:h-[32px] lg:group-hover:rotate-1"></div>
-                    <p class="text-[13px] font-medium text-center z-10 px-[10px] line-clamp-2 mt-[15px] lg:mt-0">هدفون بلوتوثی اپل مدل AirPods Pro (2nd generation 2023)</p>
-                    <div class="flex w-full px-[10px] items-center justify-between z-10 mt-[20px]">
-                        <span class="w-[30px] h-[30px] rounded-full flex justify-center items-center bg-[#e10a0a] duration-300">
-                            <p class="text-[12px] font-bold text-white duration-300">%8</p>
-                        </span>
-                        <span>
-                            <div class="flex text-[#b9b9b9] text-[12px] lg:text-[13px] font-normal gap-1 ">
-                                <p class="line-through">22,749,000</p>
-                                <span>تومان</span>
-                            </div>
-                            <div class="flex text-[#e10b0b] duration-300 gap-1 text-[16px] lg:text-[20px] font-bold">
-                                <p>21,749,000</p>
-                                <span>تومان</span>
-                            </div>
-                        </span>
-                    </div>
-                </a>
-                <a href="#" class="swiper-slide bg-white rounded-[10px] lg:rounded-[28px] !w-[181px] lg:!w-[240px] !h-[288px] lg:!h-[388px] relative group !flex !flex-col items-center gap-2 lg:gap-2.5 ">
-                    <img class="w-[136px] lg:w-[179px] h-[136px] lg:h-[179px] lg:group-hover:-mt-[15px] duration-500 z-10 mt-0 lg:mt-[35px] relative object-contain" src="<?php echo THEME_DIR; ?>/src/img/PrdImages-pro.gif" alt="">
-                    <div class="shadow-product hidden lg:block h-[0px] w-[180px] duration-500 lg:group-hover:mt-[18px] lg:group-hover:h-[32px] lg:group-hover:rotate-1"></div>
-                    <p class="text-[13px] font-medium text-center z-10 px-[10px] line-clamp-2 mt-[15px] lg:mt-0">هدفون بلوتوثی اپل مدل AirPods Pro (2nd generation 2023)</p>
-                    <div class="flex w-full px-[10px] items-center justify-between z-10 mt-[20px]">
-                        <span class="w-[30px] h-[30px] rounded-full flex justify-center items-center bg-[#e10a0a] duration-300">
-                            <p class="text-[12px] font-bold text-white duration-300">%8</p>
-                        </span>
-                        <span>
-                            <div class="flex text-[#b9b9b9] text-[12px] lg:text-[13px] font-normal gap-1 ">
-                                <p class="line-through">22,749,000</p>
-                                <span>تومان</span>
-                            </div>
-                            <div class="flex text-[#e10b0b] duration-300 gap-1 text-[16px] lg:text-[20px] font-bold">
-                                <p>21,749,000</p>
-                                <span>تومان</span>
-                            </div>
-                        </span>
-                    </div>
-                </a>
-                <a href="#" class="swiper-slide bg-white rounded-[10px] lg:rounded-[28px] !w-[181px] lg:!w-[240px] !h-[288px] lg:!h-[388px] relative group !flex !flex-col items-center gap-2 lg:gap-2.5 ">
-                    <img class="w-[136px] lg:w-[179px] h-[136px] lg:h-[179px] lg:group-hover:-mt-[15px] duration-500 z-10 mt-0 lg:mt-[35px] relative object-contain" src="<?php echo THEME_DIR; ?>/src/img/PrdImages-pro.gif" alt="">
-                    <div class="shadow-product hidden lg:block h-[0px] w-[180px] duration-500 lg:group-hover:mt-[18px] lg:group-hover:h-[32px] lg:group-hover:rotate-1"></div>
-                    <p class="text-[13px] font-medium text-center z-10 px-[10px] line-clamp-2 mt-[15px] lg:mt-0">هدفون بلوتوثی اپل مدل AirPods Pro (2nd generation 2023)</p>
-                    <div class="flex w-full px-[10px] items-center justify-between z-10 mt-[20px]">
-                        <span class="w-[30px] h-[30px] rounded-full flex justify-center items-center bg-[#e10a0a] duration-300">
-                            <p class="text-[12px] font-bold text-white duration-300">%8</p>
-                        </span>
-                        <span>
-                            <div class="flex text-[#b9b9b9] text-[12px] lg:text-[13px] font-normal gap-1 ">
-                                <p class="line-through">22,749,000</p>
-                                <span>تومان</span>
-                            </div>
-                            <div class="flex text-[#e10b0b] duration-300 gap-1 text-[16px] lg:text-[20px] font-bold">
-                                <p>21,749,000</p>
-                                <span>تومان</span>
-                            </div>
-                        </span>
-                    </div>
-                </a>
-                <a href="#" class="swiper-slide bg-white rounded-[10px] lg:rounded-[28px] !w-[181px] lg:!w-[240px] !h-[288px] lg:!h-[388px] relative group !flex !flex-col items-center gap-2 lg:gap-2.5 ">
-                    <img class="w-[136px] lg:w-[179px] h-[136px] lg:h-[179px] lg:group-hover:-mt-[15px] duration-500 z-10 mt-0 lg:mt-[35px] relative object-contain" src="<?php echo THEME_DIR; ?>/src/img/PrdImages-pro.gif" alt="">
-                    <div class="shadow-product hidden lg:block h-[0px] w-[180px] duration-500 lg:group-hover:mt-[18px] lg:group-hover:h-[32px] lg:group-hover:rotate-1"></div>
-                    <p class="text-[13px] font-medium text-center z-10 px-[10px] line-clamp-2 mt-[15px] lg:mt-0">هدفون بلوتوثی اپل مدل AirPods Pro (2nd generation 2023)</p>
-                    <div class="flex w-full px-[10px] items-center justify-between z-10 mt-[20px]">
-                        <span class="w-[30px] h-[30px] rounded-full flex justify-center items-center bg-[#e10a0a] duration-300">
-                            <p class="text-[12px] font-bold text-white duration-300">%8</p>
-                        </span>
-                        <span>
-                            <div class="flex text-[#b9b9b9] text-[12px] lg:text-[13px] font-normal gap-1 ">
-                                <p class="line-through">22,749,000</p>
-                                <span>تومان</span>
-                            </div>
-                            <div class="flex text-[#e10b0b] duration-300 gap-1 text-[16px] lg:text-[20px] font-bold">
-                                <p>21,749,000</p>
-                                <span>تومان</span>
-                            </div>
-                        </span>
-                    </div>
-                </a>
-                <a href="#" class="swiper-slide bg-white rounded-[10px] lg:rounded-[28px] !w-[181px] lg:!w-[240px] !h-[288px] lg:!h-[388px] relative group !flex !flex-col items-center gap-2 lg:gap-2.5 ">
-                    <img class="w-[136px] lg:w-[179px] h-[136px] lg:h-[179px] lg:group-hover:-mt-[15px] duration-500 z-10 mt-0 lg:mt-[35px] relative object-contain" src="<?php echo THEME_DIR; ?>/src/img/PrdImages-pro.gif" alt="">
-                    <div class="shadow-product hidden lg:block h-[0px] w-[180px] duration-500 lg:group-hover:mt-[18px] lg:group-hover:h-[32px] lg:group-hover:rotate-1"></div>
-                    <p class="text-[13px] font-medium text-center z-10 px-[10px] line-clamp-2 mt-[15px] lg:mt-0">هدفون بلوتوثی اپل مدل AirPods Pro (2nd generation 2023)</p>
-                    <div class="flex w-full px-[10px] items-center justify-between z-10 mt-[20px]">
-                        <span class="w-[30px] h-[30px] rounded-full flex justify-center items-center bg-[#e10a0a] duration-300">
-                            <p class="text-[12px] font-bold text-white duration-300">%8</p>
-                        </span>
-                        <span>
-                            <div class="flex text-[#b9b9b9] text-[12px] lg:text-[13px] font-normal gap-1 ">
-                                <p class="line-through">22,749,000</p>
-                                <span>تومان</span>
-                            </div>
-                            <div class="flex text-[#e10b0b] duration-300 gap-1 text-[16px] lg:text-[20px] font-bold">
-                                <p>21,749,000</p>
-                                <span>تومان</span>
-                            </div>
-                        </span>
-                    </div>
-                </a>
-                <a href="#" class="swiper-slide bg-white rounded-[10px] lg:rounded-[28px] !w-[181px] lg:!w-[240px] !h-[288px] lg:!h-[388px] relative group !flex !flex-col items-center gap-2 lg:gap-2.5 ">
-                    <img class="w-[136px] lg:w-[179px] h-[136px] lg:h-[179px] lg:group-hover:-mt-[15px] duration-500 z-10 mt-0 lg:mt-[35px] relative object-contain" src="<?php echo THEME_DIR; ?>/src/img/PrdImages-pro.gif" alt="">
-                    <div class="shadow-product hidden lg:block h-[0px] w-[180px] duration-500 lg:group-hover:mt-[18px] lg:group-hover:h-[32px] lg:group-hover:rotate-1"></div>
-                    <p class="text-[13px] font-medium text-center z-10 px-[10px] line-clamp-2 mt-[15px] lg:mt-0">هدفون بلوتوثی اپل مدل AirPods Pro (2nd generation 2023)</p>
-                    <div class="flex w-full px-[10px] items-center justify-between z-10 mt-[20px]">
-                        <span class="w-[30px] h-[30px] rounded-full flex justify-center items-center bg-[#e10a0a] duration-300">
-                            <p class="text-[12px] font-bold text-white duration-300">%8</p>
-                        </span>
-                        <span>
-                            <div class="flex text-[#b9b9b9] text-[12px] lg:text-[13px] font-normal gap-1 ">
-                                <p class="line-through">22,749,000</p>
-                                <span>تومان</span>
-                            </div>
-                            <div class="flex text-[#e10b0b] duration-300 gap-1 text-[16px] lg:text-[20px] font-bold">
-                                <p>21,749,000</p>
-                                <span>تومان</span>
-                            </div>
-                        </span>
-                    </div>
-                </a>
-                <a href="#" class="swiper-slide bg-white rounded-[10px] lg:rounded-[28px] !w-[181px] lg:!w-[240px] !h-[288px] lg:!h-[388px] relative group !flex !flex-col items-center gap-2 lg:gap-2.5 ">
-                    <img class="w-[136px] lg:w-[179px] h-[136px] lg:h-[179px] lg:group-hover:-mt-[15px] duration-500 z-10 mt-0 lg:mt-[35px] relative object-contain" src="<?php echo THEME_DIR; ?>/src/img/PrdImages-pro.gif" alt="">
-                    <div class="shadow-product hidden lg:block h-[0px] w-[180px] duration-500 lg:group-hover:mt-[18px] lg:group-hover:h-[32px] lg:group-hover:rotate-1"></div>
-                    <p class="text-[13px] font-medium text-center z-10 px-[10px] line-clamp-2 mt-[15px] lg:mt-0">هدفون بلوتوثی اپل مدل AirPods Pro (2nd generation 2023)</p>
-                    <div class="flex w-full px-[10px] items-center justify-between z-10 mt-[20px]">
-                        <span class="w-[30px] h-[30px] rounded-full flex justify-center items-center bg-[#e10a0a] duration-300">
-                            <p class="text-[12px] font-bold text-white duration-300">%8</p>
-                        </span>
-                        <span>
-                            <div class="flex text-[#b9b9b9] text-[12px] lg:text-[13px] font-normal gap-1 ">
-                                <p class="line-through">22,749,000</p>
-                                <span>تومان</span>
-                            </div>
-                            <div class="flex text-[#e10b0b] duration-300 gap-1 text-[16px] lg:text-[20px] font-bold">
-                                <p>21,749,000</p>
-                                <span>تومان</span>
-                            </div>
-                        </span>
-                    </div>
-                </a>
+                <?php endforeach; ?>
             </div>
         </div>
     </div>
+    <?php endif; ?>
     <div class="w-full px-[10px] lg:px-0">
         <div class="hidden lg:flex justify-center items-center gap-6 h-[64px] mt-3">
             <p class="text-[16px] font-normal  cursor-pointer text-red-primary">مشخصات‌فنی</p>
