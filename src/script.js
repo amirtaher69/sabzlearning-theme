@@ -627,21 +627,32 @@ document.addEventListener('DOMContentLoaded', function () {
     },
   });
 });
-let position = document.querySelector('#position')
+let product_attributes = document.querySelector('#product-attributes')
 let showAll1 = document.querySelector('#show-all-1')
 let svgShow = document.querySelector('#svg-show')
 
-if (showAll1 && position && svgShow) {
+if(product_attributes){
+  if(product_attributes.offsetHeight < 315){
+    showAll1.classList.add('hidden');
+    svgShow.classList.add('hidden');
+    product_attributes.classList.remove('h-[315px]');
+    product_attributes.classList.add('h-auto');
+  }else{
+    product_attributes.classList.remove('h-auto');
+    product_attributes.classList.add('h-[315px]');
+  }
+}
+if (showAll1 && product_attributes && svgShow) {
   showAll1.addEventListener('click', function () {
-    let isHidden = position.classList.contains('hidden')
+    let isCollapsed = product_attributes.classList.contains('h-[315px]')
 
-    position.classList.toggle('block', isHidden)
-    position.classList.toggle('hidden', !isHidden)
+    product_attributes.classList.toggle('h-[315px]', !isCollapsed)
+    product_attributes.classList.toggle('h-auto', isCollapsed)
 
-    svgShow.classList.toggle('rotate-180', isHidden)
-    svgShow.classList.toggle('rotate-90', !isHidden)
+    svgShow.classList.toggle('rotate-180', isCollapsed)
+    svgShow.classList.toggle('rotate-90', !isCollapsed)
 
-    showAll1.textContent = isHidden ? 'مشاهده کمتر' : 'مشاهده بیشتر'
+    showAll1.textContent = isCollapsed ? 'مشاهده کمتر' : 'مشاهده بیشتر'
   })
 }
 let showAll2 = document.querySelector('#show-all-2')
@@ -649,15 +660,16 @@ let product_content = document.querySelector('#product-content')
 let textElement = showAll2?.querySelector('p') || showAll2 
 let svgShow2 = doc.querySelector('#svg-show-2')
 
-console.log(product_content.offsetHeight);
-if(product_content.offsetHeight < 315){
-  showAll2.classList.add('hidden');
-  svgShow2.classList.add('hidden');
-  product_content.classList.remove('h-[315px]');
-  product_content.classList.add('h-auto');
-}else{
-  product_content.classList.remove('h-auto');
-  product_content.classList.add('h-[315px]');
+if(product_content){
+  if(product_content.offsetHeight < 315){
+    showAll2.classList.add('hidden');
+    svgShow2.classList.add('hidden');
+    product_content.classList.remove('h-[315px]');
+    product_content.classList.add('h-auto');
+  }else{
+    product_content.classList.remove('h-auto');
+    product_content.classList.add('h-[315px]');
+  }
 }
 if (showAll2 && product_content ) {
   showAll2.addEventListener('click', function () {

@@ -151,8 +151,8 @@ $upsell_products = wc_get_products(array(
                 <?php if($product_attributes){ ?>
                 <div class="flex flex-col gap-2">
                     <?php
-                    $product_attributes = array_slice($product_attributes, 0, 3);
-                    foreach($product_attributes as $attribute){
+                    $product_top_attributes = array_slice($product_attributes, 0, 3);
+                    foreach($product_top_attributes as $attribute){
                         if($attribute->is_taxonomy()){
                             $terms = wc_get_product_terms($product_id, $attribute->get_name() , array('fields' => 'names'));
                             $attributeValue = implode(', ', $terms);
@@ -370,107 +370,37 @@ $upsell_products = wc_get_products(array(
                 <p  class="cursor-pointer">مشاهده بیشتر</p>
                 <svg id="svg-show-2" class="rotate-90" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 10L8 6L12 10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg>
             </div>
+            <?php if($product_attributes) : ?>
             <div>
                 <div class="text-root text-body1-fa border-r-2 border-primary-normal pr-2 text-text-normal text-[16px] font-normal mt-8">مشخصات فنی</div>
-                <div class="h-full w-full flex-col items-center block">
-                    <div class="mt-[20px] flex w-full justify-start px-[10px] ">
-                        <div class="flex min-w-[300px] justify-center">
-                            مشخصات ظاهری هدفون و هندزفری
-                        </div>
-                    </div>  
-                    <div class="flex h-full w-full flex-row items-center divide-x-reverse border-b border-t bg-light_grey text-dark_grey border-[#efeff1]">
-                        <div class="flex w-[160px] lg:min-w-[300px] justify-center py-[10px] pr-[10px] text-[14px]">
-                            ابعاد
-                        </div>
-                        <div class="flex flex-1 flex-col items-start gap-[5px] bg-white px-[20px]  py-[10px] text-[14px]">
-                            <div class="flex justify-center">
-                                30.9*21.8 میلی متر ( هر گوشی)
+                <div id="product-attributes" class="w-full flex-col items-center overflow-hidden">
+                    <?php foreach($product_attributes as $attribute) : 
+                        if($attribute->is_taxonomy()){
+                            $terms = wc_get_product_terms($product_id, $attribute->get_name() , array('fields' => 'names'));
+                            $attributeValue = implode(', ', $terms);
+                        }else {
+                            $attributeValue = $attribute['value'];
+                        }
+                        ?>
+                        <div class="flex w-full flex-row items-center divide-x-reverse border-b border-t bg-light_grey text-dark_grey border-[#efeff1]">
+                            <div class="flex min-w-[300px] justify-center py-[10px] pr-[10px] text-[14px]">
+                                <?php echo wc_attribute_label($attribute->get_name()); ?>
+                            </div>
+                            <div class="flex flex-1 flex-col items-start gap-[5px] bg-white px-[20px]  py-[10px] text-[14px]">
+                                <div class="flex justify-center">
+                                <?php echo $attributeValue; ?>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="flex h-full w-full flex-row items-center divide-x-reverse border-b border-t bg-light_grey text-dark_grey border-[#efeff1]">
-                        <div class="flex w-[160px] lg:min-w-[300px] justify-center py-[10px] pr-[10px] text-[14px]">
-                            وزن
-                        </div>
-                        <div class="flex flex-1 flex-col items-start gap-[5px] bg-white px-[20px]  py-[10px] text-[14px]">
-                            <div class="flex justify-center">
-                                50.8گرم
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div id="position" class="h-full w-full flex-col items-center hidden">
-                    <div class="mt-[20px] flex w-full justify-start px-[10px] ">
-                        <div class="flex min-w-[300px] justify-center">
-                            مشخصات فنی هدفون و هندزفری
-                        </div>
-                    </div>  
-                    <div class="flex h-full w-full flex-row items-center divide-x-reverse border-b border-t bg-light_grey text-dark_grey border-[#efeff1]">
-                        <div class="flex min-w-[300px] justify-center py-[10px] pr-[10px] text-[14px]">
-                            نوع گوشی
-                        </div>
-                        <div class="flex flex-1 flex-col items-start gap-[5px] bg-white px-[20px]  py-[10px] text-[14px]">
-                            <div class="flex justify-center">
-                                دو گوشی
-                            </div>
-                        </div>
-                    </div>
-                    <div class="flex h-full w-full flex-row items-center divide-x-reverse border-b border-t bg-light_grey text-dark_grey border-[#efeff1]">
-                        <div class="flex min-w-[300px] justify-center py-[10px] pr-[10px] text-[14px]">
-                            نوع
-                        </div>
-                        <div class="flex flex-1 flex-col items-start gap-[5px] bg-white px-[20px]  py-[10px] text-[14px]">
-                            <div class="flex justify-center">
-                                بلوتوث دو گوشی (TWS)
-                            </div>
-                        </div>
-                    </div>
-                    <div class="flex h-full w-full flex-row items-center divide-x-reverse border-b border-t bg-light_grey text-dark_grey border-[#efeff1]">
-                        <div class="flex min-w-[300px] justify-center py-[10px] pr-[10px] text-[14px]">
-                            رابط
-                        </div>
-                        <div class="flex flex-1 flex-col items-start gap-[5px] bg-white px-[20px]  py-[10px] text-[14px]">
-                            <div class="flex justify-center">
-                                بلوتوث
-                            </div>
-                        </div>
-                    </div>
-                    <div class="flex h-full w-full flex-row items-center divide-x-reverse border-b border-t bg-light_grey text-dark_grey border-[#efeff1]">
-                        <div class="flex min-w-[300px] justify-center py-[10px] pr-[10px] text-[14px]">
-                            میکروفون
-                        </div>
-                        <div class="flex flex-1 flex-col items-start gap-[5px] bg-white px-[20px]  py-[10px] text-[14px]">
-                            <div class="flex justify-center">
-                                دارد
-                            </div>
-                        </div>
-                    </div>
-                    <div class="flex h-full w-full flex-row items-center divide-x-reverse border-b border-t bg-light_grey text-dark_grey border-[#efeff1]">
-                        <div class="flex min-w-[300px] justify-center py-[10px] pr-[10px] text-[14px]">
-                            کاربری
-                        </div>
-                        <div class="flex flex-1 flex-col items-start gap-[5px] bg-white px-[20px]  py-[10px] text-[14px]">
-                            <div class="flex justify-center">
-                                استفاده روزمره
-                            </div>
-                        </div>
-                    </div>
-                    <div class="flex h-full w-full flex-row items-center divide-x-reverse border-b border-t bg-light_grey text-dark_grey border-[#efeff1]">
-                        <div class="flex min-w-[300px] justify-center py-[10px] pr-[10px] text-[14px]">
-                            میزان شارژدهی
-                        </div>
-                        <div class="flex flex-1 flex-col items-start gap-[5px] bg-white px-[20px]  py-[10px] text-[14px]">
-                            <div class="flex justify-center">
-                                6 ساعت
-                            </div>
-                        </div>
-                    </div>
+                    <?php endforeach; ?>
                 </div>
             </div>
             <div class="flex gap-1 items-center mt-[20px] cursor-pointer">
                 <p id="show-all-1" class="text-[14px] font-normal">مشاهده بیشتر</p>
                 <svg id="svg-show" class="text-[#e10a0a] rotate-90" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 10L8 6L12 10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg>
             </div>
+            <?php endif; ?>
+            
             <div id="comment" class="flex flex-col lg:flex-row justify-between w-full h-auto lg:w-[1024px] xl:w-[1280px] mt-[30px] mb-[30px]">
                 <div class="top-[192px] flex h-fit w-full lg:w-1/4 flex-col justify-start gap-4 pl-6">
                     <div class="flex w-full flex-row gap-[10px] text-[16px] font-semibold text-dark_grey">
