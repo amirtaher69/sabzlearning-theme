@@ -645,26 +645,32 @@ if (showAll1 && position && svgShow) {
   })
 }
 let showAll2 = document.querySelector('#show-all-2')
-let airpod2 = document.querySelector('#airpod2')
-let imgAirpod = document.querySelector('#img-airpod')
+let product_content = document.querySelector('#product-content')
 let textElement = showAll2?.querySelector('p') || showAll2 
 let svgShow2 = doc.querySelector('#svg-show-2')
 
-if (showAll2 && airpod2 && imgAirpod) {
+console.log(product_content.offsetHeight);
+if(product_content.offsetHeight < 315){
+  showAll2.classList.add('hidden');
+  svgShow2.classList.add('hidden');
+  product_content.classList.remove('h-[315px]');
+  product_content.classList.add('h-auto');
+}else{
+  product_content.classList.remove('h-auto');
+  product_content.classList.add('h-[315px]');
+}
+if (showAll2 && product_content ) {
   showAll2.addEventListener('click', function () {
-    let isCollapsed = airpod2.classList.contains('h-[315px]')
+    let isCollapsed = product_content.classList.contains('h-[315px]')
 
-    airpod2.classList.toggle('h-[315px]', !isCollapsed)
-    airpod2.classList.toggle('h-auto', isCollapsed)
+    product_content.classList.toggle('h-[315px]', !isCollapsed)
+    product_content.classList.toggle('h-auto', isCollapsed)
 
     showAll2.classList.toggle('text-[#0e8bff]', isCollapsed)
     showAll2.classList.toggle('text-[#6d6d6d]', !isCollapsed)
 
     svgShow2.classList.toggle('rotate-90', isCollapsed)
     svgShow2.classList.toggle('rotate-0', !isCollapsed)
-
-    imgAirpod.classList.toggle('h-[200px]', !isCollapsed)
-    imgAirpod.classList.toggle('h-auto', isCollapsed)
 
     textElement.textContent = isCollapsed ? 'مشاهده کمتر' : 'مشاهده بیشتر'
   })

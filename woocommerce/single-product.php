@@ -362,13 +362,9 @@ $upsell_products = wc_get_products(array(
             <a href="#comment" class="text-[16px] font-normal text-dark_grey">دیدگاه کاربران</a>
         </div>
         <div class="lg:w-[1024px] xl:w-[1280px] mx-auto ">
-            <div id="airpod2" class="w-full h-[315px] flex flex-col gap-5 overflow-hidden mt-6 lg:mt-0">
+            <div id="product-content" class="w-full flex flex-col gap-5 overflow-hidden mt-6 lg:mt-0">
                 <div class="text-root text-body1-fa border-r-2 border-primary-normal pr-2 text-text-normal text-[16px] font-normal">نقد‌و‌بررسی‌اجمالی</div>
-                <h2 class="text-[22px] lg:text-[30px] font-normal">نقد و بررسی ایرپاد پرو 2 مدل 2023 اپل</h2>
-                <div id="img-airpod" class="h-[200px]"><img class="w-full h-full object-cover" src="<?php echo THEME_DIR; ?>/src/img/CATEGORYIMAGE-1.jpg" alt=""></div>
-                <p class="text-[14px] lg:text-[18px] font-normal leading-[50px]">یکی از مهم‌ترین نیازمندی‌های کاربران گوشی‌های هوشمند را باید خرید یک هدست بلوتوثی دانست. معمولا کاربرانی که مکالمه زیادی در طول روز انجام می‌دهند یا علاقه زیادی به گوش دادن موسیقی دارند برای این که مزاحم سایر کاربران نشوند یا هر لحظه گوشی موبایل را روی گوش خود قرار ندهند، سراغ خرید هندزفری بلوتوثی خواهند رفت تا بتوانند نیازهای خود را پاسخ دهند. شرکت‌های زیادی در زمینه طراحی و تولید هندزفری‌های بلوتوثی مشغول فعالیت هستند و هر کدام موفق شده‌اند محصولات جذاب و باکیفیتی را طراحی و تولید کنند، اما در میان آن‌ها باید به کمپانی اپل اشاره کرد که توانسته با تولید ایرپاد پرو نسل 2 برای مدل 2023 شرایط ایده‌آل را برای کاربران رقم بزند.
-
-                    در صورتی که قصد دارید یکی از بهترین هندزفری‌های بلوتوثی تولید شده از سوی کمپانی اپل را خریداری کنید، بدون تردید ایرپاد پرو 2 مدل 2023 می‌تواند یکی از بهترین گزینه‌های در دسترس شما به حساب آید. در این بخش قصد داریم با بررسی این هندزفری بلوتوثی در کنار شما باشیم؛ با ما همراه باشید.</p>
+                <?php the_content(); ?>
             </div>
             <div id="show-all-2" class="flex items-center gap-2 text-[14px] font-normal text-[#6d6d6d] mt-3">
                 <p  class="cursor-pointer">مشاهده بیشتر</p>
