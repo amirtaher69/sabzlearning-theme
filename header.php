@@ -55,6 +55,7 @@ if(isset($locations[$menu_name])){
         <symbol id="close" viewBox="0 0 26 26">
             <line x1="6.16218" y1="6.56535" x2="18.8901" y2="19.2933" stroke="currentColor" stroke-width="2"></line><line x1="18.8902" y1="6.1617" x2="6.16229" y2="18.8896" stroke="currentColor" stroke-width="2"></line>
         </symbol>
+        <symbol id="star" viewBox="0 0 16 16" ><path d="M1.55664 6.89127C1.34781 6.69815 1.46125 6.34902 1.74371 6.31553L5.74609 5.84099C5.86122 5.82734 5.96121 5.75481 6.00977 5.64954L7.69792 1.98963C7.81705 1.73134 8.18425 1.73131 8.30339 1.9896L9.99154 5.64959C10.0401 5.75486 10.1394 5.82735 10.2546 5.841L14.2572 6.31553C14.5396 6.34902 14.653 6.69817 14.4442 6.89129L11.4853 9.62778C11.4002 9.70649 11.3622 9.82381 11.3848 9.93752L12.1701 13.8907C12.2255 14.1697 11.9286 14.3855 11.6804 14.2465L8.16352 12.2779C8.06236 12.2213 7.93914 12.2212 7.83798 12.2778L4.32072 14.2466C4.07252 14.3855 3.77529 14.1697 3.83073 13.8908L4.61625 9.93747C4.63884 9.82377 4.60089 9.70653 4.51578 9.62782L1.55664 6.89127Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></symbol>
     </svg>
     <div id="mobile-menu" class="z-[9999] fixed w-full h-full hidden" >
         <section class="h-[72px] desktop:h-[206px] z-[55] flex items-center flex-col">
@@ -177,8 +178,8 @@ if(isset($locations[$menu_name])){
     </div>
     <section id="header" class="fixed top-0 z-[99] bg-[#fff] w-full">
         <div id="banner" class="h-[45px] lg:h-[60px] w-full duration-500">
-            <a href="#"><img class="hidden lg:block w-full h-full" src="<?php echo THEME_DIR; ?>/src/img/DESKTOPSECTIONBANNER-head.gif" alt=""></a>
-            <a href="./product.html"><img class="flex lg:hidden w-full h-full object-cover" src="<?php echo THEME_DIR; ?>/src/img/MOBILESECTIONBANNER-head.gif" alt=""></a>
+            <a href="#"><img class="hidden lg:block w-full !h-full" src="<?php echo THEME_DIR; ?>/src/img/DESKTOPSECTIONBANNER-head.gif" alt=""></a>
+            <a href="./product.html"><img class="flex lg:hidden w-full !h-full object-cover" src="<?php echo THEME_DIR; ?>/src/img/MOBILESECTIONBANNER-head.gif" alt=""></a>
         </div>
         <div class="h-[73px] bg-white flex lg:hidden items-center gap-1 !p-[12px]">
             <div id="header_hamburger" class="cursor-pointer">
