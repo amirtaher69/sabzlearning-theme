@@ -487,7 +487,7 @@ $upsell_products = wc_get_products(array(
                                     </svg>
                                 </span>
                                 <span class="" style="position: relative; overflow: hidden; cursor: default; display: block; float: left; color: rgb(225, 10, 10); font-size: 20px;" data-index="0" data-forhalf="[object Object]">
-                                    <svg class="text-[#828282]" width="16" height="16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                    <svg class="text-[#e10a0a]" width="16" height="16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                         <use xlink:href="#star"></use>
                                     </svg>
                                 </span>
