@@ -1143,3 +1143,23 @@ document.addEventListener("DOMContentLoaded", () => {
     );
   })(window);
 });
+
+jQuery(document).ready(function($) {
+  // open modal
+  $("#openCommentModal").on("click", function() {
+      $("#commentModal").removeClass("hidden");
+      $("#commentModal").addClass("flex");
+  });
+  $("#closeCommentModal").on("click", function() {
+      $("#commentModal").addClass("hidden");
+      $("#commentModal").removeClass("flex");
+  });
+
+  // select star
+  $("#starRating span").on("click", function() {
+      var value = $(this).data("value");
+      $("#ratingInput").val(value);
+      $("#starRating span").html('<svg width="16" height="16" class="text-[#707070]" fill="#707070" xmlns="http://www.w3.org/2000/svg"><use xlink:href="#star"></use></svg>');
+      $(this).prevAll().addBack().html('<svg width="16" height="16" class="text-[#e10a0a]" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><use xlink:href="#star"></use></svg>');
+  });
+});

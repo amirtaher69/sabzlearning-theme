@@ -447,7 +447,7 @@ $upsell_products = wc_get_products(array(
                             </span>
                         </div>
                     </div>
-                    <button class="btn-root btn-outline btn-large w-full hidden lg:inline-flex">
+                    <button id="openCommentModal" class="btn-root btn-outline btn-large w-full hidden lg:inline-flex">
                         <div class="flex items-center justify-center gap-6">
                             افزودن دیدگاه
                         </div>
@@ -528,6 +528,52 @@ $upsell_products = wc_get_products(array(
         </div>
     </footer>
 
+    <div id="commentModal" class="hidden fixed inset-0  items-center justify-center z-500">
+        <div class="bg-white rounded-xl shadow-lg w-full max-w-md p-6 relative z-499">
+            <button id="closeCommentModal" class="cursor-pointer absolute top-5 left-5 text-gray-500 hover:text-red-500">
+                <svg width="16" height="16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <use xlink:href="#close"></use>
+                </svg>
+            </button>
+            <h2 class="text-lg font-bold mb-4">ثبت دیدگاه</h2>
+            <form action="<?php echo site_url('/wp-comments-post.php'); ?>" method="post">
+                <div class="mb-4">
+                    <label class="block mb-2 font-medium">امتیاز شما:</label>
+                    <div id="starRating" class="flex space-x-1 text-2xl cursor-pointer">
+                        <span data-value="1"><svg width="16" height="16"  fill="#707070" class="text-[#707070]" xmlns="http://www.w3.org/2000/svg"><use xlink:href="#star"></use></svg></span>
+                        <span data-value="2"><svg width="16" height="16"  fill="#707070" class="text-[#707070]" xmlns="http://www.w3.org/2000/svg"><use xlink:href="#star"></use></svg></span>
+                        <span data-value="3"><svg width="16" height="16"  fill="#707070" class="text-[#707070]" xmlns="http://www.w3.org/2000/svg"><use xlink:href="#star"></use></svg></span>
+                        <span data-value="4"><svg width="16" height="16"  fill="#707070" class="text-[#707070]" xmlns="http://www.w3.org/2000/svg"><use xlink:href="#star"></use></svg></span>
+                        <span data-value="5"><svg width="16" height="16"  fill="#707070" class="text-[#707070] xmlns="http://www.w3.org/2000/svg"><use xlink:href="#star"></use></svg></span>
+                    </div>
+                    <input type="hidden" name="rating" id="ratingInput" value="0">
+                </div>
+                <?php if ( !is_user_logged_in() ) : ?>
+                    <div class="mb-4">
+                        <label class="block mb-2 font-medium">نام شما:</label>
+                        <input type="text" name="author" class="w-full border rounded-lg p-2" required>
+                    </div>
+                    <div class="mb-4">
+                        <label class="block mb-2 font-medium">ایمیل شما:</label>
+                        <input type="email" name="email" class="w-full border rounded-lg p-2" required>
+                    </div>
+                <?php endif; ?>
+                <div class="mb-4">
+                    <label class="block mb-2 font-medium">دیدگاه شما:</label>
+                    <textarea name="comment" rows="4" class="w-full border rounded-lg p-2" required></textarea>
+                </div>
+                <input type="hidden" name="comment_post_ID" value="<?php echo $product_id; ?>">
+                <input type="hidden" name="comment_parent" value="0">
+                <?php
+                do_action('comment_form', $product_id);
+                ?>
+                <button type="submit" class="bg-[#e10a0a] cursor-pointer text-white px-4 py-2 rounded-lg  block mr-auto">
+                    ارسال دیدگاه
+                </button>
+            </form>
+        </div>
+        <div id="commentModalBack" class="fixed left-0 right-0 top-0 min-h-screen w-screen bg-black opacity-30 z-[498]"></div>
+    </div>
 <?php
 get_footer();
 ?>
