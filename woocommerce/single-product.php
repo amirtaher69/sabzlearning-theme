@@ -41,6 +41,14 @@ $upsell_products = wc_get_products(array(
     'status' => 'publish',
 ));
 
+// product revirew
+$product_review = get_comments(array(
+    'post_id' => $product_id,
+    'status' => 'approve',
+));
+$product_review_count = count($product_review);
+$product_review_average = $product->get_average_rating();
+
 ?>
     <div class="w-full">
         <div class="lg:w-[1024px] xl:w-[1280px] mx-auto flex flex-col gap-2 lg:flex-row">
@@ -453,53 +461,50 @@ $upsell_products = wc_get_products(array(
                         </div>
                     </button>
                 </div>
+                <?php if($product_review_count) : ?>
                 <div class="flex w-3/4 flex-col justify-center">
+                    <?php foreach($product_review as $review) : 
+                        $rating = intval(get_comment_meta($review->comment_ID , 'rating' , true));
+                        $verified = wc_customer_bought_product($review->comment_author_email , $review->user_id , $product_id);
+                        ?>
                     <div class="flex flex-col items-start gap-4 border-b-[1px] border-b-gray-200 px-2 mt-8">
                         <div class="flex items-center gap-2 pt-1">
                             <svg width="20" height="20" viewBox="0 0 14 15" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M13.0527 15V13.75C13.0527 11.5409 11.2619 9.75 9.05274 9.75H5.67773C3.4686 9.75 1.67773 11.5409 1.67773 13.75V15" stroke="#A4A4A4" stroke-width="1.5"></path><circle cx="7.47461" cy="4.0625" r="3.0625" stroke="#A4A4A4" stroke-width="1.5"></circle></svg>
                             <p class="text-sm text-dark_grey">
-                                نسترن سلیمانی
+                                <?php echo $review->comment_author; ?>
                             </p>
+                            <?php if($verified) : ?>
                             <span class="rounded-md bg-Success-20 px-2 py-1 text-sm text-Success-70">
                                 خریدار
                             </span>
+                            <?php endif; ?>
                         </div>
                         <div class="flex items-center gap-2">
                             <div class="overflow:hidden;position:relative">
-                                <span class="" style="position: relative; overflow: hidden; cursor: default; display: block; float: left; color: rgb(225, 10, 10); font-size: 20px;" data-index="0" data-forhalf="[object Object]">
-                                    <svg class="text-[#e10a0a]" width="16" height="16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                        <use xlink:href="#star"></use>
-                                    </svg>
-                                </span>
-                                <span class="" style="position: relative; overflow: hidden; cursor: default; display: block; float: left; color: rgb(225, 10, 10); font-size: 20px;" data-index="0" data-forhalf="[object Object]">
-                                    <svg class="text-[#e10a0a]" width="16" height="16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                        <use xlink:href="#star"></use>
-                                    </svg>
-                                </span>
-                                <span class="" style="position: relative; overflow: hidden; cursor: default; display: block; float: left; color: rgb(225, 10, 10); font-size: 20px;" data-index="0" data-forhalf="[object Object]">
-                                    <svg class="text-[#e10a0a]" width="16" height="16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                        <use xlink:href="#star"></use>
-                                    </svg>
-                                </span>
-                                <span class="" style="position: relative; overflow: hidden; cursor: default; display: block; float: left; color: rgb(225, 10, 10); font-size: 20px;" data-index="0" data-forhalf="[object Object]">
-                                    <svg class="text-[#e10a0a]" width="16" height="16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                        <use xlink:href="#star"></use>
-                                    </svg>
-                                </span>
-                                <span class="" style="position: relative; overflow: hidden; cursor: default; display: block; float: left; color: rgb(225, 10, 10); font-size: 20px;" data-index="0" data-forhalf="[object Object]">
-                                    <svg class="text-[#e10a0a]" width="16" height="16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                        <use xlink:href="#star"></use>
-                                    </svg>
-                                </span>
+                                <?php for($i = 1 ; $i <= 5 ; $i++){ 
+                                    if($i <= $rating ){ ?>
+                                        <span class="" style="position: relative; overflow: hidden; cursor: default; display: block; float: left; color: rgb(225, 10, 10); font-size: 20px;" data-index="0" data-forhalf="[object Object]">
+                                            <svg class="text-[#e10a0a]" width="16" height="16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                                <use xlink:href="#star"></use>
+                                            </svg>
+                                        </span>
+                                    <?php }else{ ?>
+                                        <span class="" style="position: relative; overflow: hidden; cursor: default; display: block; float: left; color: rgb(225, 10, 10); font-size: 20px;" data-index="0" data-forhalf="[object Object]">
+                                            <svg class="text-[#707070]" width="16" height="16" fill="#707070" xmlns="http://www.w3.org/2000/svg">
+                                                <use xlink:href="#star"></use>
+                                            </svg>
+                                        </span>
+                                    <?php }
+                                    } ?> 
+                                
                             </div>
                             <div class="text-sm text-dark_grey">
-                                14 دی 1403
+                                <?php echo get_comment_date('d M Y' , $review->comment_ID); ?>
                             </div>
                         </div>
                         <div class="text-base font-semibold text-dark_grey">
-                            هدفون بلوتوثی اپل مدل AirPods Pro (2nd generation 2023)
+                            <?php echo $review->comment_content; ?>
                         </div>
-                        <p class="text-[14px] font-semibold text-dark_grey">بسیار عالی</p>
                         <!--<div class="flex gap-8 pb-1">
                             <div class="flex items-center gap-1">
                                 <div class="flex items-start text-[14px] leading-none">1</div>
@@ -515,7 +520,9 @@ $upsell_products = wc_get_products(array(
                             </div>
                         </div>-->
                     </div>
+                    <?php endforeach; ?>
                 </div>
+                <?php endif; ?>
             </div>
         </div>
     </div>
