@@ -50,6 +50,11 @@ $product_review_count = count($product_review);
 $product_review_average = $product->get_average_rating();
 
 ?>
+<style>
+    .rating-box{
+        width : <?php echo ($product_review_average/5)*100; ?>%;
+    }
+</style>
     <div class="w-full">
         <div class="lg:w-[1024px] xl:w-[1280px] mx-auto flex flex-col gap-2 lg:flex-row">
             <article class="mt-[90px] lg:mt-[200px] relative">
@@ -133,23 +138,45 @@ $product_review_average = $product->get_average_rating();
                     <h1 class="text-[14px] xl:text-[16px] font-normal text-[#2b2b2b]"><?php echo $product_name; ?></h1>
                 </div>
                 <div class="flex items-center gap-4">
-                    <span class="flex items-center">
-                        <svg class="text-[#e10a0a]" width="16" height="16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                            <use xlink:href="#star"></use>
-                        </svg>
-                        <svg class="text-[#e10a0a]" width="16" height="16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                            <use xlink:href="#star"></use>
-                        </svg>
-                        <svg class="text-[#e10a0a]" width="16" height="16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                            <use xlink:href="#star"></use>
-                        </svg>
-                        <svg class="text-[#e10a0a]" width="16" height="16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                            <use xlink:href="#star"></use>
-                        </svg>
-                        <svg class="text-[#e10a0a]" width="16" height="16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                            <use xlink:href="#star"></use>
-                        </svg>
-                    </span>
+                    <?php if($product_review_count) : ?>
+                    <div class="relative">
+                        <span class="flex items-center">
+                            <svg class="text-[#707070]" width="16" height="16" fill="#707070" xmlns="http://www.w3.org/2000/svg">
+                                <use xlink:href="#star"></use>
+                            </svg>
+                            <svg class="text-[#707070]" width="16" height="16" fill="#707070" xmlns="http://www.w3.org/2000/svg">
+                                <use xlink:href="#star"></use>
+                            </svg>
+                            <svg class="text-[#707070]" width="16" height="16" fill="#707070" xmlns="http://www.w3.org/2000/svg">
+                                <use xlink:href="#star"></use>
+                            </svg>
+                            <svg class="text-[#707070]" width="16" height="16" fill="#707070" xmlns="http://www.w3.org/2000/svg">
+                                <use xlink:href="#star"></use>
+                            </svg>
+                            <svg class="text-[#707070]" width="16" height="16" fill="#707070" xmlns="http://www.w3.org/2000/svg">
+                                <use xlink:href="#star"></use>
+                            </svg>
+                        </span>
+                        <span class="flex items-center absolute top-0 right-0 overflow-hidden rating-box">
+                            <svg class="text-[#e10a0a] shrink-0" width="16" height="16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                <use xlink:href="#star"></use>
+                            </svg>
+                            <svg class="text-[#e10a0a] shrink-0" width="16" height="16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                <use xlink:href="#star"></use>
+                            </svg>
+                            <svg class="text-[#e10a0a] shrink-0" width="16" height="16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                <use xlink:href="#star"></use>
+                            </svg>
+                            <svg class="text-[#e10a0a] shrink-0" width="16" height="16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                <use xlink:href="#star"></use>
+                            </svg>
+                            <svg class="text-[#e10a0a] shrink-0" width="16" height="16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                <use xlink:href="#star"></use>
+                            </svg>
+                        </span>
+                    </div>
+                    <?php endif; ?>
+                    
                     <?php if($is_in_stock){ ?>
                     <div class="flex items-center gap-2">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 21C16.9706 21 21 16.9706 21 12C21 7.02944 16.9706 3 12 3C7.02944 3 3 7.02944 3 12C3 16.9706 7.02944 21 12 21Z" stroke="#1CB65D" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"></path><path d="M15 10L11 14L9 12" stroke="#1CB65D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
