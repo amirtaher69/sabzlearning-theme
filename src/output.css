@@ -851,6 +851,9 @@
   .w-\[80px\] {
     width: 80px;
   }
+  .w-\[90\%\] {
+    width: 90%;
+  }
   .w-\[90px\] {
     width: 90px;
   }
@@ -1709,9 +1712,6 @@
   .text-\[\#0e8bff\] {
     color: #0e8bff;
   }
-  .text-\[\#2a2a2a\] {
-    color: #2a2a2a;
-  }
   .text-\[\#2b2b2b\] {
     color: #2b2b2b;
   }
@@ -1889,6 +1889,10 @@
   }
   .shadow-lg {
     --tw-shadow: 0 10px 15px -3px var(--tw-shadow-color, rgb(0 0 0 / 0.1)), 0 4px 6px -4px var(--tw-shadow-color, rgb(0 0 0 / 0.1));
+    box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);
+  }
+  .shadow-sm {
+    --tw-shadow: 0 1px 3px 0 var(--tw-shadow-color, rgb(0 0 0 / 0.1)), 0 1px 2px -1px var(--tw-shadow-color, rgb(0 0 0 / 0.1));
     box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);
   }
   .filter {
@@ -2268,6 +2272,11 @@
       width: calc(1/4 * 100%);
     }
   }
+  .lg\:w-\[25\%\] {
+    @media (width >= 64rem) {
+      width: 25%;
+    }
+  }
   .lg\:w-\[34px\] {
     @media (width >= 64rem) {
       width: 34px;
@@ -2281,6 +2290,11 @@
   .lg\:w-\[47px\] {
     @media (width >= 64rem) {
       width: 47px;
+    }
+  }
+  .lg\:w-\[75\%\] {
+    @media (width >= 64rem) {
+      width: 75%;
     }
   }
   .lg\:w-\[130px\] {
