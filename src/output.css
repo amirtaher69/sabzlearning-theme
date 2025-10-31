@@ -3190,6 +3190,25 @@ ol.children {
 div#respond {
   margin-bottom: 1rem;
 }
+.woocommerce-pagination ul.page-numbers li {
+  margin: 0 4px !important;
+  border: 1px solid #eee !important;
+  border-radius: 6px;
+  min-width: 35px;
+}
+.woocommerce-pagination ul.page-numbers {
+  border: none !important;
+}
+.woocommerce-pagination ul.page-numbers li span.current {
+  background: #e10a0a !important;
+  color: #fff !important;
+}
+.woocommerce-pagination ul.page-numbers li span:hover {
+  background: #eee !important;
+}
+.woocommerce-pagination ul.page-numbers li span.current:hover {
+  background: #e10a0a !important;
+}
 @property --tw-border-spacing-x {
   syntax: "<length>";
   inherits: false;
