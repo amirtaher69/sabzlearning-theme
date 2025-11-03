@@ -318,3 +318,49 @@ add_action('init' , function(){
         }
     }
 });
+
+add_filter('woocommerce_enable_order_notes_field' , '__return_false');
+add_filter('woocommerce_checkout_fields' , 'custom_checkout_field');
+
+function custom_checkout_field($fields) {
+    unset( $fields['billing']['billing_first_name']);
+    unset( $fields['billing']['billing_last_name']);
+
+    $fields['billing']['billing_full_name'] = array(
+        'type' => 'text',
+        'label' => 'نام و نام خانوادگی',
+        'placeholder' => 'مثلا امیر طاهرخانی',
+        'required'=> true,
+        'class' => array('form-row-wide'),
+        'priority' => 10
+    );
+
+    unset( $fields['billing']['billing_address_1']);
+    unset( $fields['billing']['billing_address_2']);
+
+    $fields['billing']['billing_address'] = array(
+        'type' => 'text',
+        'label' => 'آدرس',
+        'placeholder' => 'مثلا تهران خیابان آزادی، پلاک 12',
+        'required'=> true,
+        'class' => array('form-row-wide'),
+        'priority' => 90
+    );
+
+
+    $fields['billing']['billing_postcode']['required'] = false;
+
+    return $fields;
+}
+
+add_filter('woocommerce_default_address_fields' , function($fields){
+    $fields['postcode']['required'] = false;
+
+    return $fields;
+});
+
+add_filter('woocommerce_checkout_proccess' , function(){
+    if(isset($_POST['billing_postcode']) && empty($_POST['billing_postcode'])){
+        unset($_POST['billing_postcode']);
+    }
+});
