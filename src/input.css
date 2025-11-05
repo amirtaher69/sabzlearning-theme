@@ -506,3 +506,37 @@ div#respond {
 .woocommerce-pagination ul.page-numbers li span.current:hover {
   background: #e10a0a !important;
 }
+
+a.checkout-button.button.alt.wc-forward {
+    background: #e10a0a;
+    color: #fff;
+}
+
+table.shop_table button.button {
+    background: #e10a0a;
+    color: #fff !important;
+}
+
+table.shop_table button.button:hover ,a.checkout-button.button.alt.wc-forward:hover {
+    background: #ae0a0a !important;
+}
+
+input#coupon_code {
+    min-width: 150px;
+    border-radius: 4px;
+}
+
+div#customer_details .col-1 {
+  width: 100% !important;
+  max-width: 550px;
+  margin: auto;
+  float: unset;
+}
+
+div#customer_details .col-2 {
+  display: none;
+}
+
+div#payment button#place_order {
+  background: #e10a0a !important;
+}
