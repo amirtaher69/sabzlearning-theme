@@ -364,3 +364,28 @@ add_filter('woocommerce_checkout_proccess' , function(){
         unset($_POST['billing_postcode']);
     }
 });
+
+// create new post type
+add_action('init' , function(){
+    register_post_type('agahi' , array(
+        'labels' => array(
+            'name' => 'آگهی‌ها' ,
+            'singular_name' => 'آگهی',
+            'menu_name' => 'آگهی‌ها',
+            'add_new' => 'افزودن آگهی',
+            'add_new_item' => 'افزودن آگهی جدید',
+            'edit_item' => 'ویرایش آگهی',
+            'new_item' => 'آگهی جدید',
+            'view_item' => 'نمایش آگهی',
+            'search_items' => 'جستجوی آگهی',
+            'not_found' => 'آگهی یافت نشد',
+        ) ,
+        'public' => true ,
+        'has_archive' => true ,
+        'supports' => array('title' , 'editor' , 'thumbnail' , 'comments' , 'author' , 'excerpt' , 'custom-fields'),
+        'rewrite' => array('slug' => 'agahi'),
+        'menu_icon' => 'dashicons-admin-post',
+        'menu_position' => 5,
+        'publicly_queryable' => true,
+    ));
+});
