@@ -389,3 +389,57 @@ add_action('init' , function(){
         'publicly_queryable' => true,
     ));
 });
+
+
+add_action('init' , function(){
+    // create new hierarchical taxonomy for agahi
+    register_taxonomy('agahi_category' , 'agahi' , array(
+        'labels' => array(
+            'name' => 'دسته بندی آگهی',
+            'singular_name' => 'دسته بندی آگهی',
+            'menu_name' => 'دسته بندی آگهی',
+            'all_items' => 'همه دسته بندی ها',
+            'parent_item' => 'دسته بندی والد',
+            'parent_item_colon' => 'دسته بندی والد:',
+            'edit_item' => 'ویرایش دسته بندی',
+            'update_item' => 'بروزرسانی دسته بندی',
+            'add_new_item' => 'افزودن دسته بندی جدید',
+            'new_item_name' => 'نام دسته بندی جدید',
+            'search_items' => 'جستجوی دسته بندی',
+            'not_found' => 'دسته بندی یافت نشد',
+        ) ,
+        'public' => true ,
+        'hierarchical' => true ,
+        'show_ui' => true ,
+        'show_admin_column' => true ,
+        'rewrite' => array('slug' => 'agahi-category'),
+        'capabilities' => array(
+            'manage_terms' => 'manage_categories',
+        ),
+    ));
+
+    // register non hierarchical taxonomy for agahi
+    register_taxonomy('agahi_location' , 'za' , array(
+        'labels' => array(
+            'name' => 'مکان آگهی',
+            'singular_name' => 'مکان آگهی',
+            'menu_name' => 'مکان آگهی',
+            'all_items' => 'همه مکان ها',
+            'parent_item' => 'مکان والد',
+            'parent_item_colon' => 'مکان والد:',
+            'edit_item' => 'ویرایش مکان',
+            'update_item' => 'بروزرسانی مکان',
+            'add_new_item' => 'افزودن مکان جدید',
+            'new_item_name' => 'نام مکان جدید',
+            'search_items' => 'جستجوی مکان',
+        ) ,
+        'public' => true ,
+        'hierarchical' => false ,
+        'show_ui' => true ,
+        'show_admin_column' => true ,
+        'rewrite' => array('slug' => 'agahi-location'),
+        'capabilities' => array(
+            'manage_terms' => 'manage_categories',
+        ),
+    ));
+});
