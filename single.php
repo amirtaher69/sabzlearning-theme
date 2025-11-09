@@ -7,6 +7,14 @@ $post_title = get_the_title();
 $post_date = get_the_date('Y M d' , $post_id);
 $author_id = get_post_field('post_author' , $post_id );
 $author_name = get_the_author_meta('display_name' , $author_id);
+$view_count = get_post_meta($post_id, 'view_count', true);
+if($view_count){
+    $view_count++;
+}else{
+    $view_count = 1;
+}
+update_post_meta($post_id, 'view_count', $view_count);
+
 
 ?>
     <section class="max-w-[1250px] mx-auto mt-[124px] lg:mt-[200px] flex flex-col lg:flex-row gap-20">
@@ -36,6 +44,11 @@ $author_name = get_the_author_meta('display_name' , $author_id);
                 <div class="flex flex-wrap gap-2 lg:gap-4 text-[14px] font-normal text-[#6f6f6f]">
                     <p><?php echo $post_date; ?> </p>
                     <p>زمان مورد نیاز برای مطالعه: 2 دقیقه</p>
+                </div>
+            </div>
+            <div class="flex items-center justify-between gap-2 lg:gap-0">
+                <div class="flex flex-wrap gap-2 lg:gap-4 text-[14px] font-normal text-[#6f6f6f]">
+                    <p><?php echo $view_count; ?> بازدید</p>
                 </div>
             </div>
             <?php if($post_thumbnail){ ?>
