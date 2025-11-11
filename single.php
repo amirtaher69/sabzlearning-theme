@@ -7,7 +7,12 @@ $post_title = get_the_title();
 $post_date = get_the_date('Y M d' , $post_id);
 $author_id = get_post_field('post_author' , $post_id );
 $author_name = get_the_author_meta('display_name' , $author_id);
+
+// meta values
+$read_time = get_post_meta($post_id, 'read_time', true);
 $view_count = get_post_meta($post_id, 'view_count', true);
+
+// update view count
 if($view_count){
     $view_count++;
 }else{
@@ -43,8 +48,11 @@ update_post_meta($post_id, 'view_count', $view_count);
                 </div>
                 <div class="flex flex-wrap gap-2 lg:gap-4 text-[14px] font-normal text-[#6f6f6f]">
                     <p><?php echo $post_date; ?> </p>
-                    <p>زمان مورد نیاز برای مطالعه: 2 دقیقه</p>
+                    <?php if($read_time){ ?>
+                        <p>زمان مورد نیاز برای مطالعه: <?php echo $read_time; ?> دقیقه</p>
+                    <?php } ?>
                 </div>
+                
             </div>
             <div class="flex items-center justify-between gap-2 lg:gap-0">
                 <div class="flex flex-wrap gap-2 lg:gap-4 text-[14px] font-normal text-[#6f6f6f]">

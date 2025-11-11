@@ -443,3 +443,47 @@ add_action('init' , function(){
         ),
     ));
 });
+
+// add meta box for posts
+add_action('add_meta_boxes' , function(){
+    add_meta_box(
+        'post_meta_box' ,
+        'اطلاعات اضافی پست' ,
+        'post_meta_box_callback' ,
+        'post' ,
+        'normal' ,
+        'high'
+    );
+});
+
+// post meta box callback
+function post_meta_box_callback($post){
+    // nonce for security
+    wp_nonce_field('post_meta_box_nonce', 'post_meta_box_nonce');
+
+    $read_time = get_post_meta($post->ID, 'read_time', true);
+    ?>
+    <div>
+        <label for="read_time">زمان مطالعه</label>
+        <input type="text" name="read_time" id="read_time" value="<?php echo $read_time; ?>">
+    </div>
+    <?php
+}
+
+// save post meta box
+add_action('save_post' , function($post_id){
+    // check if the nonce is set
+    if(!isset($_POST['post_meta_box_nonce']) || !wp_verify_nonce($_POST['post_meta_box_nonce'], 'post_meta_box_nonce')) 
+        return;
+    // check if the post is autosave
+    if(defined('DOING_AUTOSAVE') && DOING_AUTOSAVE)
+        return;
+    // check if the user has permission to edit the post
+    if(!current_user_can('edit_post', $post_id))
+        return;
+    // check if the read time is set
+    if(!isset($_POST['read_time']))
+        return;
+    // update the read time
+    update_post_meta($post_id, 'read_time', $_POST['read_time']);
+});
