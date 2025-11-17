@@ -58,6 +58,9 @@ update_post_meta($post_id, 'view_count', $view_count);
                 <div class="flex flex-wrap gap-2 lg:gap-4 text-[14px] font-normal text-[#6f6f6f]">
                     <p><?php echo $view_count; ?> بازدید</p>
                 </div>
+                <button id="send-request-to-server" class="flex items-center justify-center px-[10px] cursor-pointer text-white h-[19px] rounded-[4px] bg-[#007bff]">   
+                    ارسال درخواست به سرور        
+                </button>
             </div>
             <?php if($post_thumbnail){ ?>
                 <img class="w-full h-auto lg:h-[450px] rounded-[4px]" src="<?php echo $post_thumbnail; ?>" alt="<?php echo $post_title; ?> ">
@@ -308,6 +311,24 @@ update_post_meta($post_id, 'view_count', $view_count);
             
         </div>
     </section>
+<script>
+    jQuery(document).ready(function() {
+        jQuery("#send-request-to-server").click(function() {
+            jQuery.ajax({
+                type : "POST",
+                url : "<?php echo THEME_DIR ; ?>/ajax/helloAjax.php",
+                dataType : 'json',
+                data : {} ,
+                error : function(){
+                    alert("مشکلی بو-جود آمده مجدد امتحان کنید");
+                },
+                success : function(data){
+                    console.log(data);
+                }
+            });
+        });
+    });
+</script>
 <?php
 get_footer();
 ?>
