@@ -22,6 +22,7 @@ update_post_meta($post_id, 'view_count', $view_count);
 
 
 ?>
+<input type="hidden" id="post_id_value" value="<?php echo $post_id; ?>">
     <section class="max-w-[1250px] mx-auto mt-[124px] lg:mt-[200px] flex flex-col lg:flex-row gap-20">
         <div class="w-full lg:max-w-[66.666667%] flex flex-col gap-7 px-[15px]">
             <h1 class="w-full lg:w-[800px] text-[24px] font-semibold"><?php echo $post_title; ?></h1>
@@ -58,6 +59,7 @@ update_post_meta($post_id, 'view_count', $view_count);
                 <div class="flex flex-wrap gap-2 lg:gap-4 text-[14px] font-normal text-[#6f6f6f]">
                     <p><?php echo $view_count; ?> بازدید</p>
                 </div>
+                <input type="text"  id="client_name" placeholder="نام و نام خانوادگی" class="w-[100px] h-[19px] rounded-[4px] border border-[#c5c5c5] p-[10px]">
                 <button id="send-request-to-server" class="flex items-center justify-center px-[10px] cursor-pointer text-white h-[19px] rounded-[4px] bg-[#007bff]">   
                     ارسال درخواست به سرور        
                 </button>
@@ -314,11 +316,16 @@ update_post_meta($post_id, 'view_count', $view_count);
 <script>
     jQuery(document).ready(function() {
         jQuery("#send-request-to-server").click(function() {
+            const post_id = jQuery("#post_id_value").val();
+            const client_name = jQuery("#client_name").val();
             jQuery.ajax({
                 type : "POST",
                 url : "<?php echo THEME_DIR ; ?>/ajax/helloAjax.php",
                 dataType : 'json',
-                data : {} ,
+                data : {
+                    post_id : post_id,
+                    client_name : client_name,
+                } ,
                 error : function(){
                     alert("مشکلی بو-جود آمده مجدد امتحان کنید");
                 },
