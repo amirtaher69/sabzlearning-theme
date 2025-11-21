@@ -341,7 +341,11 @@ update_post_meta($post_id, 'view_count', $view_count);
                     button.html('ارسال درخواست به سرور');
                 },
                 success : function(data){
-                    console.log(data);
+                    if(data.ok){
+                        console.log(data);
+                    }else{
+                        alert(data.errors.join("\n"));
+                    }
                     
                     // disable loading operations
                     button.prop('disabled', false);
