@@ -923,6 +923,9 @@
   .w-\[100\%\] {
     width: 100%;
   }
+  .w-\[100px\] {
+    width: 100px;
+  }
   .w-\[102px\] {
     width: 102px;
   }
@@ -2199,6 +2202,16 @@
       --tw-ring-color: var(--color-blue-500);
     }
   }
+  .disabled\:cursor-not-allowed {
+    &:disabled {
+      cursor: not-allowed;
+    }
+  }
+  .disabled\:opacity-50 {
+    &:disabled {
+      opacity: 50%;
+    }
+  }
   .sm\:grid-cols-2 {
     @media (width >= 40rem) {
       grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -2503,6 +2516,11 @@
   .lg\:max-w-\[66\.666667\%\] {
     @media (width >= 64rem) {
       max-width: 66.666667%;
+    }
+  }
+  .lg\:flex-col {
+    @media (width >= 64rem) {
+      flex-direction: column;
     }
   }
   .lg\:flex-row {

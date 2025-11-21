@@ -60,7 +60,7 @@ update_post_meta($post_id, 'view_count', $view_count);
                     <p><?php echo $view_count; ?> بازدید</p>
                 </div>
                 <input type="text"  id="client_name" placeholder="نام و نام خانوادگی" class="w-[100px] h-[19px] rounded-[4px] border border-[#c5c5c5] p-[10px]">
-                <button id="send-request-to-server" class="flex items-center justify-center px-[10px] cursor-pointer text-white h-[19px] rounded-[4px] bg-[#007bff]">   
+                <button id="send-request-to-server" class="disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center px-[10px] cursor-pointer text-white h-[19px] rounded-[4px] bg-[#007bff]">   
                     ارسال درخواست به سرور        
                 </button>
             </div>
@@ -318,6 +318,13 @@ update_post_meta($post_id, 'view_count', $view_count);
         jQuery("#send-request-to-server").click(function() {
             const post_id = jQuery("#post_id_value").val();
             const client_name = jQuery("#client_name").val();
+
+            const button = jQuery(this);
+
+            // loading operations
+            button.prop('disabled', true);
+            button.html('در حال ارسال درخواست به سرور...');
+
             jQuery.ajax({
                 type : "POST",
                 url : "<?php echo THEME_DIR ; ?>/ajax/helloAjax.php",
@@ -328,9 +335,17 @@ update_post_meta($post_id, 'view_count', $view_count);
                 } ,
                 error : function(){
                     alert("مشکلی بو-جود آمده مجدد امتحان کنید");
+
+                    // disable loading operations
+                    button.prop('disabled', false);
+                    button.html('ارسال درخواست به سرور');
                 },
                 success : function(data){
                     console.log(data);
+                    
+                    // disable loading operations
+                    button.prop('disabled', false);
+                    button.html('ارسال درخواست به سرور');
                 }
             });
         });
