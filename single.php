@@ -20,6 +20,18 @@ if($view_count){
 }
 update_post_meta($post_id, 'view_count', $view_count);
 
+// get user meta
+$current_user_id = get_current_user_id();
+$favorite_posts = get_user_meta($current_user_id, 'favorite_posts', true);
+
+// check if the post is in the favorite posts
+$is_favorite = false;
+if($favorite_posts){
+    if(in_array($post_id, $favorite_posts)){
+        $is_favorite = true;
+    }
+}
+
 
 ?>
 <input type="hidden" id="post_id_value" value="<?php echo $post_id; ?>">
@@ -59,9 +71,8 @@ update_post_meta($post_id, 'view_count', $view_count);
                 <div class="flex flex-wrap gap-2 lg:gap-4 text-[14px] font-normal text-[#6f6f6f]">
                     <p><?php echo $view_count; ?> بازدید</p>
                 </div>
-                <input type="text"  id="client_name" placeholder="نام و نام خانوادگی" class="w-[100px] h-[19px] rounded-[4px] border border-[#c5c5c5] p-[10px]">
-                <button id="send-request-to-server" class="disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center px-[10px] cursor-pointer text-white h-[19px] rounded-[4px] bg-[#007bff]">   
-                    ارسال درخواست به سرور        
+                <button id="favorite-post-btn" class="disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center px-[10px] cursor-pointer text-white h-[19px] rounded-[4px] bg-[#007bff]">   
+                    <?php echo $is_favorite ? 'حذف از علاقه مندی‌ها' : 'افزودن به علاقه مندی‌ها'; ?>      
                 </button>
             </div>
             <?php if($post_thumbnail){ ?>
@@ -315,11 +326,11 @@ update_post_meta($post_id, 'view_count', $view_count);
     </section>
 <script>
     jQuery(document).ready(function() {
-        jQuery("#send-request-to-server").click(function() {
+        jQuery("#favorite-post-btn").click(function() {
             const post_id = jQuery("#post_id_value").val();
-            const client_name = jQuery("#client_name").val();
 
             const button = jQuery(this);
+            const button_text = button.html();
 
             // loading operations
             button.prop('disabled', true);
@@ -327,29 +338,33 @@ update_post_meta($post_id, 'view_count', $view_count);
 
             jQuery.ajax({
                 type : "POST",
-                url : "<?php echo THEME_DIR ; ?>/ajax/helloAjax.php",
+                url : "<?php echo THEME_DIR ; ?>/ajax/favoritePost.php",
                 dataType : 'json',
                 data : {
                     post_id : post_id,
-                    client_name : client_name,
                 } ,
                 error : function(){
                     alert("مشکلی بو-جود آمده مجدد امتحان کنید");
-
+                    
                     // disable loading operations
                     button.prop('disabled', false);
-                    button.html('ارسال درخواست به سرور');
+                    button.html(button_text);
                 },
                 success : function(data){
                     if(data.ok){
-                        console.log(data);
+                        const add_to_list = data.add_to_list;
+                        if(add_to_list){
+                            button.html('حذف از علاقه مندی‌ها');
+                        }else{
+                            button.html('افزودن به علاقه مندی‌ها');
+                        }
                     }else{
                         alert(data.errors.join("\n"));
+                        button.html(button_text);
                     }
                     
                     // disable loading operations
                     button.prop('disabled', false);
-                    button.html('ارسال درخواست به سرور');
                 }
             });
         });
