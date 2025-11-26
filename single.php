@@ -336,6 +336,7 @@ if($favorite_posts){
             button.prop('disabled', true);
             button.html('در حال ارسال درخواست به سرور...');
 
+
             const ajaxUrl = '<?php echo admin_url('admin-ajax.php'); ?>';
             jQuery.ajax({
                 type : "POST",
@@ -346,7 +347,16 @@ if($favorite_posts){
                     action : 'favorite_post',
                 } ,
                 error : function(){
-                    alert("مشکلی بو-جود آمده مجدد امتحان کنید");
+                    Toastify({
+                        text: "مشکلی بوجود آمده مجدد امتحان کنید",
+                        duration: 4000,
+                        gravity: "top",
+                        position: "left",
+                        style: {
+                            background: "#ff0000",
+                        },
+                        onClick: function(){}
+                    }).showToast();
                     
                     // disable loading operations
                     button.prop('disabled', false);
@@ -360,8 +370,25 @@ if($favorite_posts){
                         }else{
                             button.html('افزودن به علاقه مندی‌ها');
                         }
+                        Toastify({
+                            text: add_to_list ? "به لیست علاقه مندی‌ها افزوده شد" : "از لیست علاقه مندی‌ها حذف شد",
+                            duration: 4000,
+                            gravity: "top",
+                            position: "left",
+                            style: {
+                                background: "#00b09b",
+                            },
+                        }).showToast();
                     }else{
-                        alert(data.errors.join("\n"));
+                        Toastify({
+                            text: data.errors.join("\n"),
+                            duration: 4000,
+                            gravity: "top",
+                            position: "left",
+                            style: {
+                                background: "#ff0000",
+                            },
+                        }).showToast();
                         button.html(button_text);
                     }
                     

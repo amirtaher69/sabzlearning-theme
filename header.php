@@ -40,6 +40,9 @@ $cart_items = WC()->cart->get_cart();
     <link rel="icon" href="<?php echo THEME_DIR; ?>/src/img/favicon.png" type="image/x-icon">
     <link rel="stylesheet" href="<?php echo THEME_DIR; ?>/src/output.css">
     <link rel="stylesheet" href="<?php echo THEME_DIR; ?>/src/swiper-bundle.min.css">
+
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
     <?php wp_head(); ?>
 </head>
 <body <?php body_class(); ?>>
