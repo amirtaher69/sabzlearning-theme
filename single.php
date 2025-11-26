@@ -336,12 +336,14 @@ if($favorite_posts){
             button.prop('disabled', true);
             button.html('در حال ارسال درخواست به سرور...');
 
+            const ajaxUrl = '<?php echo admin_url('admin-ajax.php'); ?>';
             jQuery.ajax({
                 type : "POST",
-                url : "<?php echo THEME_DIR ; ?>/ajax/favoritePost.php",
+                url : ajaxUrl,
                 dataType : 'json',
                 data : {
                     post_id : post_id,
+                    action : 'favorite_post',
                 } ,
                 error : function(){
                     alert("مشکلی بو-جود آمده مجدد امتحان کنید");
