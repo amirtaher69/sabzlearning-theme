@@ -346,7 +346,7 @@ $cart_items = WC()->cart->get_cart();
                         </section>
                     </div>
   
-                    <div class="w-[42px] h-[42px] flex justify-center items-center border border-surface-normal rounded-[10px] group relative cursor-pointer">
+                    <div class="cart-header-content w-[42px] h-[42px] flex justify-center items-center border border-surface-normal rounded-[10px] group relative cursor-pointer">
                         <img src="<?php echo THEME_DIR; ?>/src/img/header_cart.svg" alt="">
                         <?php if($cart_count > 0){ ?>
                             <div class="absolute -mt-[18px] ml-[30px] flex h-[18px] w-[18px] items-center justify-center rounded-full bg-red-primary text-white">

@@ -538,3 +538,92 @@ function favorite_post_callback(){
     echo json_encode($data);
     die();
 }
+
+// woocommerce cart fragment
+add_filter('woocommerce_add_to_cart_fragments' , function($fragments){
+
+    $cart_count = WC()->cart->get_cart_contents_count();
+    $cart_items = WC()->cart->get_cart();
+    
+    ob_start();
+    ?>
+    <div class="cart-header-content w-[42px] h-[42px] flex justify-center items-center border border-surface-normal rounded-[10px] group relative cursor-pointer">
+        <img src="<?php echo THEME_DIR; ?>/src/img/header_cart.svg" alt="">
+        <?php if($cart_count > 0){ ?>
+            <div class="absolute -mt-[18px] ml-[30px] flex h-[18px] w-[18px] items-center justify-center rounded-full bg-red-primary text-white">
+                <span class="mt-[2px] text-[12px] font-medium"><?php echo $cart_count; ?></span>
+            </div>
+        <?php } ?>
+        <div class="absolute top-[24px] z-10 ml-[40px] border-surface-normal hidden w-[420px] flex-col items-end justify-center gap-1 rounded-lg p-4  pr-[20px] text-[14px] font-light  text-black duration-500  lg:group-hover:flex">
+            <div class="z-10 ml-[160px] h-[32px] w-[32px] rotate-45 border-surface-normal border-l border-t  bg-white"></div>
+            <div class=" -mt-[20px] ml-[130px] h-full w-full rounded-[14px] border-surface-normal border bg-white  py-[13px] shadow-2xl ">
+                <div class=" flex h-full w-full flex-col items-center gap-[10px] text-[16px] font-semibold">
+                    <div class="mt-[8px] flex w-full justify-end border-b px-[16px]">
+                        <a href="<?php echo wc_get_cart_url(); ?>">
+                            <div class="mb-[5px] flex flex-row items-center gap-[18px] text-[#0085ff]">
+                                <p class="text-[12px] font-medium  ">مشاهده سبد خرید</p>
+                            </div>
+                        </a>
+                    </div>
+                    <?php if($cart_count > 0){ ?>
+                        <div class="w-full ">
+                            <div class="flex w-full flex-col items-center px-[16px]">
+                                <div class="section flex h-[410px] w-full flex-col items-center  overflow-y-auto overflow-x-hidden">
+                                    <?php foreach($cart_items as $item){
+                                        
+                                        $product = wc_get_product($item['product_id']);
+                                        $product_name = $product->get_name();
+                                        $product_price = $product->get_price();
+                                        $product_image = $product->get_image();
+                                        $product_link = $product->get_permalink();
+                                        $product_quantity = $item['quantity'];
+                                        $product_total = $product_price * $product_quantity;
+                                        ?>
+                                        <a href="<?php echo $product_link; ?>" class="w-full flex h-[138px] flex-row items-center gap-[10px] py-[10px]">
+                                            <div>
+                                                <div class="relative flex h-[103px] w-[88px] items-center justify-center rounded-[10px] bg-light_grey">
+                                                    <?php echo $product_image; ?>
+                                                </div>
+                                            </div>
+                                            <div class="flex flex-col items-start">
+                                                <div class="text-[12px] font-medium false"><?php echo $product_name; ?></div>
+                                                <span class="flex flex-row items-center gap-[5px]">
+                                                    <span class="text-[14px] font-medium"><?php echo number_format($product_price); ?></span>
+                                                    <span class="text-[14px] font-medium">تومان</span>
+                                                </span>
+                                                <div class="text-[12px] font-medium false"><?php echo $product_quantity; ?> عدد</div>
+                                            </div>
+                                        </a>
+                                        <hr class="my-2 w-full text-[#e8eaed]">
+                                    <?php } ?>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="flex h-[38px] w-full flex-row items-center justify-between bg-red-50 px-[16px]
+                        ">
+                        <span class="text-[12px] font-medium">مبلغ قابل پرداخت</span>
+                        <span class="flex flex-row items-center gap-[5px]">
+                            <span class="text-[22px] font-bold"><?php echo WC()->cart->get_cart_total(); ?></span>
+                        </span></div>
+                        <div class="mt-[12px] flex w-full items-center justify-center px-[16px]">
+                            <a href="<?php echo wc_get_checkout_url(); ?>" class="flex h-[44px] w-full items-center justify-center rounded-[10px] bg-red-primary text-[18px] font-medium text-white">ثبت سفارش</a>
+                        </div>
+                    <?php }else{ ?>
+                        <div><img alt="logo basket empty" loading="lazy" width="100" height="100" decoding="async" data-nimg="1" style="color: transparent;" src="<?php echo THEME_DIR; ?>/src/img/basket-empty.gif"></div>
+                        <div>سبد خرید شما خالی است</div>
+                    <?php } ?>
+                    
+                </div>
+            </div>
+        </div>
+    </div>  
+    <?php
+    $fragments['.cart-header-content'] = ob_get_clean();
+    return $fragments;
+});
+
+
+add_action('wp_enqueue_scripts', function() {
+    // add wc-cart-fragments script
+    wp_enqueue_script('wc-cart-fragments');
+});
