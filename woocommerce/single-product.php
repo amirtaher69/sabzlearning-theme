@@ -301,9 +301,9 @@ $product_review_average = $product->get_average_rating();
                     </a>
                 </div>   -->
                 <div class="hidden lg:flex w-full select-none flex-row items-center justify-start gap-[16px]">
-                    <a href="<?php echo wc_get_cart_url(); ?>?add-to-cart=<?php echo $product_id; ?>" class="flex justify-center items-center mt-[26px] h-[44px] w-2/3 min-w-[150px] rounded-[10px] bg-red-primary px-[5px] text-white hover:bg-red-700  lg:text-[18px]">
+                    <button data-product-id="<?php echo $product_id; ?>" class="disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer add-to-cart-button flex justify-center items-center mt-[26px] h-[44px] w-2/3 min-w-[150px] rounded-[10px] bg-red-primary px-[5px] text-white hover:bg-red-700  lg:text-[18px]">
                         افزودن به سبد خرید
-                    </a>
+                    </button>
                 </div>          
             </article>
             <article class="mt-[50px] lg:mt-[220px] mr-0 lg:mr-[30px] flex flex-col gap-2">
@@ -556,9 +556,9 @@ $product_review_average = $product->get_average_rating();
 
     <footer class="fixed bottom-0 left-0 z-20 flex lg:hidden h-[130px] w-full select-none flex-row items-center bg-white px-[20px] shadow-all_sides pb-18">
         <div class="flex w-full flex-row items-center gap-[10px]">
-            <a href="<?php echo wc_get_cart_url(); ?>?add-to-cart=<?php echo $product_id; ?>"  class="flex h-[44px] w-full items-center justify-center rounded-[10px] bg-red-primary text-white">
+            <button data-product-id="<?php echo $product_id; ?>"  class="disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer add-to-cart-button flex h-[44px] w-full items-center justify-center rounded-[10px] bg-red-primary text-white">
                 افزودن به سبد خرید
-            </a>
+            </button>
         </div>
     </footer>
 
@@ -608,6 +608,80 @@ $product_review_average = $product->get_average_rating();
         </div>
         <div id="commentModalBack" class="fixed left-0 right-0 top-0 min-h-screen w-screen bg-black opacity-30 z-[498]"></div>
     </div>
+
+<script>
+    jQuery(document).ready(function($) {
+        jQuery(".add-to-cart-button").click(function(e) {
+            e.preventDefault();
+
+            // vars
+            const button = jQuery(this);
+            const button_text = button.html();
+            const product_id = button.data("product-id");
+            const ajaxUrl = '<?php echo admin_url('admin-ajax.php'); ?>';
+
+            // loading operations
+            button.prop('disabled', true);
+            button.html('در حال عملیات...');
+
+            jQuery.ajax({
+                type : "POST",
+                url : ajaxUrl,
+                dataType : 'json',
+                data : {
+                    product_id : product_id,
+                    action : 'product_add_to_cart',
+                },
+                error : function(){
+                    Toastify({
+                        text: "مشکلی بوجود آمده مجدد امتحان کنید",
+                        duration: 4000,
+                        gravity: "top",
+                        position: "left",
+                        style: {
+                            background: "#ff0000",
+                        },
+                        onClick: function(){}
+                    }).showToast();
+
+                    // disable loading operations
+                    button.prop('disabled', false);
+                    button.html(button_text);
+                },
+                success : function(data){
+                    if(data.ok){
+                        Toastify({
+                            text: "به سبد خرید افزوده شد",
+                            duration: 4000,
+                            gravity: "top",
+                            position: "left",
+                            style: {
+                                background: "#00b09b",
+                            },
+                        }).showToast();
+
+                        // trigger fragments update
+                        jQuery(document.body).trigger('wc_fragment_refresh');
+                    }else{
+                        Toastify({
+                            text: data.errors.join("\n"),
+                            duration: 4000,
+                            gravity: "top",
+                            position: "left",
+                            style: {
+                                background: "#ff0000",
+                            },
+                        }).showToast();
+                    }
+
+                    // disable loading operations
+                    button.prop('disabled', false);
+                    button.html(button_text);
+                }
+            });
+        });
+    });
+</script>
 <?php
 get_footer();
 ?>

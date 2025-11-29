@@ -627,3 +627,39 @@ add_action('wp_enqueue_scripts', function() {
     // add wc-cart-fragments script
     wp_enqueue_script('wc-cart-fragments');
 });
+
+// add ajax action for add to cart
+add_action('wp_ajax_product_add_to_cart' , 'add_to_cart_callback');
+add_action('wp_ajax_nopriv_product_add_to_cart' , 'add_to_cart_callback');
+
+function add_to_cart_callback(){
+    $data = [];
+    $data["errors"] = [];
+    $data["ok"] = true;
+
+    // get product id
+    $product_id = isset($_POST['product_id']) ? sanitize_text_field($_POST['product_id']) : '';
+
+    // check product id is set
+    if(!$product_id){
+        $data["errors"][] = "محصول مورد نظر یافت نشد";
+        $data["ok"] = false;
+    }
+
+    // check product is exists
+    $product = wc_get_product($product_id);
+
+    if(!$product){
+        $data["errors"][] = "محصول مورد نظر یافت نشد";
+        $data["ok"] = false;
+    }
+
+    if($data["ok"]){
+        // add product to cart
+        WC()->cart->add_to_cart($product_id);
+    }
+
+    echo json_encode($data);
+    die();
+
+}
