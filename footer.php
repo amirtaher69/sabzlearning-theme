@@ -244,5 +244,49 @@
     <script src="<?php echo THEME_DIR; ?>/src/swiper-bundle.min.js"></script>
     <script src="<?php echo THEME_DIR; ?>/src/script.js"></script>
     <?php wp_footer(); ?>
+    <script>
+        jQuery(document).ready(function($) {
+            $('#input-search').on('input', function() {
+                var search = $(this).val();
+                
+                // send ajax request to admin-ajax.php
+                const ajaxUrl = '<?php echo admin_url('admin-ajax.php'); ?>';
+                $.ajax({
+                    url: ajaxUrl,
+                    type: 'POST',
+                    dataType: 'json',
+                    data: {
+                        action: 'search_ajax',
+                        search: search
+                    },
+                    error: function(error) {
+                        Toastify({
+                            text: 'خطایی رخ داده است',
+                            duration: 3000,
+                            gravity: 'top',
+                            position: 'right',
+                            background: '#e11010',
+                            color: '#fff',
+                        }).showToast();
+                    },
+                    success: function(response) {
+                        if(response.ok){
+                            const result_items = response.result;
+                            if(result_items.length > 0){
+                                $('.result-items').html('');
+                                result_items.forEach(function(item) {
+                                    $('.result-items').append('<a href="' + item.link + '" class="result-item flex items-center gap-2 mb-2"><img src="' + item.thumbnail + '" alt="' + item.title + '" class="w-[90px] h-[90px] rounded-xl"><p class="text-[14px] font-normal">' + item.title + '</p></a>');
+                                });
+                            }else{
+                                $('.result-items').html('<div class="result-item flex items-center justify-center gap-2"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 22C17.5 22 22 17.5 22 12C22 6.5 17.5 2 12 2C6.5 2 2 6.5 2 12C2 17.5 6.5 22 12 22Z" stroke="#E10A0A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path><path d="M12 8V12" stroke="#E10A0A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path><path d="M12 16H12.01" stroke="#E10A0A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg><p class="text-[14px] font-normal text-[#e11010]">جستجوی شما نتیجه ای نداشت</p></div>');
+                            }
+                        }else{
+                            $('.result-items').html('<div class="result-item flex items-center justify-center gap-2"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 22C17.5 22 22 17.5 22 12C22 6.5 17.5 2 12 2C6.5 2 2 6.5 2 12C2 17.5 6.5 22 12 22Z" stroke="#E10A0A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path><path d="M12 8V12" stroke="#E10A0A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path><path d="M12 16H12.01" stroke="#E10A0A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg><p class="text-[14px] font-normal text-[#e11010]">جستجوی شما نتیجه ای نداشت</p></div>');
+                        }
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 </html>

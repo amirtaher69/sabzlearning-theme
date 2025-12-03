@@ -76,7 +76,7 @@ $cart_items = WC()->cart->get_cart();
                                 </svg>
                             </div>
                             <div id="search-mobile" class="w-full h-[36px] bg-[#f6f5f5] rounded-[22px] flex items-center relative">
-                                <input id="input-search" class="w-full h-full relative hidden desktop:flex items-center outline-none bg-transparent rounded-[22px] text-[16px] font-normal pr-1 placeholder-[#a0a6b2]" type="text" placeholder="جستجو..." >
+                                <input id="input-search2" class="w-full h-full relative hidden desktop:flex items-center outline-none bg-transparent rounded-[22px] text-[16px] font-normal pr-1 placeholder-[#a0a6b2]" type="text" placeholder="جستجو..." >
                                 <div class="flex desktop:hidden items-center gap-2 absolute">
                                     <span id="search-input2" class="text-nowrap text-[14px] font-normal text-[#a7a7a7]" >جستجو در</span>
                                     <span>
@@ -260,8 +260,16 @@ $cart_items = WC()->cart->get_cart();
                         <button type="submit" class="cursor-pointer rounded-full w-[36px] h-[36px] absolute right-2 bg-white flex justify-center items-center">
                             <svg class="text-[#e11010]" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M21 21L16.6588 16.6549C15.209 18.1187 13.223 19 11 19C6.58172 19 3 15.4183 3 11C3 6.58172 6.58172 3 11 3C15.4183 3 19 6.58172 19 11C19 12.073 18.7888 13.0967 18.4056 14.0317" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
                         </button>
-                        <input id="input-search" name="s" class="absolute right-12 outline-none h-full placholder-[#a6abb6] " placeholder="جستجو ..." type="text">
-                        <input type="hidden" name="post_type" value="post">
+                        <input autocomplete="off" id="input-search" name="s" class="absolute right-12 outline-none h-full placholder-[#a6abb6] " placeholder="جستجو ..." type="text">
+                        <input type="hidden" name="post_type" value="product">
+                        <div id="pop-up-desktop" class="hidden w-[616px] h-[300px] bg-white absolute top-[50px] shadow-2xl z-60 rounded-[10px] rounded-t-[22px] p-[30px] flex-col gap-4 overflow-y-auto">
+                            <div class="result-items">
+                                <div class="result-item flex items-center justify-center gap-2">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 22C17.5 22 22 17.5 22 12C22 6.5 17.5 2 12 2C6.5 2 2 6.5 2 12C2 17.5 6.5 22 12 22Z" stroke="#E10A0A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path><path d="M12 8V12" stroke="#E10A0A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path><path d="M12 16H12.01" stroke="#E10A0A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                                    <p class="text-[14px] font-normal text-[#e11010]">جستجوی شما نتیجه ای نداشت</p>
+                                </div>
+                            </div>
+                        </div>
                     </form>
                 </div>
                 <div class="flex items-center gap-2">

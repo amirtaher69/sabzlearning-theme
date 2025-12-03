@@ -663,3 +663,51 @@ function add_to_cart_callback(){
     die();
 
 }
+
+// add ajax action for search
+add_action('wp_ajax_search_ajax' , 'search_ajax_callback');
+add_action('wp_ajax_nopriv_search_ajax' , 'search_ajax_callback');
+
+function search_ajax_callback(){
+    $data = [];
+    $data["errors"] = [];
+    $data["ok"] = true;
+
+    // get search value
+    $search = isset($_POST['search']) ? sanitize_text_field($_POST['search']) : '';
+
+    // check search value is set
+    if(!$search){
+        $data["errors"][] = "جستجوی شما خالی است";
+        $data["ok"] = false;
+    }
+
+    if($data["ok"]){
+        $data["result"] = [];
+
+        // get posts from WP_Query
+        $args = array(
+            'post_type' => 'product',
+            's' => $search,
+            'posts_per_page' => 10,
+        );
+        $posts = new WP_Query($args);
+        if($posts->have_posts()){
+            while($posts->have_posts()){
+                $posts->the_post();
+                $post_id = get_the_ID();
+                $post_thumbnail = get_the_post_thumbnail_url($post_id);
+                $post_title = get_the_title();
+                $post_link = get_permalink();
+                $data["result"][] = array(
+                    'id' => $post_id,
+                    'thumbnail' => $post_thumbnail,
+                    'title' => $post_title,
+                    'link' => $post_link,
+                );
+            }
+        }
+    }
+    echo json_encode($data);
+    die();
+}
