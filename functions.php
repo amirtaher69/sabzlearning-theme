@@ -711,3 +711,35 @@ function search_ajax_callback(){
     echo json_encode($data);
     die();
 }
+
+// disable rest api wp/v2 namespace
+add_filter('rest_endpoints', function($endpoints){
+    foreach($endpoints as $namespace => $routes){
+        foreach($routes as $route => $endpoint){
+            if(strpos($namespace, 'wp/v2') !== false){
+                unset($endpoints[$namespace][$route]);
+            }
+        }
+    }
+    return $endpoints;
+});
+
+// disable rest api /wc namespace
+add_filter('rest_endpoints', function($endpoints){
+    foreach($endpoints as $namespace => $routes){
+        foreach($routes as $route => $endpoint){
+            if(strpos($namespace, '/wc') !== false){
+                unset($endpoints[$namespace][$route]);
+            }
+        }
+    }
+    return $endpoints;
+});
+
+// block guest user to access rest api
+add_filter('rest_authentication_errors', function($result){
+    if(!is_user_logged_in()){
+        return new WP_Error('rest_blocked', 'Access to the REST API is blocked', array('status' => 403));
+    }
+    return $result;
+});
