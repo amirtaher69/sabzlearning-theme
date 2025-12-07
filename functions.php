@@ -736,10 +736,16 @@ add_filter('rest_endpoints', function($endpoints){
     return $endpoints;
 });
 
-// block guest user to access rest api
-add_filter('rest_authentication_errors', function($result){
-    if(!is_user_logged_in()){
-        return new WP_Error('rest_blocked', 'Access to the REST API is blocked', array('status' => 403));
-    }
-    return $result;
+
+// register new rout in rest
+add_action('rest_api_init', function(){
+    register_rest_route('mytheme/v1' , '/hello_world/(?P<username>[a-zA-Z0-9]+)' , array(
+        'method' => 'GET',
+        'callback' => 'hello_world_callback'
+    ));
 });
+
+function hello_world_callback($request){
+    $username = $request->get_param('username');
+    return array('message' => 'Hello ' . $username);
+}
