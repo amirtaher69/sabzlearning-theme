@@ -771,6 +771,7 @@ function create_post_callback($request){
 }
 
 function edit_post_callback($request){
+    $data = [];
     $id = $request->get_param('id');
     $title = $request->get_param('title');
     $content = $request->get_param('content');
@@ -781,12 +782,13 @@ function edit_post_callback($request){
         'post_content' => $content,
     ));
     if($post_id){
-        return array(
-            'post_id' => $post_id
-        );
+        $data["post_id"] = $post_id;
+        $response = new WP_REST_Response($data , 200);
+        $response->header('new-post' , $post_id);
+        return $response;
     }else{
-        return array(
-            'error' => 'مشکلی وجود دارد مجدد امتحان کنید',
-        );
+        $data["error"] = 'مشکلی وجود دارد مجدد امتحان کنید';
+        $response = new WP_REST_Response($data , 400);
+        return $response;
     }
 }
