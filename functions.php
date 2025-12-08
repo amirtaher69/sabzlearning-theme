@@ -739,13 +739,54 @@ add_filter('rest_endpoints', function($endpoints){
 
 // register new rout in rest
 add_action('rest_api_init', function(){
-    register_rest_route('mytheme/v1' , '/hello_world/(?P<username>[a-zA-Z0-9]+)' , array(
-        'method' => 'GET',
-        'callback' => 'hello_world_callback'
+    register_rest_route('mytheme/v1' , '/create_post' , array(
+        'methods' => 'POST',
+        'callback' => 'create_post_callback'
+    ));
+    register_rest_route('mytheme/v1' , '/edit_post/(?P<id>\d+)' , array(
+        'methods' => 'POST',
+        'callback' => 'edit_post_callback'
     ));
 });
 
-function hello_world_callback($request){
-    $username = $request->get_param('username');
-    return array('message' => 'Hello ' . $username);
+function create_post_callback($request){
+    $title = $request->get_param('title');
+    $content = $request->get_param('content');
+
+    $post_id = wp_insert_post(array(
+        'post_title' => $title,
+        'post_content' => $content,
+        'post_status' => 'publish',
+        'post_type' => 'post',
+    ));
+    if($post_id){
+        return array(
+            'post_id' => $post_id
+        );
+    }else{
+        return array(
+            'error' => 'مشکلی وجود دارد مجدد امتحان کنید',
+        );
+    }
+}
+
+function edit_post_callback($request){
+    $id = $request->get_param('id');
+    $title = $request->get_param('title');
+    $content = $request->get_param('content');
+
+    $post_id = wp_update_post(array(
+        'ID' => $id,
+        'post_title' => $title,
+        'post_content' => $content,
+    ));
+    if($post_id){
+        return array(
+            'post_id' => $post_id
+        );
+    }else{
+        return array(
+            'error' => 'مشکلی وجود دارد مجدد امتحان کنید',
+        );
+    }
 }
