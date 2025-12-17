@@ -741,11 +741,18 @@ add_filter('rest_endpoints', function($endpoints){
 add_action('rest_api_init', function(){
     register_rest_route('mytheme/v1' , '/create_post' , array(
         'methods' => 'POST',
-        'callback' => 'create_post_callback'
+        'callback' => 'create_post_callback',
+        'permission_callback' => function(){
+            return current_user_can('edit_posts');
+        }
     ));
     register_rest_route('mytheme/v1' , '/edit_post/(?P<id>\d+)' , array(
         'methods' => 'POST',
-        'callback' => 'edit_post_callback'
+        'callback' => 'edit_post_callback',
+        'permisson_callback' => function($request){
+            $id = $request->get_param('id');
+            return current_user_can('edit_post', $id);
+        }
     ));
 });
 
