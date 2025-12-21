@@ -742,9 +742,33 @@ add_action('rest_api_init', function(){
     register_rest_route('mytheme/v1' , '/create_post' , array(
         'methods' => 'POST',
         'callback' => 'create_post_callback',
-        'permission_callback' => function(){
-            return current_user_can('edit_posts');
-        }
+
+        'args' => array(
+            'title' => array(
+                'type' => 'string',
+                'required' => true,
+                'sanitize_callback' => 'sanitize_text_field',
+                'validate_callback' => function($value){
+                    return !empty($value);
+                },
+                'description' => 'post title'
+            ),
+            'status' => array(
+                'type' => 'string',
+                'enum' => array('publish', 'draft', 'pending', 'trash'),
+                'default' => 'publish',
+                'description' => 'post status'
+            ),
+            'content' => array(
+                'type' => 'string',
+                'required' => true,
+                'sanitize_callback' => 'wp_kses_post',
+                'validate_callback' => function($value){
+                    return !empty($value);
+                },
+                'description' => 'post content'
+            )
+        )
     ));
     register_rest_route('mytheme/v1' , '/edit_post/(?P<id>\d+)' , array(
         'methods' => 'POST',
@@ -759,11 +783,12 @@ add_action('rest_api_init', function(){
 function create_post_callback($request){
     $title = $request->get_param('title');
     $content = $request->get_param('content');
+    $status = $request->get_param('status');
 
     $post_id = wp_insert_post(array(
         'post_title' => $title,
         'post_content' => $content,
-        'post_status' => 'publish',
+        'post_status' => $status,
         'post_type' => 'post',
     ));
     if($post_id){
